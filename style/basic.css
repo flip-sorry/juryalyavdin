@@ -1,0 +1,33 @@
+
+body {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-width: 320px;
+    font-family: 'Montserrat', 'Basis Regular', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: .4px;
+    color: #ccc5ba;
+    font-size: 24px;
+    line-height: 40px;
+    background-color: #1E1E1F;
+}
+
+h5 {
+  color: #FC700B;
+  padding: 16px 0;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:visited {
+  color: currentColor;
+}
+
+/*p {
+  margin-bottom: 16px;
+}*/

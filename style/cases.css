@@ -1,0 +1,87 @@
+.project-img {
+  background-image: url(../images/cases/blank.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  height: 100%;
+}
+
+.marketapp {
+  background-image: url(../images/cases/marketapp.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  height: 100%;
+}
+
+.avi-img {
+  background-image: url(../images/cases/aviapp.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.rmblr-img {
+  background-image: url(../images/cases/rmblr.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.mail-img {
+  background-image: url(../images/cases/mail.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.book-img {
+  background-image: url(../images/cases/book.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.live-img {
+  background-image: url(../images/cases/live.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.zvq-img {
+  background-image: url(../images/cases/zvq.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.webinar-img {
+  background-image: url(../images/cases/webinar.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.art-img {
+  background-image: url(../images/cases/art.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.ico-img {
+  background-image: url(../images/cases/ico.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
