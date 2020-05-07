@@ -1,4 +1,3 @@
-  <!-- Load Facebook SDK for JavaScript -->
         window.fbAsyncInit = function() {
           FB.init({
             xfbml            : true,
