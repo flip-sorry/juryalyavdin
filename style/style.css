@@ -1,6 +1,6 @@
 @import "reset.css";
 @import "basic.css";
 @import "layout.css";
-@import "adaptive.css";
 @import "cases.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import "adaptive.css";
