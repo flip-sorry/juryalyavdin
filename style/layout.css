@@ -372,3 +372,73 @@ footer {
 	height: 50vh;
 }
 
+.bottom-buttons {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  grid-gap: 16px;
+  padding: 40px 0;
+}
+
+.button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  position: static;
+  height: 72px;
+  left: 0px;
+  top: 0px;
+  background: #FC700B;
+  border-radius: 8px;
+  border: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  color: azure;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.button:active {
+  transform: scale(.95);
+}
+
+.button:focus {
+  outline-style: auto;
+  outline-color: #323639;
+}
+
+.string-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  position: static;
+  height: 72px;
+  left: 0px;
+  top: 0px;
+  background: none;
+  border-radius: 8px;
+  border: 0;
+  /* margin: 0 20px; */
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  color: #FC700B;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: .15s;
+}
+
+.string-button:hover {
+  background-color: #323639;
+}
+
+.string-button:active {
+  transform: scale(.95);
+}
+
+.string-button:focus {
+  outline-style: auto;
+  outline-color: #323639;
+}
