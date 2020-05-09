@@ -150,6 +150,29 @@
 	margin-left: 0;
 	list-style-type: none;
 	}
+
+	.bottom-buttons {
+		display: grid;
+		grid-template-columns: 1fr;
+		justify-content: start;
+		grid-gap: 16px;
+		padding-top: 40px;
+	}
+
+	.button {
+		height: 56px;
+		font-size: 20px;
+		line-height: 32px;
+		padding: 0 16px;
+	}
+
+	.string-button {
+		height: 56px;
+		font-size: 20px;
+		line-height: 32px;
+		padding: 0 16px;
+	}
+
 }
 
 @media (max-width: 380px) {
