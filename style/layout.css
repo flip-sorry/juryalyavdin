@@ -442,3 +442,69 @@ footer {
   outline-style: auto;
   outline-color: #323639;
 }
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 0 24px;
+  max-height: 80px;
+  padding-bottom: 24px;
+}
+
+.copyright {
+  min-width: 280px;
+}
+
+.social-icons {
+  display: grid;
+  grid-template-columns: repeat(4, 40px);
+  grid-gap: 16px;
+  padding: 24px 0;
+}
+
+.linledin-icon {
+  background-image: url(../images/social/linkedin-icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.facebook-icon {
+  background-image: url(../images/social/facebook-icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.dribbble-icon {
+  background-image: url(../images/social/dribbble-icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.instagram-icon {
+  background-image: url(../images/social/instagram-icon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.social-icons-link {
+  opacity: .4;
+  transition: .15s;
+  background-color: none;
+}
+
+.social-icons-link:hover {
+  opacity: 1;
+  background-color: #323639;
+  border-radius: 4px;
+}
