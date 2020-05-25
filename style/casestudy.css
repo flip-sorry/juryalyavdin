@@ -1,0 +1,147 @@
+
+
+.avatar {
+  background-image: url("../images/market-logo.jpg");
+  height: 80px;
+  width: 80px;
+  background-size: auto 80px, cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-color: #2B2C2D;
+}
+
+.hero-image {
+  margin: 0 auto;
+  max-width: 1160px;
+  height: 620px;
+  background-color: #2B2C2D;
+  border-radius: 4px;
+}
+
+.hero {
+  background-image: url("../casestudy/caseimages/market-hero.png");
+  height: 100%;
+  background-size: auto 100%, cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.details-grid {
+  display: grid;
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 16px 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+  grid-auto-rows: minmax(0, auto);
+}
+
+.details-grid-two {
+  padding-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+  grid-auto-rows: minmax(0, auto);
+}
+/* 
+.details-cell {
+    margin-right: 40px;
+  } */
+
+
+.content-block {
+  align-items: baseline;
+  display: grid;
+  grid-template-columns: 10fr 21fr;
+  grid-gap: 40px;
+  grid-auto-rows: minmax(0, auto);
+  margin: 0 auto;
+  max-width: 1160px;
+  padding: 0 24px;
+}
+
+.content-title {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 24px;
+  margin-bottom: 14px;
+}
+
+.content-text {
+  /* padding-top: 12px; */
+}
+
+.content-text p {
+  margin-bottom: 16px;
+}
+
+.content-image {
+  margin: 40px 0;
+  border-radius: 4px;
+}
+
+.solution-image {
+  margin: 0 auto;
+  max-width: 1160px;
+  position: relative;
+  top: 5px;
+}
+
+.solution-image-grid {
+  margin: 0 auto;
+  max-width: 1160px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  grid-auto-rows: minmax(0, auto);
+}
+
+
+@media (max-width: 880px) {
+  .hero-image {
+    height: 400px;
+    border-radius: 0;
+  }
+
+  .content-block {
+    grid-template-columns: 1fr;
+    grid-gap: 4px;
+  }
+
+  .content-title {
+    position: -webkit-static; /* Safari */
+    position: static; 
+  }
+
+  .details-grid {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+}
+@media (max-width: 380px) {
+  .hero-image {
+      height: 320px;
+    }
+
+  .grid-two-cell {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .details-grid-two {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0;
+  }
+
+  .solution-image-grid {
+    grid-gap: 4px;
+  }
+
+
+}
+

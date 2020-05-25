@@ -10,6 +10,18 @@
   height: 160px;
 }
 
+.orange-p {
+  color: #FC700B;
+}
+
+.divider {
+  margin: 0 auto;
+  max-width: 1160px;
+  border: 1px solid #2B2C2D;
+  position: relative;
+  top: -1px;
+}
+
 /* ———— */
 
 .simple-link:link {

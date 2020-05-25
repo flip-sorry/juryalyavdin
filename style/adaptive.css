@@ -98,11 +98,13 @@
 	grid-auto-rows: minmax(64px, auto);
 	}
 
+
 	.avatar {
-	height: 64px;
-	background-size: auto 64px, cover;
-	grid-column: 2;
-	grid-row: 1;
+		height: 64px;
+		width: 64px;
+		background-size: auto 64px, cover;
+		grid-column: 2;
+		grid-row: 1;
 	}
 
 	.about-links {
