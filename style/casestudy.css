@@ -20,8 +20,8 @@
 }
 
 
-.logo-market {
-  background-image: url("../casestudy/market/market-logo.jpg");
+.logo {
+  /* background-image: url("../casestudy/market/market-logo.jpg"); */
   height: 80px;
   width: 80px;
   background-size: auto 80px, cover;
@@ -39,7 +39,7 @@
 }
 
 .hero {
-  background-image: url("../casestudy/market/market-hero.png");
+  /* background-image: url("../casestudy/market/market-hero.png"); */
   height: 100%;
   background-size: auto 100%, cover;
   background-position: center;
