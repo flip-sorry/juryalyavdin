@@ -21,7 +21,7 @@
 
 
 .logo-market {
-  background-image: url("../images/market-logo.jpg");
+  background-image: url("../casestudy/market/market-logo.jpg");
   height: 80px;
   width: 80px;
   background-size: auto 80px, cover;
@@ -39,7 +39,7 @@
 }
 
 .hero {
-  background-image: url("../casestudy/caseimages/market-hero.png");
+  background-image: url("../casestudy/market/market-hero.png");
   height: 100%;
   background-size: auto 100%, cover;
   background-position: center;
@@ -88,9 +88,9 @@
   margin-bottom: 14px;
 }
 
-.content-text {
-  /* padding-top: 12px; */
-}
+/* .content-text {
+  padding-top: 12px;
+} */
 
 .content-text p {
   margin-bottom: 16px;
