@@ -147,7 +147,7 @@
 
 }
 @media (max-width: 380px) {
-  .logo-market {
+  .logo {
 		height: 64px;
 		width: 64px;
 		background-size: auto 64px, cover;
