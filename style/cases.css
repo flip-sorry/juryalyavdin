@@ -22,6 +22,22 @@
   height: 100%;
 }
 
+.viv-img {
+  background-image: url(../images/cases/viv.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
+.likevr-img {
+  background-image: url(../images/cases/likevr.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100%;
+}
+
 .rmblr-img {
   background-image: url(../images/cases/rmblr.png);
   background-repeat: no-repeat;
