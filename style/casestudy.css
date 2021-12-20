@@ -20,15 +20,15 @@
 }
 
 
-.logo {
-  /* background-image: url("../casestudy/market/market-logo.jpg"); */
+/* .logo {
+  background-image: url("../casestudy/market/market-logo.jpg");
   height: 80px;
   width: 80px;
   background-size: auto 80px, cover;
   background-repeat: no-repeat;
   border-radius: 50%;
   background-color: #2B2C2D;
-}
+} */
 
 .hero-image {
   margin: 0 auto;
@@ -117,6 +117,7 @@
   grid-gap: 8px;
   grid-auto-rows: minmax(0, auto);
 }
+
 
 
 @media (max-width: 880px) {
