@@ -193,6 +193,6 @@
 	.cases-grid {
     margin-top: 40px;
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(380px, auto);
+    grid-auto-rows: minmax(420px, auto);
 	}
 }
