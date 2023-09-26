@@ -97,7 +97,7 @@
 }
 
 .content-image {
-  margin: 40px 0;
+  margin: 24px 0;
   border-radius: 4px;
 }
 
@@ -127,7 +127,7 @@
 
   .hero-image {
     height: 400px;
-    border-radius: 0;
+    border-radius: 4px;
   }
 
   .content-block {
