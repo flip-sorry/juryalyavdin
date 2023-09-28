@@ -520,3 +520,9 @@ footer {
   background-color: #323639;
   border-radius: 4px;
 }
+
+.fade-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s, transform 1s;
+}
