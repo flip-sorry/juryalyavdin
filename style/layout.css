@@ -26,22 +26,20 @@
 
 .simple-link:link {
   text-decoration: none;
-  display: inline-block;
-  border-bottom: solid #1E1E1F;
-  padding-bottom: 4px;
-  margin-right: 24px;
-  color: #FC700B;
+  padding: 16px 0;
+  color: #ccc5ba;
   transition: 300ms;
-  border-radius: 2px;
+  opacity: .4;
 }
 
 .simple-link:visited {
-  border-bottom: solid #1E1E1F;
-  color: #FC700B;
+  color: #ccc5ba;
+  opacity: .4;
 }
 
 .simple-link:hover {
-  border-bottom: solid #FC700B;
+  color: #ccc5ba;
+  opacity: 1;
 }
 
 
