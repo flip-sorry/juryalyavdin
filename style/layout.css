@@ -525,3 +525,38 @@ footer {
   transition: opacity 1s, transform 1s;
 }
 
+.circle1 {
+  width: 358px;
+  height: 358px;
+  background-color: rgba(11, 223, 252, 0.1); /* #0BDFFC with 10% opacity */
+  border-radius: 50%;
+  position: absolute;
+  left: 540px;
+  top: 80px;
+  filter: blur(120px);
+  z-index: -1;
+}
+
+.circle2 {
+  width: 120px;
+  height: 120px;
+  background-color: rgba(74, 49, 175, 0.10); /* #D0B08E with 35% opacity */
+  border-radius: 50%;
+  position: absolute;
+  left: 0px;
+  top: 120px;
+  filter: blur(120px);
+  z-index: -2;
+}
+
+.circle3 {
+  width: 358px;
+  height: 358px;
+  background-color: rgba(229, 167, 239, 0.16); /* #E5A7EF with 24% opacity */
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: -240px;
+  filter: blur(120px);
+  z-index: -3;
+}
