@@ -51,6 +51,6 @@
         if (window.scrollY >= 400) {
             header.style.top = '0';
         } else {
-            header.style.top = '-100px';
+            header.style.top = '-64px';
         }
     });
