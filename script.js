@@ -46,4 +46,11 @@
       });
       
 
-      
+      window.addEventListener('scroll', function () {
+        var header = document.getElementById('header-main');
+        if (window.scrollY >= 400) {
+            header.style.top = '0';
+        } else {
+            header.style.top = '-100px';
+        }
+    });
