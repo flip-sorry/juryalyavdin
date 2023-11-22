@@ -35,7 +35,7 @@
   max-width: 1160px;
   height: 620px;
   background-color: #2B2C2D;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .hero {
@@ -125,9 +125,30 @@
     display: none;
   }
 
+  .header-main {
+    display: none;
+  }
+
+  .circle1 {
+    display: none;
+  }
+
+  .circle2 {
+    display: none;
+  }
+
+  .circle3 {
+    display: none;
+  }
+
+  .string-button {
+    display: none;
+  }
+
+
   .hero-image {
     height: 400px;
-    border-radius: 4px;
+    border-radius: 0px;
   }
 
   .content-block {

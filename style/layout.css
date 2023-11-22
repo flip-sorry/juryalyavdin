@@ -249,7 +249,7 @@ h2 {
 
 .project {
   background: #2B2C2D;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.08);
   transition: 300ms;
@@ -264,6 +264,7 @@ h2 {
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.35);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.08);
   background: #323639;
+  transform: rotateX(5deg);
 }
 
 
