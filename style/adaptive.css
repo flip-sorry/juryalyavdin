@@ -59,6 +59,10 @@
 
 @media (max-width: 560px) {
 
+	.spacer-05 {
+		height: 8px;
+	}
+
 	.spacer-0 {
 	height: 16px;
 	}

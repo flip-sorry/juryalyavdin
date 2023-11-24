@@ -60,18 +60,20 @@
 
 .intro {
   display: grid;
-  grid-template-columns: 10fr 21fr;
+  grid-template-columns: 1fr;
   grid-gap: 40px;
   grid-auto-rows: minmax(0, auto);
   margin: 0 auto;
-  max-width: 1160px;
+  max-width: 800px;
   padding: 0 24px;
   margin-top: 24vh;
+  justify-content: center;
 }
 
 .about {
   margin-top: 14px;
   flex-direction: column;
+  justify-self: center;
 }
 
 .about-links {
@@ -408,7 +410,7 @@ footer {
 .bottom-buttons {
   display: grid;
   grid-template-columns: auto auto;
-  justify-content: start;
+  justify-content: center;
   grid-gap: 16px;
   padding: 40px 0;
 }
@@ -422,7 +424,7 @@ footer {
   left: 0px;
   top: 0px;
   background: #FC700B;
-  border-radius: 8px;
+  border-radius: 16px;
   border: 0;
   font-weight: 500;
   font-size: 24px;
@@ -451,7 +453,7 @@ footer {
   left: 0px;
   top: 0px;
   background: none;
-  border-radius: 8px;
+  border-radius: 16px;
   border: 0;
   /* margin: 0 20px; */
   font-weight: 500;
