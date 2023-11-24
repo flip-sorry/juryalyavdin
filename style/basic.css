@@ -1,4 +1,18 @@
 
+@font-face {
+  font-family: 'Aeonik-regular';
+  src: url('../font/Aeonik-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aeonik-medium';
+  src: url('../font/Aeonik-Medium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -6,12 +20,20 @@ body {
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     min-width: 320px;
-    font-family: 'Montserrat', 'Basis Regular', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Aeonik-regular', 'Montserrat', 'Basis Regular', 'Helvetica Neue', Arial, sans-serif;
     letter-spacing: .4px;
     color: #ccc5ba;
     font-size: 24px;
     line-height: 40px;
     background-color: #1E1E1F;
+}
+
+h1 {
+  font-family: 'Aeonik-medium', 'Montserrat', 'Basis Regular', 'Helvetica Neue', Arial, sans-serif;
+}
+
+h2 {
+  font-family: 'Aeonik-medium', 'Montserrat', 'Basis Regular', 'Helvetica Neue', Arial, sans-serif;
 }
 
 h5 {
