@@ -1,17 +1,4 @@
-        window.fbAsyncInit = function() {
-          FB.init({
-            xfbml            : true,
-            version          : 'v7.0'
-          });
-        };
-
-        (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+// Animates blocks
 
       $(document).ready(function() {
 
@@ -44,7 +31,9 @@
         // Initial check, in case any of the elements are already in the viewport on page load
         handleScroll();
       });
+
       
+// Hides header on the main
 
       window.addEventListener('scroll', function () {
         var header = document.getElementById('header-main');
@@ -54,6 +43,9 @@
             header.style.top = '-64px';
         }
     });
+
+
+// Gets dominant color from the imade in div and applies as drop shadow
 
     function getDominantColor(imageElement) {
       const canvas = document.getElementById('colorCanvas');

@@ -1,3 +1,5 @@
+// Rotates SVG objects
+
 document.addEventListener('DOMContentLoaded', function() {
   const svgElement = document.querySelector('#mySVG');
   let angle = 0;
