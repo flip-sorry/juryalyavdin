@@ -158,77 +158,11 @@ h2 {
   margin-right: 40px;
 }
 
-
-.strategy-img {
-  background-image: url("../images/icon/strategy.png");
+.focus-img {
   height: 64px;
   background-size: auto 64px, cover;
   background-repeat: no-repeat;
 }
-
-.research-img {
-  background-image: url("../images/icon/research.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.arch-img {
-  background-image: url("../images/icon/arch.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.prot-img {
-  background-image: url("../images/icon/prot.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.puzzle-img {
-  background-image: url("../images/icon/puzzle.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.mov-img {
-  background-image: url("../images/icon/mov.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.copy-img {
-  background-image: url("../images/icon/copy.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.comm-img {
-  background-image: url("../images/icon/comm.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.code-img {
-  background-image: url("../images/icon/code.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
-.data-img {
-  background-image: url("../images/icon/data.png");
-  height: 64px;
-  background-size: auto 64px, cover;
-  background-repeat: no-repeat;
-}
-
 
 .cases {
   display: flex;
@@ -603,7 +537,7 @@ svg text {
 }
 
 .avatar {
-  background-image: url("../images/avatar.jpeg");
+  /* background-image: url("../images/avatar.jpeg"); */
   height: 88px;
   width: 88px;
   background-size: auto 88px, cover;
@@ -614,5 +548,5 @@ svg text {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1;
+  z-index: -1;
 }

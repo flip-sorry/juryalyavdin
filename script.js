@@ -45,3 +45,54 @@
         handleScroll();
       });
       
+
+      window.addEventListener('scroll', function () {
+        var header = document.getElementById('header-main');
+        if (window.scrollY >= 700) {
+            header.style.top = '0';
+        } else {
+            header.style.top = '-64px';
+        }
+    });
+
+    function getDominantColor(imageElement) {
+      const canvas = document.getElementById('colorCanvas');
+      const context = canvas.getContext('2d');
+      canvas.width = imageElement.width;
+      canvas.height = imageElement.height;
+      context.drawImage(imageElement, 0, 0);
+    
+      const imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      let colorMap = {};
+      let maxCount = 0;
+      let dominantColor = '';
+    
+      for (let i = 0; i < imageData.length; i += 4) {
+        // Convert the color to a string format
+        const color = `${imageData[i]},${imageData[i+1]},${imageData[i+2]}`;
+    
+        if (colorMap[color]) {
+          colorMap[color]++;
+        } else {
+          colorMap[color] = 1;
+        }
+    
+        if (colorMap[color] > maxCount) {
+          maxCount = colorMap[color];
+          dominantColor = color;
+        }
+      }
+    
+      return `rgba(${dominantColor},1)`;
+    }
+    
+    window.onload = function() {
+      const avatar = document.getElementById('avatar');
+      const image = new Image();
+      image.onload = function() {
+        const dominantColor = getDominantColor(image);
+        avatar.style.boxShadow = `0px 0px 240px ${dominantColor}`;
+      };
+      image.src = avatar.style.backgroundImage.slice(5, -2);
+    };
+    

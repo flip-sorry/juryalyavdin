@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function rotateSVG() {
       if (svgElement) {
-          angle = (angle - 1) % 360;  // Reversed direction by changing +1 to -1
+          angle = (angle - 0.4) % 360;  // Reversed direction by changing +1 to -1
           svgElement.style.transform = `rotate(${angle}deg)`;
           requestAnimationFrame(rotateSVG);
       }
@@ -12,3 +12,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
   rotateSVG();
 });
+
