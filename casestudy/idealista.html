@@ -62,17 +62,18 @@
 
 	<section class="intro">
     <div class="about">
-      <div class="avatar" style="background-image: url(../casestudy/idealista/logo.jpg);"></div>
+      <div class="avatar" id="avatar" style="background-image: url(../casestudy/idealista/logo.jpg);"></div>
+      <canvas id="colorCanvas" style="display: none;"></canvas>
       <svg id="mySVG" width="160" height="160" viewBox="0 0 160 160">
         <path id="circlePath" fill="none" stroke="none"
               d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/>
         <text>
-            <textPath xlink:href="#circlePath" startOffset="16%" style="text-anchor: middle;">
+            <textPath xlink:href="#circlePath" startOffset="12%" style="text-anchor: middle;">
               Idealista
             </textPath>
         </text>
         <text>
-            <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+            <textPath xlink:href="#circlePath" startOffset="62%" style="text-anchor: middle;">
               Real Estate Marketplace
             </textPath>
         </text>

@@ -47,10 +47,28 @@
 <body>
 
   <section class="intro">
-    <div class="about">
+    <!-- <div class="about">
       <div class="intro-name">
         <div class="lock"></div>
       </div>
+    </div> -->
+    <div class="about">
+      <div class="avatar" id="avatar" style="background-image: url(images/lock.jpg);"></div>
+      <canvas id="colorCanvas" style="display: none;"></canvas>
+      <svg id="mySVG" width="160" height="160" viewBox="0 0 160 160">
+        <path id="circlePath" fill="none" stroke="none"
+              d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="20%" style="text-anchor: middle;">
+                Not available
+            </textPath>
+        </text>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+                Not available
+            </textPath>
+        </text>
+      </svg>
     </div>
     <div class="intro-title">
       <h1>I’m so sorry but right now content isn’t available for public share. I&nbsp;will post it here as soon as possible.</h1>
@@ -64,6 +82,8 @@
   </section>
 
   <script src="scripts/script.js"></script>
-  
+  <script src="script-end.js"></script>
+
+
 </body>
 </html>
