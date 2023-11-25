@@ -62,10 +62,21 @@
 
 	<section class="intro">
     <div class="about">
-      <div class="intro-name">
-        <div class="avatar" style="background-image: url(../casestudy/pepsi/pepsi-logo.png);"></div>
-        <header>PepsiCo</br>B2B</header>
-      </div>
+      <div class="avatar" style="background-image: url(../casestudy/pepsi/pepsi-logo.png);"></div>
+      <svg id="mySVG" width="160" height="160" viewBox="0 0 160 160">
+        <path id="circlePath" fill="none" stroke="none"
+              d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="9%" style="text-anchor: middle;">
+                PepsiCo
+            </textPath>
+        </text>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="60%" style="text-anchor: middle;">
+                SaaS • Food company
+            </textPath>
+        </text>
+    </svg>
     </div>
     <div class="intro-title">
       <h1>Supply chain management service</h1>
@@ -193,6 +204,7 @@
   </div>
 </footer>
 
+<<script src="../script-end.js"></script>
 
 </body>
 </html>

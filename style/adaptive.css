@@ -103,14 +103,6 @@
 	}
 
 
-	.avatar {
-		height: 64px;
-		width: 64px;
-		background-size: auto 64px, cover;
-		grid-column: 2;
-		grid-row: 1;
-	}
-
 	.about-links {
 	margin-top: 16px;
 	}

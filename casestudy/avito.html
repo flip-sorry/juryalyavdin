@@ -62,12 +62,25 @@
 </header>
 
 	<section class="intro">
+
     <div class="about">
-      <div class="intro-name">
-        <div class="avatar" style="background-image: url(../casestudy/avito/avito-logo.png);"></div>
-        <header>Avito</br>C2C Service</header>
-      </div>
+      <div class="avatar" style="background-image: url(../casestudy/avito/avito-logo.png);"></div>
+      <svg id="mySVG" width="160" height="160" viewBox="0 0 160 160">
+        <path id="circlePath" fill="none" stroke="none"
+              d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="20%" style="text-anchor: middle;">
+                Avito
+            </textPath>
+        </text>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+                C2C Marketplace
+            </textPath>
+        </text>
+    </svg>
     </div>
+
     <div class="intro-title">
       <h1>How to start a career with Avito App</h1>
     </div>
@@ -95,9 +108,8 @@
     </div>
   </div>
 </section>
-<div class="divider"></div>
 
-<div class="spacer-1"></div>
+<div class="spacer-2"></div>
 
 <div class="content-block">
   <section class="content-title">
@@ -292,6 +304,7 @@
   </div>
 </footer>
 
+<script src="../script-end.js"></script>
 
 </body>
 </html>

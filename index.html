@@ -47,9 +47,9 @@
 
 <body>
 
-  <div class="circle1"></div>
+  <!-- <div class="circle1"></div>
   <div class="circle2"></div>
-  <div class="circle3"></div>
+  <div class="circle3"></div> -->
 
   <header class="header-main" id="header-main">
     <div class="header-content">
@@ -66,19 +66,26 @@
 
 	<section class="intro">
     <div class="about">
-      <div class="intro-name">
-        <div class="avatar"></div>
-        <header>Jury </br>Alyavdin</header>
-      </div>
+      <div class="avatar"></div>
+      <svg id="mySVG" width="160" height="160" viewBox="0 0 160 160">
+        <path id="circlePath" fill="none" stroke="none"
+              d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"/>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="20%" style="text-anchor: middle;">
+                Jury Alyavdin
+            </textPath>
+        </text>
+        <text>
+            <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+                Product Designer
+            </textPath>
+        </text>
+      </svg>
     </div>
     <div class="intro-title">
       <h1>Lead Product Designer with 10+ years of expertise in solutions that power startups and streamline enterprises</h1>
-      <!-- <p>Former <a href="https://yandex.ru/" class="simple-link">Yandex</a> Product Designer • Former <a href="https://rambler.ru/" class="simple-link">Rambler</a> Product Designer</p> -->
-      <!-- <h1>Digital Product Designer from Moscow currently working on the E-Commerce mobile products at <a href="https://yandex.ru/" class="simple-link">Yandex</a></h1> -->
       <div class="bottom-buttons">
-        <button class="button" onclick="window.location.href='mailto:mail@j-alyavdin.com?cc=mail@jalyavdin.ru&subject=Product%20Designer'">Contact me</button>
-        
-        <!-- <button class ="string-button" onclick="window.location = 'mailto:j.alyavdin@yandex.ru'">Mail me</button> -->
+        <button class="button" onclick="window.location.href='mailto:mail@j-alyavdin.com?cc=mail@jalyavdin.ru&subject=Product%20Designer'">Contact me</button>     
         <a href="j-alyavdin-cv.pdf" download>
           <button class ="string-button">Download CV</button>
         </a>
@@ -763,6 +770,7 @@
   </div>
 </footer>
 
+<script src="script-end.js"></script>
 
 </body>
 </html>
