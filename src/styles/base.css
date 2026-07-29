@@ -1,0 +1,134 @@
+/* Import order in layouts: tokens.css first, then base.css. */
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/font/Aeonik-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url('/font/Aeonik-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Modern equivalent of the source Meyer reset (style/reset.css). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-leading);
+  letter-spacing: var(--tracking-body);
+  min-width: 320px;
+}
+
+h1, h2 {
+  font-size: var(--text-heading-size);
+  line-height: var(--text-heading-leading);
+  font-weight: var(--font-weight-medium); /* explicit — source relied on a fake family, see plan "Font fix" */
+}
+
+a {
+  display: inline-block;
+  color: currentColor;
+  text-decoration: none;
+}
+
+a:visited {
+  color: currentColor;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  padding: var(--space-3) 0;
+}
+
+.lead-in {
+  color: var(--color-accent);
+}
+
+/* Reveal animation: hidden state only under html.js, so no-JS users see everything. */
+html.js .fade-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-reveal), transform var(--duration-reveal);
+}
+
+html.js .fade-content.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
