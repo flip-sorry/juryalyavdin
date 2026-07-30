@@ -1,22 +1,37 @@
-## Development
+# j-alyavdin.com
 
-When starting the dev server, use background mode:
+Static portfolio site — Astro 7, deployed to GitHub Pages via Actions, served on the apex domain
+j-alyavdin.com. Ten legacy `.html` URLs preserved byte-for-byte from the pre-Astro hand-written
+site. See **DESIGN.md** for the token system before touching any UI.
 
-```
-astro dev --background
-```
+## Commands
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+- `npm run dev` — dev server (`astro dev`; one instance per project — reuses an already-running
+  one instead of erroring)
+- `npm run build` — production build to `dist/`
+- `npm run preview` — preview the build
+- `node scripts/compare.mjs capture --base <URL> --out <dir>` — deterministic Playwright
+  screenshot capture across all 10 legacy URLs × 5 widths (1440/1024/880/560/390)
+- `node scripts/compare.mjs diff --a <dirA> --b <dirB> --out <dir> [--threshold 0.1]` —
+  pixelmatch diff between two capture runs
+- `node scripts/dominant-color.mjs <image> [...more]` — prints each image's dominant hex, for
+  `OrbitAvatar`'s `glow` prop
 
-## Documentation
+## Hard rules
 
-Full documentation: https://docs.astro.build
-
-Consult these guides before working on related tasks:
-
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+- **DESIGN.md is authoritative** for any UI change — tokens only, never a hardcoded hex/px/timing.
+- **Never break the 10 legacy `.html` URLs.** `build.format:'file'` + `trailingSlash:'never'` in
+  `astro.config.mjs` are load-bearing for this — don't change either without re-verifying every
+  URL still resolves.
+- **`og:url`/canonical come only from each page's explicit `path` prop** — never `Astro.url` (it
+  yields directory-style URLs that 404 under `format:'file'`).
+- **No client frameworks, no Tailwind, no jQuery.** Plain Astro components + scoped CSS only.
+- **`public/` media paths are stable URL contracts.** The OG images and the CV PDFs are hotlinked
+  externally (social-card scrapers, possible inbound links) — don't rename or move anything
+  under `public/` without a redirect plan.
+- **No further force-pushes.** History was rewritten once, 2026-07; the full pre-rewrite bundle
+  lives at `~/Archives/juryalyavdin-pre-astro-2026-07.bundle`. Treat `main` as append-only from
+  here on.
+- **A11y floor:** alt text on every image, `aria-label` on icon-only links, a visible
+  `:focus-visible` ring (base.css), and `prefers-reduced-motion` honored — both base.css's
+  animation damper and `BaseLayout`'s reveal script check it independently.
