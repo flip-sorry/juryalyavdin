@@ -1,0 +1,70 @@
+---
+/**
+ * Port of casestudy/run.html. The only case study using CaseStudyLayout's
+ * named "hero" slot instead of `heroImage`: source's hero is a YouTube
+ * `<iframe>`, not a background image. `class="hero"` goes on the wrapping
+ * div (matching source structure) so HeroImage's `:global(.hero)` rule
+ * gives it `height: 100%`; the iframe keeps its own literal `width="100%"
+ * height="100%"` attributes since, unlike `<video>`, percentage width/height
+ * are valid on `<iframe>`. `loading="lazy"` added per the plan's explicit
+ * "slots for ... run.html YouTube iframe (lazy)" note.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import Divider from '../../components/Divider.astro';
+---
+
+<CaseStudyLayout
+  title="Yandex.Run — Jury Alyavdin"
+  description="How Yandex.Run matched music tempo to a runner's pace, built during Yandex's School of Mobile Design."
+  path="/casestudy/run.html"
+  h1="Music that fits with the pace of the runner"
+  avatarImage="/casestudy/run/run.png"
+  orbitTop="Yandex.Run"
+  orbitBottom="Music Streaming"
+  details={[
+    { label: 'Platform', value: 'Android' },
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Date', value: '2016' },
+  ]}
+>
+  <div class="hero" slot="hero">
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube.com/embed/3_RzI-oWqK4"
+      title="YouTube video player"
+      loading="lazy"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+
+  <ContentBlock title="Overview">
+    <p>
+      The School of Mobile Design was held at Yandex. Participants were expected to be immersed in the specifics
+      of creating mobile products from an idea and its verification to the launch of a finished application. The
+      participants who successfully completed the first stage moved on to the second, where they had to carry out
+      a joint project with managers and developers.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Goal">
+    <p>
+      The main goal was to find a product-market fit of the new cross-service based on the radio streaming
+      technology from Yandex.Music service.
+    </p>
+    <Divider />
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <p>
+      As a product team, we came with a solution to mix radio streaming technology with the user's pace at
+      running. It helped us find a solution between the new technology of the streaming service and the potential
+      audience life context.
+    </p>
+    <ContentMedia kind="video" src="/casestudy/run/run" alt="Prototype of music tempo matching a runner's pace" width={640} height={370} />
+  </ContentBlock>
+</CaseStudyLayout>

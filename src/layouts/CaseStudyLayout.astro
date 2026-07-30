@@ -37,19 +37,29 @@ interface Props {
   avatarImage: string;
   orbitTop: string;
   orbitBottom: string;
+  /** Forwarded to OrbitAvatar; source pages tune circular-text anchors per text length. */
+  orbitTopOffset?: string;
+  orbitBottomOffset?: string;
   glow?: string;
   heroImage?: string;
   details: { label: string; value: string }[];
 }
 
-const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, glow, heroImage, details } =
+const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, orbitTopOffset, orbitBottomOffset, glow, heroImage, details } =
   Astro.props;
 ---
 
 <BaseLayout title={title} description={description} path={path} ogType="article">
   <SiteHeader variant="page" />
   <section class="intro">
-    <OrbitAvatar image={avatarImage} topText={orbitTop} bottomText={orbitBottom} glow={glow} />
+    <OrbitAvatar
+      image={avatarImage}
+      topText={orbitTop}
+      bottomText={orbitBottom}
+      topOffset={orbitTopOffset}
+      bottomOffset={orbitBottomOffset}
+      glow={glow}
+    />
     <div class="intro-title">
       <h1>{h1}</h1>
     </div>

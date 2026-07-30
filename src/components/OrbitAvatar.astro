@@ -17,9 +17,19 @@ interface Props {
   bottomText: string;
   /** Precomputed dominant colour of `image`; enables the source's drop glow. */
   glow?: string;
+  /** Circular-text anchors; source pages tune these per text length (pepsi 9%/60%, idealista 12%/62%). */
+  topOffset?: string;
+  bottomOffset?: string;
 }
 
-const { image, topText, bottomText, glow } = Astro.props;
+const {
+  image,
+  topText,
+  bottomText,
+  glow,
+  topOffset = '20%',
+  bottomOffset = '70%',
+} = Astro.props;
 ---
 
 <div class="about">
@@ -42,12 +52,12 @@ const { image, topText, bottomText, glow } = Astro.props;
       stroke="none"
       d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"></path>
     <text>
-      <textPath xlink:href="#circlePath" startOffset="20%" style="text-anchor: middle;">
+      <textPath xlink:href="#circlePath" startOffset={topOffset} style="text-anchor: middle;">
         {topText}
       </textPath>
     </text>
     <text>
-      <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+      <textPath xlink:href="#circlePath" startOffset={bottomOffset} style="text-anchor: middle;">
         {bottomText}
       </textPath>
     </text>

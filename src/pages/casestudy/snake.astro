@@ -1,0 +1,148 @@
+---
+/**
+ * Port of casestudy/snake.html (Shares app). Inline colored spans in the
+ * Process/Solution lists -> `.lead-in`. Sub-headings -> `<Eyebrow as="h3">`.
+ * Mid-content `.spacer-1`/`.spacer-2` -> token-driven spacer divs, same
+ * pattern as avito/pepsi/impress-app.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<CaseStudyLayout
+  title="Shares — Jury Alyavdin"
+  description="A viral snake-game waitlist mechanic that turned Shares' European launch into a talking point among users and developers alike."
+  path="/casestudy/snake.html"
+  h1="Enhancing Shares app engagement"
+  avatarImage="/casestudy/snake/logo.png"
+  orbitTop="Shares App"
+  orbitBottom="Social • Investing"
+  heroImage="/casestudy/snake/hero.png"
+  details={[
+    { label: 'Platform', value: 'iOS, Android' },
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Date', value: '2022' },
+  ]}
+>
+  <ContentBlock title="Overview">
+    <p>
+      Shares is an innovative social investing app originating from the UK, designed to foster community-driven
+      wealth-building. Beyond the conventional buy/sell interface, the app encourages users to tap into collective
+      knowledge by starting discussions, learning from experienced investors, and accessing market intelligence
+      data.
+    </p>
+    <ContentMedia src="/casestudy/snake/shares-about.png" alt="About the Shares social investing app" width={2622} height={1644} />
+  </ContentBlock>
+
+  <ContentBlock title="Problem">
+    <p>When Shares started expanding into Europe, it faced two key challenges:</p>
+    <ul class="circle-list">
+      <li>Testing the waters and generating interest in a saturated market with established players.</li>
+      <li>Persuading potential users to download and maintain interest in an app that wasn't fully operational.</li>
+    </ul>
+  </ContentBlock>
+
+  <ContentBlock title="Goal">
+    <p>
+      To create an enticing proposition encouraging potential users to download the app, remain engaged, and
+      spread the word within their networks.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Process">
+    <p>
+      During the ideation phase, a significant focus was on analyzing existing waitlist solutions across the
+      market. Our objective was to understand current practices and their effectiveness and to identify potential
+      gaps that Shares could exploit for better engagement and virality.
+    </p>
+    <ContentMedia src="/casestudy/snake/observation.png" alt="Observation of existing waitlist practices" width={3395} height={3052} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <p>Observation of Current Practices:</p>
+    <ul class="circle-list">
+      <li><span class="lead-in">Pure Waitlist Systems:</span> Many FinTech apps offer basic waitlist systems, showing user position and total users ahead. This gives a sense of anticipation but can lack continuous engagement.</li>
+      <li><span class="lead-in">Referral Bonuses:</span> Platforms like Robinhood and Monzo incentivize user referrals. However, its appeal has been declining for new users.</li>
+      <li><span class="lead-in">Information Sharing:</span> Some platforms provide market insights to users while they wait. While it's informative, it may not always retain user interest.</li>
+      <li><span class="lead-in">Boosting Engagement:</span> Compound loops can be effective for engagement because they create a virtuous cycle. The more engaged a user is in one loop, the more likely they are to participate in another loop. This cumulative effect can lead to higher overall engagement across the platform.</li>
+    </ul>
+    <ContentMedia src="/casestudy/snake/reforge.png" alt="Reforge engagement-loop framework reference" width={2622} height={1644} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <p>Identifying Gaps and Opportunities:</p>
+    <ul class="circle-list">
+      <li><span class="lead-in">Engaging through Identity:</span> An onboarding-like flow was developed where we asked users to claim their usernames. The driving force behind this was to play on a user's FOMO (Fear of Missing Out) — ensuring they secured their preferred username before others.</li>
+      <li><span class="lead-in">Value Proposition in Sharing:</span> We experimented with ideas, such as moving users up in the queue as a reward for sharing, but this didn't resonate as a significant value proposition.</li>
+      <li><span class="lead-in">Venturing Outside the Norm:</span> Recognizing our primary audience's preferences, we decided to break the mold and develop a viral mechanic to offer a digital reward, leading us to the snake game concept.</li>
+    </ul>
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <p>Brainstorming Session:</p>
+    <ul class="circle-list">
+      <li><span class="lead-in">Introduction of the Snake game:</span> Instead of conventional apples, our snake game would feature random stock tickers, offering an educational experience. This approach was intended to familiarize users with various stocks, preparing them for their use of Shares.</li>
+      <li><span class="lead-in">Social connection:</span> The game wasn't just for individual enjoyment. The main outcome was to encourage users to invite and challenge friends. These friends, once introduced, could later connect within the Shares app when it becomes fully operational in their country.</li>
+    </ul>
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Prototype & Feedback</Eyebrow>
+    <p>
+      After prototyping the snake game with stock logos, it was tested on a group, and feedback was collected. The
+      overwhelmingly positive feedback reinforced our confidence in this initiative.
+    </p>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/snake/prototype"
+      alt="Snake game prototype with stock ticker logos"
+      width={884}
+      height={362}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <p>The game was designed with specific objectives:</p>
+    <ul class="circle-list">
+      <li><span class="lead-in">Viral Element:</span> Encourage sharing and challenging friends.</li>
+      <li><span class="lead-in">Engagement:</span> Ensure users continuously interact with the game.</li>
+      <li><span class="lead-in">Education:</span> Help users distinguish between stock prices and familiarize them with notable stocks.</li>
+    </ul>
+    <ContentMedia src="/casestudy/snake/game.png" alt="The snake game screen with stock tickers" width={2618} height={1672} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">Professional Resonance</Eyebrow>
+    <p>
+      The innovative approach wasn't only a hit among our user base but also resonated powerfully in professional
+      circles. Many industry professionals took to LinkedIn, sharing their delight and surprise with this "hidden
+      gem" of a feature in the Shares app. This professional endorsement amplified the credibility and
+      attractiveness of Shares, further fueling its momentum in the European market.
+    </p>
+    <ContentMedia src="/casestudy/snake/linkedin.png" alt="Industry professionals discussing the Shares snake game on LinkedIn" width={2444} height={1788} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">Developer engagement</Eyebrow>
+    <p>
+      The snake game idea resonated so strongly with our development team that a wave of enthusiasm swept across
+      them. This enthusiasm was not just in principle; it translated to action. A passionate group of developers
+      voluntarily opted to work on this game in their spare time. Their dedication and excitement about the
+      project accelerated its development speed by nearly five times. Their eagerness not only showcased the
+      idea's potential but also dramatically fast-tracked the project's completion, ensuring that Shares could
+      launch its unique feature in the European market swiftly.
+    </p>
+    <ContentMedia src="/casestudy/snake/development.png" alt="Developers building the snake game feature" width={3266} height={1852} />
+  </ContentBlock>
+
+  <ContentBlock title="Conclusion">
+    <p>
+      While most apps relied on traditional waitlist mechanisms or referral bonuses, Shares stepped beyond the
+      norm, offering a unique blend of education, entertainment, and social connection. This strategy, coupled
+      with the extraordinary developer engagement and acclaim from professionals, set Shares apart, driving user
+      engagement and facilitating its rapid growth trajectory in Europe.
+    </p>
+  </ContentBlock>
+</CaseStudyLayout>

@@ -1,0 +1,150 @@
+---
+/**
+ * Port of casestudy/pepsi.html. Two source bugs the plan calls out are moot
+ * here rather than fixed in place: the stray `<<script` and the duplicate
+ * `</section>` were HTML-parser artifacts of literal markup — this page is
+ * authored as valid JSX from scratch, and BaseLayout now owns the one
+ * shared reveal script, so there's no per-page script tag or malformed
+ * closing tag to carry over.
+ *
+ * Process combines the source's two sibling `.content-text` sections
+ * ("Supply chain management flow" + "Customer research") into one
+ * ContentBlock: as two literal siblings under one `.content-title` they'd
+ * grid-wrap under column 1 instead of stacking in column 2 (only a 2-column
+ * grid), which is a source authoring bug, not intended layout.
+ *
+ * The three ~120px persona photos (manager/worker/delivery.png) have no
+ * source CSS class at all — plain unstyled `<img>`, ported as-is.
+ * `worker.mp4` is a portrait clip (478x956); source constrained it to
+ * `width="280px "` (the plan's named bug) instead of the other two GIFs'
+ * 100%, so it isn't overwhelmingly tall — ported via a local max-width
+ * wrapper (single-use, scoped here, same precedent as market.astro's
+ * `.solution-image-grid`) instead of stretching it full-width like
+ * `ContentMedia` normally would.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<CaseStudyLayout
+  title="PepsiCo — Jury Alyavdin"
+  description="Designing a responsive supply-chain platform that helps PepsiCo warehouse and delivery teams collect, transport, and deliver goods more efficiently."
+  path="/casestudy/pepsi.html"
+  h1="Supply chain management service"
+  avatarImage="/casestudy/pepsi/pepsi-logo.png"
+  orbitTop="PepsiCo"
+  orbitBottom="SaaS • Food company"
+  orbitTopOffset="9%"
+  orbitBottomOffset="60%"
+  heroImage="/casestudy/pepsi/hero.png"
+  details={[
+    { label: 'Platform', value: 'Web' },
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Date', value: '2021' },
+  ]}
+>
+  <ContentBlock title="Overview">
+    <p>
+      PepsiCo, Inc. is a portion of American multinational food, snack, and beverage corporation headquartered in
+      Harrison, New York, in Purchase hamlet. PepsiCo products are enjoyed by consumers more than one billion times
+      a day in more than 200 countries and territories worldwide. PepsiCo generated $79 billion in net revenue in
+      2021. It oversees the manufacturing, distribution, and marketing of its products.
+    </p>
+    <p>
+      This company exemplifies a perfect demand-driven supply chain strategy appropriate for the current market.
+      The market where this firm operates is highly competitive. Supply chain management is handling the entire
+      production flow of a good or service — starting from the raw components to delivering the final product to
+      the consumer.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Goal">
+    <p>
+      PepsiCo recently got budget approval to work on a solution that helps supply chain teams to easily collect,
+      transport and deliver finished goods from its distribution centres to end customer facilities — small shops,
+      supermarkets, restaurants, etc.
+    </p>
+    <p>
+      The project's main goal was to design a concept of a responsive product that minimizes costs by optimizing
+      the production circle and helps employees achieve their goals during the supply chain management process.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Process">
+    <Eyebrow as="h3">Supply chain management flow</Eyebrow>
+    <p>
+      Supply chain management represents an effort by suppliers to develop and implement supply chains that are as
+      efficient and economical as possible. Supply chains cover everything from production to product development
+      to the information systems needed to direct these undertakings.
+    </p>
+    <ContentMedia src="/casestudy/pepsi/flow.png" alt="Supply chain management flow diagram" width={1520} height={848} />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Customer research</Eyebrow>
+    <p>
+      My focus of this project was to cover the already existing process, starting from manufacturing to retail.
+      It meant that I had to consider the whole worker flow from the moment they received information about the
+      items to ship to the end of the delivery process. And for investigating the process I conducted a several
+      interviews with warehouse employees and people related to the delivery process.
+    </p>
+    <ContentMedia src="/casestudy/pepsi/scenario.png" alt="Customer research scenarios across the delivery process" width={2320} height={1306} />
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <img src="/casestudy/pepsi/manager.png" alt="Warehouse manager persona" width={120} height={120} />
+    <Eyebrow as="h3">Warehouse manager</Eyebrow>
+    <ul class="circle-list">
+      <li>As a warehouse manager, when I get a new request from a client, I want to easily organize products that need to be shipped, so I can process more orders and receive a bonus.</li>
+      <li>As a warehouse manager, when I need to pass the work for the collection stage, I want to plan the distribution and delivery of the finished goods, so the warehouse worker will not come back to me with questions and waste my time.</li>
+    </ul>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/pepsi/manager"
+      alt="Warehouse manager organizing and dispatching orders"
+      width={960}
+      height={720}
+    />
+
+    <div style={`height: var(--space-section)`} />
+
+    <img src="/casestudy/pepsi/worker.png" alt="Warehouse worker persona" width={120} height={120} />
+    <Eyebrow as="h3">Warehouse worker</Eyebrow>
+    <ul class="circle-list">
+      <li>As a warehouse worker, when I get information about items to collect, I want to also get information about the location of each item in the warehouse, so don't waste my time and reduce the chance to take the wrong box.</li>
+    </ul>
+    <div class="worker-media">
+      <ContentMedia
+        kind="video"
+        src="/casestudy/pepsi/worker"
+        alt="Warehouse worker locating items via the mobile app"
+        width={478}
+        height={956}
+      />
+    </div>
+
+    <div style={`height: var(--space-section)`} />
+
+    <img src="/casestudy/pepsi/delivery.png" alt="Delivery manager persona" width={120} height={120} />
+    <Eyebrow as="h3">Delivery manager</Eyebrow>
+    <ul class="circle-list">
+      <li>As a Delivery Manager, when I am managing the shipping of the order, I want to get live information on the status of orders & keep track of the products that are "on the move", so I can react immediately if something is not going according to the plan.</li>
+      <li>Monitor the delivery process and get notified of any unpredicted event like challenging weather conditions, traffic jams, car accidents, etc.</li>
+    </ul>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/pepsi/delivery"
+      alt="Delivery manager tracking shipments in real time"
+      width={800}
+      height={598}
+    />
+  </ContentBlock>
+</CaseStudyLayout>
+
+<style>
+  .worker-media {
+    max-width: 280px;
+  }
+</style>

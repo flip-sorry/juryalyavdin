@@ -1,0 +1,149 @@
+---
+/**
+ * Port of iris/privacy.html. Restores SiteHeader('page')/SiteFooter — the
+ * page-fix-up half of Phase 6 (source's own `.header`/footer markup is
+ * duplicated by hand and drifted from the other 9 pages; the shared
+ * components replace it). `SiteFooter`'s own doc comment calls this page out
+ * by name for `spaced={false}`: the wrap's own 80px bottom padding already
+ * does what the `.spacer-2` before every other page's footer does.
+ *
+ * The 70-line inline `<style>` block is ported rule-for-rule into scoped
+ * styles, substituting tokens per the plan's "Font fix" and "Consolidations"
+ * sections: explicit `font-weight: var(--font-weight-medium)` on h1/h2
+ * (source relied on a bare `'Aeonik-medium'` family with no weight — silent
+ * lightening if dropped), the `rgba(204,197,186,.4)` meta line → the solid
+ * AA-passing `--color-text-muted`, code radius 6px → 4px (`--radius-sm`,
+ * allowlisted). The `.policy-wrap h2` 24/40 size and its 48px top margin
+ * have no matching entry in the type/space scale (a one-off "prose h2", not
+ * part of the global 40/56 heading rule) — kept as page-local literals per
+ * DESIGN.md's "component tokens only when earned", same as market.astro's
+ * `.solution-image-grid`.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import { site } from '../../data/site';
+---
+
+<BaseLayout
+  title="Iris — Privacy Policy · Jury Alyavdin"
+  description="Iris is an iOS mail assistant built by Jury Alyavdin. This policy explains what data the app accesses, how it is processed, and what leaves your device."
+  path="/iris/privacy.html"
+>
+  <SiteHeader variant="page" />
+
+  <div class="policy-wrap">
+    <p class="section-label">Iris</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: 27 May 2026</p>
+
+    <p>Iris is an iOS mail assistant built by Jury Alyavdin. This policy explains what data the app accesses, how it is processed, and what leaves your device.</p>
+
+    <h2>What Iris accesses</h2>
+    <p>Iris connects to your Gmail account using Google OAuth with the <code>gmail.readonly</code> scope. This allows the app to read your email messages, subjects, senders, and timestamps. Iris does not send, delete, or modify any emails.</p>
+
+    <h2>Where your data is processed</h2>
+    <p>All email processing happens on your device using Apple Intelligence (Apple Foundation Models). Your email content is never uploaded to any server operated by Iris or Jury Alyavdin. No third-party AI service receives your email data.</p>
+
+    <h2>What is stored</h2>
+    <ul>
+      <li>Your Gmail OAuth tokens are stored in the iOS Keychain on your device only. They are not synced to iCloud or any external server.</li>
+      <li>Extracted data (such as bill summaries or to-do items) is stored locally in the app's private database on your device.</li>
+    </ul>
+
+    <h2>Third parties</h2>
+    <ul>
+      <li><strong>Google</strong> — OAuth authentication only. Governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</li>
+      <li><strong>Apple</strong> — App Store distribution and on-device AI processing. Governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>. Iris uses Apple Foundation Models, which processes data entirely on your device.</li>
+    </ul>
+
+    <h2>Data sharing</h2>
+    <p>Iris does not sell, rent, or share your personal data with any third party beyond the Google and Apple integrations described above.</p>
+
+    <h2>Revoking access</h2>
+    <p>You can revoke Iris's access to your Gmail account at any time by visiting <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google Account → Third-party apps with account access</a> and removing Iris.</p>
+
+    <h2>Children</h2>
+    <p>Iris is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes materially, the "Last updated" date above will be updated and the new version will be available at this URL.</p>
+
+    <h2>Contact</h2>
+    <p>Questions or requests: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+  </div>
+
+  <SiteFooter spaced={false} />
+</BaseLayout>
+
+<style>
+  .policy-wrap {
+    max-width: var(--container-prose);
+    margin: 0 auto;
+    padding: var(--space-9) var(--container-pad) var(--space-8);
+  }
+
+  .policy-wrap h1 {
+    font-size: var(--text-heading-size);
+    line-height: var(--text-heading-leading);
+    font-weight: var(--font-weight-medium);
+    text-align: left;
+    margin: 0 0 var(--space-2);
+  }
+
+  .policy-wrap .meta {
+    color: var(--color-text-muted);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-leading);
+    margin-bottom: var(--space-7);
+  }
+
+  .policy-wrap h2 {
+    /* Page-local "prose h2" size — no matching token, see file header. */
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: var(--font-weight-medium);
+    margin-top: 48px;
+    margin-bottom: var(--space-2);
+  }
+
+  .policy-wrap p,
+  .policy-wrap li {
+    font-size: var(--text-prose-size);
+    line-height: var(--text-prose-leading);
+    color: var(--color-text);
+  }
+
+  .policy-wrap ul {
+    padding-left: var(--space-4);
+    margin: 0;
+  }
+
+  .policy-wrap ul li {
+    margin-bottom: var(--space-2);
+  }
+
+  .policy-wrap a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .policy-wrap a:hover {
+    opacity: 0.7;
+  }
+
+  .policy-wrap code {
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    padding: 1px var(--space-2);
+    font-size: var(--text-caption-size);
+    font-family: var(--font-mono);
+  }
+
+  .policy-wrap .section-label {
+    color: var(--color-accent);
+    font-size: var(--text-small-size);
+    line-height: var(--text-small-leading);
+    margin-bottom: var(--space-2);
+  }
+</style>

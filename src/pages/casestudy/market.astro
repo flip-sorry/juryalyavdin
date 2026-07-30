@@ -1,0 +1,252 @@
+---
+/**
+ * Port of casestudy/market.html. Typo fix per the plan: "Bridging the
+ * online-offline divider" -> "...divide" (wrong word, not the CSS class).
+ * Also fixes "Huavei" -> "Huawei" in the details grid — not in the plan's
+ * named list, but the same class of proper-noun spelling error as the
+ * named fixes, so corrected on the same rationale; flagged in the report.
+ *
+ * `.details-grid-two` tables under Problem/Goal -> StatsList. Two content-
+ * text sections ("...flow" / "...research") under one source `.content-
+ * title` combine into one ContentBlock (see pepsi.astro for why: a literal
+ * second `.content-text` sibling would grid-wrap under column 1, not stack
+ * under column 2 — a 2-column grid can't hold 3 auto-flowed children as the
+ * source intended).
+ *
+ * `.solution-image` / `.solution-image-grid` are per the plan's explicit
+ * call-out: single-use, so they stay as scoped styles here rather than
+ * becoming a shared component. They sit between the Solution and Results
+ * content-blocks in source, not nested inside either.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import StatsList from '../../components/StatsList.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<CaseStudyLayout
+  title="Yandex.Market — Jury Alyavdin"
+  description="Refining the Yandex.Market mobile app to find product-market fit, blending offline and online shopping with AI-powered image recognition."
+  path="/casestudy/market.html"
+  h1="Refining mobile application for optimal product-market fit"
+  avatarImage="/casestudy/market/market-logo.jpg"
+  orbitTop="Yandex.Market"
+  orbitBottom="E-commerce"
+  heroImage="/casestudy/market/market-hero.png"
+  details={[
+    { label: 'Platform', value: 'iOS, Android, Huawei' },
+    { label: 'Role', value: 'Senior Product Designer' },
+    { label: 'Date', value: '2019' },
+  ]}
+>
+  <ContentBlock title="Overview">
+    <p>
+      Yandex.Market stands as a pivotal product within the diverse Yandex services ecosystem. It is a vibrant
+      marketplace where sellers showcase their offerings, and potential buyers quickly discover products that
+      cater to their needs. Each month, an impressive base of over 17 million users flocks to Yandex.Market,
+      leveraging its platform to compare and narrow down its product choices.
+    </p>
+    <p>
+      The platform offers its users comprehensive product descriptions and opportunities to juxtapose models based
+      on price, features, and more. A versatile filtering system aids users in refining their searches, while the
+      invaluable recommendations from fellow users provide insights from real-world experiences.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Problem">
+    <p>
+      Yandex.Market's prior mobile application was essentially a mirrored version of its web counterpart. In an
+      effort to streamline operations and reduce developmental costs, the decision was made to transition to a
+      cross-platform solution.
+    </p>
+    <ContentMedia src="/casestudy/market/market-webview.png" alt="The prior webview-based mobile application" width={2280} height={1152} />
+    <p>
+      Although economically efficient, this approach presupposed the app content would be updated in tandem with
+      the web version. However, the anticipated cost-efficiency brought an unintended consequence: a noticeable
+      drop in the application's interaction speed. This downturn, in turn, led to significant user attrition,
+      impacting revenue progressively each month. Ultimately, it led to a complete cessation of the mobile
+      project's maintenance.
+    </p>
+    <StatsList
+      items={[
+        { label: 'Revenue', value: 'Dropped 2 times' },
+        { label: 'Google Play & App Store', value: 'Dropped to 2.4 / 2.7' },
+      ]}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Goal">
+    <p>
+      In light of these challenges, an experimental team was formed, comprising myself as the product designer, an
+      analyst, and a product manager. Our mandate was to identify a compelling product-market fit for the mobile
+      application, providing justifiable grounds to rejuvenate the entire mobile service. Despite our earnest
+      endeavors, the self-imposed technical constraints became our Achilles' heel. Signs increasingly pointed to
+      an essential shift in our app development direction, including a foundational change to the technical heart
+      of the platform. However, the necessary resources for such a transformative move eluded our product team.
+    </p>
+    <StatsList
+      items={[
+        { label: 'App Store & Google Play', value: '>4' },
+        { label: 'DAU', value: '3x' },
+      ]}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Process">
+    <Eyebrow as="h3">Understanding the User Journey</Eyebrow>
+    <p>
+      Our pursuit is to refine the Yandex.Market mobile application commenced by dissecting the primary customer
+      journey. At the heart of our product, the journey usually sprouts from an initial intent. For instance, when
+      a potential user is scouting for new headphones, their journey typically initiates with internet searches
+      for viable options. At this juncture, our service begins its interaction, assisting and guiding the user
+      right up to the point of purchase.
+    </p>
+    <ContentMedia src="/casestudy/market/journey.png" alt="The primary customer journey" width={1768} height={1254} />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Crafting personas through insights</Eyebrow>
+    <p>Fortuitously, Yandex boasts a dedicated in-house research laboratory.</p>
+    <p>
+      With its aid, I delved deep into understanding our primary target audience by scrutinizing their activities
+      and behavior. From this rich data pool, I sculpted distinct personas. Most notably, our dominant user group
+      consisted of mothers who primarily shopped to replace worn-out items and had a pronounced inclination
+      towards goods of regular consumption.
+    </p>
+    <ContentMedia src="/casestudy/market/persona.png" alt="User personas derived from Yandex research" width={2480} height={1368} />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Defining the 'Jobs To Be Done' (JTBD)</Eyebrow>
+    <p>
+      Having established our personas, the next pivotal step was understanding their motivations, challenges, and
+      desired outcomes. I orchestrated interviews with representatives from each persona segment, distilling
+      insights and framing the primary 'jobs to be done' pertinent to our mobile application.
+    </p>
+    <ContentMedia src="/casestudy/market/jtbd.png" alt="Jobs to be done framework for the mobile application" width={2000} height={976} />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">User research: unearthing opportunities</Eyebrow>
+    <p>
+      Diving further into qualitative research unveiled an expansive market segment untouched by our digital
+      services. It was a revelation that 80% of Russian consumers still favored offline shopping, gravitating
+      towards local malls and shops in their vicinity over waiting for home-delivered parcels. This presented us
+      with a compelling challenge: How do we transition this offline audience to our mobile app?
+    </p>
+    <ContentMedia src="/casestudy/market/market-graph.jpg" alt="Graph of offline vs. online shopping preference" width={2280} height={1800} />
+    <p>
+      With this challenge at hand, I embarked on a field research mission, heading to a nearby mall to interact
+      with these traditional shoppers. So the primary objective was to decode their shopping behaviors and
+      validate my hypotheses based on the previously established 'jobs to be done'.
+    </p>
+    <ContentMedia
+      kind="video"
+      controls
+      webm={false}
+      poster={false}
+      src="/casestudy/market/market-custdev"
+      alt="Field research interviewing offline shoppers at a mall"
+      width={1280}
+      height={720}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <Eyebrow as="h3">Deciphering the offline shopper's mindset</Eyebrow>
+    <p>
+      A pivotal insight emerged after rigorous research and first-hand interactions with traditional shoppers. A
+      significant portion of this audience was engrossed in a tedious task: hopping from one offline store to
+      another, comparing prices and characteristics of similar, if not identical, products. This behavior
+      presented a unique opportunity.
+    </p>
+    <ContentMedia src="/casestudy/market/market-solution.png" alt="Solution concept for bridging offline and online shopping" width={1482} height={1326} />
+    <Eyebrow as="h3">Bridging the online-offline divide</Eyebrow>
+    <p>
+      Harnessing the power of AI and image recognition, we evolved the Yandex.Market mobile applications to
+      simplify this process for our users. The revamped application empowered customers to simply snap photos of
+      products in brick-and-mortar stores. Within moments, they could contrast their chosen products with others,
+      ensuring they bagged the best deal from a nearby mall or online.
+    </p>
+    <p>
+      This innovative feature seamlessly blurred the boundaries between traditional and digital shopping
+      experiences. It offered users the tactile and immediate satisfaction of in-person shopping, complemented by
+      the convenience and extensive choice of online browsing. As a result, customers could kickstart their
+      shopping journey in a physical store and effortlessly continue it from the comfort of their homes.
+    </p>
+  </ContentBlock>
+
+  <div style={`height: var(--space-block-lg)`} />
+
+  <div class="solution-image-grid">
+    <img src="/casestudy/market/market-stories.png" alt="Market app stories feature" width={1728} height={1260} />
+    <img src="/casestudy/market/market-main.png" alt="Market app main screen" width={1728} height={1260} />
+  </div>
+  <div class="solution-image">
+    <img src="/casestudy/market/market-final.jpg" alt="Final Market app screens" width={3480} height={1800} />
+  </div>
+  <div class="solution-image-grid">
+    <img src="/casestudy/market/market-01.png" alt="Market app screen detail 1" width={1728} height={1260} />
+    <img src="/casestudy/market/market-02.png" alt="Market app screen detail 2" width={1728} height={1260} />
+  </div>
+
+  <ContentBlock title="Results">
+    <Eyebrow as="h3">Explosive user growth</Eyebrow>
+    <p>
+      We didn't just witness a spike in new user registrations; the daily active users skyrocketed, increasing
+      tenfold! This surge wasn't merely a transient spike but a testament to our app's enhanced user experience
+      and value proposition.
+    </p>
+    <Eyebrow as="h3">Team expansion</Eyebrow>
+    <p>
+      As a direct consequence of our burgeoning success, our team grew exponentially. From a modest group, we
+      swelled to an impressive roster of 40 dedicated members in just 18 months. This growth was not just in
+      numbers but also in the depth of expertise and specialization we could now tap into.
+    </p>
+    <Eyebrow as="h3">Historic milestone</Eyebrow>
+    <p>
+      This phase of the app's evolution wasn't just another update — it was arguably the most pivotal chapter in
+      its history. The overwhelming success realigned the company's priorities, catapulting the mobile app's
+      development branch to the forefront of our strategic focus.
+    </p>
+    <Eyebrow as="h3">Ratings skyrocket</Eyebrow>
+    <p>
+      Reflecting our users' renewed trust and satisfaction, our app's ratings underwent a dramatic transformation.
+      From a modest 2.8, we climbed the ladder of acclaim to achieve a stellar rating of 4.7 across major app
+      stores. This wasn't just a number, but a testament to our commitment to excellence and user-centricity.
+    </p>
+  </ContentBlock>
+</CaseStudyLayout>
+
+<style>
+  .solution-image {
+    margin: 0 auto;
+    max-width: var(--container-max);
+    position: relative;
+    top: 4px;
+  }
+
+  .solution-image-grid {
+    margin: 0 auto;
+    max-width: var(--container-max);
+    border-radius: var(--radius-sm);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: var(--space-2);
+    grid-auto-rows: minmax(0, auto);
+  }
+
+  .solution-image img,
+  .solution-image-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 380px) {
+    .solution-image-grid {
+      grid-gap: var(--space-1);
+    }
+  }
+</style>

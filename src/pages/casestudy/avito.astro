@@ -1,0 +1,238 @@
+---
+/**
+ * Port of casestudy/avito.html. Typo fixes per the plan: "Avit's" ->
+ * "Avito's" (Overview) and "Mair.ru" -> "Mail.ru" (the Goal stats table).
+ *
+ * `.details-grid-two` table under "Goal" -> StatsList (which already owns
+ * the divider the source places directly above it). Every inline `<h5>`
+ * sub-heading in the Solution section -> `<Eyebrow as="h3">` (next heading
+ * level down from the section's own `<h2>`, and the plan's fix for the
+ * site-wide misused-`<h5>` pattern). Mid-content `.spacer-2` divs between
+ * Solution sub-topics become a token-driven spacer div (`--space-section`,
+ * matching `ContentBlock`'s own top-of-section spacing rhythm).
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import StatsList from '../../components/StatsList.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<CaseStudyLayout
+  title="Avito — Jury Alyavdin"
+  description="How I designed the vacancy-search experience that helps young applicants start a career through the Avito iOS app."
+  path="/casestudy/avito.html"
+  h1="How to start a career with Avito App"
+  avatarImage="/casestudy/avito/avito-logo.png"
+  orbitTop="Avito"
+  orbitBottom="C2C Marketplace"
+  heroImage="/casestudy/avito/avito-hero.png"
+  details={[
+    { label: 'Platform', value: 'iOS' },
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Date', value: '2019' },
+  ]}
+>
+  <ContentBlock title="Overview">
+    <p>
+      Avito.ru is a Russian classified advertisements website with sections devoted to general goods for sale,
+      jobs, real estate, personals, cars for sale, and services.
+    </p>
+    <p>
+      Avito.ru is the most popular classifieds site in Russia and is the second biggest classifieds site in the
+      world after Craigslist. In January 2019, it had more than 10.3 million unique daily visitors. On average,
+      Avito's users post more than 500,000 new ads daily and the overall ads are about 50 million active listings.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Problem">
+    <p>
+      At the beginning of the career, every job seems similar: low requirements, similar salary, and no one expect
+      even experienced candidates. But those roles have different development prospects and different demands in
+      the future.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Goal">
+    <p>
+      So how to make a way to start a career easier? How to make a job-hunting more convenient? How can the
+      applicant choose from a huge number of similar vacancies? How even to choose between different areas of work?
+    </p>
+    <p>According to the NAFI research respondents used to search for work in Avito in most cases.</p>
+    <StatsList
+      items={[
+        { label: 'Avito.ru', value: '36' },
+        { label: 'HeadHunter (hh.ru)', value: '14' },
+        { label: 'Job.ru', value: '14' },
+        { label: 'SuperJob', value: '8' },
+        { label: 'Zarplata.ru', value: '6' },
+        { label: 'Mail.ru', value: '6' },
+        { label: 'Careerist.ru', value: '5' },
+        { label: 'Other', value: '1' },
+        { label: 'Do not use any', value: '3' },
+      ]}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Audience segmentation">
+    <p>
+      An applicant is an aspiring blue-collar from 18 to 25 yo. He is looking for his first job to choose his
+      career path. The salary, the location of work and the quick access are the most important conditions.
+    </p>
+    <ContentMedia
+      src="/casestudy/avito/avito-profile.png"
+      alt="Avito applicant profile screen"
+      width={1456}
+      height={968}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Competitive Analysis Report">
+    <p>
+      Traditional methods of job search in Russia include using employment office services, advertising and
+      newspaper ads, special HR agencies, direct contact with the employer, specialized websites, social networks,
+      professionally-oriented social networks, and recommendations of friends.
+    </p>
+    <p>The main part of the market is occupied by large local players.</p>
+    <ContentMedia
+      src="/casestudy/avito/avito-research.png"
+      alt="Competitive analysis of Russian job-search platforms"
+      width={1880}
+      height={1488}
+    />
+  </ContentBlock>
+
+  <ContentBlock title="Customer Journey">
+    <p>So I applied the obtained qualitative studies of the user experience of employment in CJM.</p>
+    <ContentMedia
+      src="/casestudy/avito/avito-cjm.jpg"
+      alt="Customer journey map of an Avito job applicant"
+      width={3167}
+      height={1262}
+    />
+    <p>This practice helped to identify some of the applicant's pain points</p>
+    <ul class="circle-list">
+      <li>Have to start a career immediately, otherwise, it will be too late</li>
+      <li>Don't know how to make a CV</li>
+      <li>Spends a lot of time to search</li>
+      <li>Receives a lot of rejections, that makes give up</li>
+      <li>Fear of interviews</li>
+    </ul>
+  </ContentBlock>
+
+  <ContentBlock title="Wireframes">
+    <p>
+      Then I considered the possible entry points to the directory with vacancies from the application Avito.
+      There were two of them in the existing application.
+    </p>
+    <ContentMedia
+      src="/casestudy/avito/avito-wireframe.png"
+      alt="Early wireframes for the vacancy directory entry points"
+      width={2727}
+      height={1813}
+    />
+    <p>
+      The first one included the search case: when an applicant already passed the stage of determining the
+      specialty and was looking for a job according to the specified parameters.
+    </p>
+    <p>
+      And the second was a discovery flow. When the applicant with the help of the directory got to the main
+      screen of the category with vacant posts.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <Eyebrow as="h3">Copy friend's CV</Eyebrow>
+    <p>
+      Usually, the applicant begins to realize the need for employment immediately after graduation (at the time
+      of graduation). He is overcome by the fear of being out of work at an early stage.
+    </p>
+    <p>
+      The social factor strongly influences the definition of a career. So there is a hypothesis that access to
+      the resume of friends from the contact list can help the decision to choose a role.
+    </p>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/avito/avito-contacts"
+      alt="Prototype of copying a friend's CV from the contact list"
+      width={1080}
+      height={720}
+    />
+    <p>
+      The preparation of the CV is a huge pain for new applicants. It requires a lot of effort and time and at the
+      beginning of the path has little effect on the result. But the most part of the contact those years are
+      fellow students with similar job requests. Thus, the copying CV of friends can help in compiling own.
+    </p>
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Contextual tips</Eyebrow>
+    <p>Some applicants step into this experience for the first time. So there is a hypothesis that useful context tips can help:</p>
+    <ul class="circle-list">
+      <li>to choose the right vector at each stage of the funnel</li>
+      <li>to help in advance to find the answer to the emerging issue</li>
+      <li>to act more confidently in different situations.</li>
+    </ul>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/avito/avito-advice"
+      alt="Contextual tips guiding the applicant through the funnel"
+      width={1080}
+      height={720}
+    />
+    <p>
+      Fear of interviews causes anxiety and makes you doubt your own competence. It will be useful to read a
+      couple of tips before going to an appointed interview.
+    </p>
+    <ContentMedia
+      src="/casestudy/avito/avito-advice-contact.png"
+      alt="Interview tips shown before a scheduled appointment"
+      width={2160}
+      height={1440}
+    />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Employer reviews</Eyebrow>
+    <p>
+      There is a huge process of finding potential employers. A significant part of this time is spent on the
+      evaluation of a potential company. Feedback from job seekers about the employer can help at this stage to
+      weed out unscrupulous companies.
+    </p>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/avito/avito-reviews"
+      alt="Employer reviews shown to help evaluate potential employers"
+      width={1080}
+      height={720}
+    />
+    <p>
+      Also, a large number of refusals affect the process of finding a potential job, because the subsequent
+      depression reduces energy resources.
+    </p>
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Response timeout</Eyebrow>
+    <p>Applicants can pre-tune to the appropriate expectations by being informed about the time of the decision duration of the employer.</p>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/avito/avito-duration"
+      alt="Expected response timeout shown to the applicant"
+      width={1080}
+      height={720}
+    />
+
+    <div style={`height: var(--space-section)`} />
+
+    <Eyebrow as="h3">Personalization</Eyebrow>
+    <p>Also, Avito can save previously entered requests and offer up-to-date suggestions in the root category to keep applicants in the context.</p>
+    <ContentMedia
+      kind="video"
+      src="/casestudy/avito/avito-personalization"
+      alt="Personalized suggestions based on previously entered requests"
+      width={1080}
+      height={720}
+    />
+  </ContentBlock>
+</CaseStudyLayout>

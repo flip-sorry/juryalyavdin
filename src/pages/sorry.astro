@@ -1,0 +1,79 @@
+---
+/**
+ * Port of sorry.html. Source has no header/footer chrome and no
+ * page-specific stylesheet beyond `.intro`/`.bottom-buttons` (style/layout.css:61-71,
+ * 349-355; style/adaptive.css:1-20, 158-164) — ported here as scoped styles
+ * since this page sits outside CaseStudyLayout (which forces SiteHeader/SiteFooter).
+ *
+ * Both broken script refs are dropped: `script.js` (loaded site-wide, throws
+ * here since it targets elements this page doesn't have) and
+ * `scripts/script.js` (404s). OrbitAvatar's CSS animation replaces
+ * script-end.js's per-frame canvas rotation; both buttons become real
+ * anchors via Button instead of `onclick` handlers.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import OrbitAvatar from '../components/OrbitAvatar.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout
+  title="Content not available · Jury Alyavdin"
+  description="This case study isn't available for public share right now — ask for a description or head back to the homepage."
+  path="/sorry.html"
+  noindex
+>
+  <section class="intro">
+    <OrbitAvatar image="/images/lock.jpg" topText="Not available" bottomText="Not available" glow="#f87818" />
+    <div class="intro-title">
+      <h1>I’m so sorry but right now content isn’t available for public share. I&nbsp;will post it here as soon as possible.</h1>
+      <div class="bottom-buttons">
+        <Button href={`mailto:${site.email}`}>Ask for a case description</Button>
+        <Button href="/" variant="ghost">Back to Home</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin: 24vh auto 0;
+    max-width: var(--container-narrow);
+    padding: 0 var(--container-pad);
+    justify-content: center;
+  }
+
+  .bottom-buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    grid-gap: var(--space-3);
+    padding: var(--space-6) 0;
+  }
+
+  @media (max-width: 1160px) {
+    .intro {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (max-width: 880px) {
+    .intro {
+      max-width: var(--container-max);
+      margin-top: var(--space-2);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .bottom-buttons {
+      grid-template-columns: 1fr;
+      justify-content: start;
+      grid-gap: var(--space-3);
+      padding: var(--space-6) 0 0;
+    }
+  }
+</style>

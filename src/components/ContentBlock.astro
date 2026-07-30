@@ -11,6 +11,10 @@
  * + `--space-2` — the source's literal `top: 72px` is exactly 64 (header) +
  * 8. `margin-bottom: 14px` on `.content-title` is one of the plan's snapped
  * outliers -> `--space-3` (16px), the nearest 8pt step.
+ *
+ * Also carries `.circle-list` (style/layout.css:276-279, <= 560 override
+ * adaptive.css:153-156) — every case study nests it inside `.content-text`,
+ * so it lives here rather than as its own component or a base.css global.
  */
 interface Props {
   title: string;
@@ -48,6 +52,11 @@ const { title } = Astro.props;
     margin-bottom: var(--space-3);
   }
 
+  .content-text :global(.circle-list) {
+    margin-left: var(--space-5);
+    list-style-type: disc;
+  }
+
   @media (max-width: 880px) {
     .content-block {
       grid-template-columns: 1fr;
@@ -56,6 +65,13 @@ const { title } = Astro.props;
 
     .content-title {
       position: static;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .content-text :global(.circle-list) {
+      margin-left: 0;
+      list-style-type: none;
     }
   }
 </style>

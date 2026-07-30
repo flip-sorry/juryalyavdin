@@ -1,0 +1,123 @@
+---
+/**
+ * Port of `.experience-slot` (style/layout.css:249-274,288-312, adaptive.css:48-56).
+ *
+ * `current` swaps the timeline dot for the `.exp-current` icon (Impress, the
+ * only ongoing role); `isLast` drops the connecting `.timeline` bar (source
+ * markup omits it on the Zelenski slot, the final one).
+ *
+ * The source rendered the company/role heading as an `<h5>` — which the
+ * global `h5{color:#FC700B}` rule tinted orange — with the role wrapped in a
+ * `<span style="color:#ccc5ba">` override. Since base.css carries no such
+ * global h5 rule, this is ported as its own heading: `.company` gets the
+ * accent color explicitly, `role` stays default text color (no override
+ * needed — it already matches the page's default text color).
+ */
+interface Props {
+  dates: string;
+  company: string;
+  role: string;
+  current?: boolean;
+  isLast?: boolean;
+}
+
+const { dates, company, role, current = false, isLast = false } = Astro.props;
+---
+
+<div class="experience-slot">
+  <div class="experience-date"><p>{dates}</p></div>
+  <div class="time">
+    <div class={current ? 'exp-current' : 'exp-last'} />
+    {!isLast && <div class="timeline" />}
+  </div>
+  <div class="experience-description">
+    <p class="experience-heading">
+      <span class="company">{company}</span><br />
+      {role}
+    </p>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .experience-slot {
+    display: grid;
+    grid-template-columns: 10fr 40px 27fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+  }
+
+  .experience-date {
+    padding-top: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .time {
+    padding-top: var(--space-3);
+  }
+
+  .exp-current {
+    background-image: url('/images/experience/exp-current.png');
+    height: var(--space-6);
+    background-size: auto var(--space-6), cover;
+    background-repeat: no-repeat;
+  }
+
+  .exp-last {
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: var(--radius-sm);
+    margin: var(--space-3) auto;
+    background-color: var(--color-surface);
+  }
+
+  .timeline {
+    height: 100%;
+    width: 2px;
+    background-color: var(--color-surface);
+    margin: 0 auto;
+    position: relative;
+    top: -12px;
+    z-index: var(--z-behind);
+  }
+
+  .experience-heading {
+    padding: var(--space-3) 0;
+  }
+
+  .experience-heading .company {
+    color: var(--color-accent);
+  }
+
+  .experience-description {
+    padding-bottom: var(--space-8);
+  }
+
+  /* Source rendered these at opacity:.4, full on hover — same muted-link
+     treatment as SiteFooter/TestimonialItem's `.simple-link`. */
+  .experience-description :global(a) {
+    color: var(--color-text-muted);
+    transition: var(--duration-base);
+  }
+
+  .experience-description :global(a:hover) {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 880px) {
+    .experience-slot {
+      grid-template-columns: 40px 1fr;
+      grid-gap: 0 var(--space-4);
+    }
+
+    .time {
+      grid-row: 1 / span 2;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .experience-description {
+      padding-bottom: var(--space-6);
+    }
+  }
+</style>

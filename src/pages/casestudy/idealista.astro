@@ -1,0 +1,123 @@
+---
+/**
+ * Port of casestudy/idealista.html. Inline colored spans -> `.lead-in`.
+ * Sub-headings -> `<Eyebrow as="h3">`. Mid-content spacers -> token-driven
+ * spacer divs.
+ */
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+import ContentBlock from '../../components/ContentBlock.astro';
+import ContentMedia from '../../components/ContentMedia.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<CaseStudyLayout
+  title="Idealista — Jury Alyavdin"
+  description="Redesigning Idealista's web interface to match southern Europe's leading real-estate brand and streamline first-time and returning user journeys."
+  path="/casestudy/idealista.html"
+  h1="Idealista 2.0: where brand meets user experience"
+  avatarImage="/casestudy/idealista/logo.jpg"
+  orbitTop="Idealista"
+  orbitBottom="Real Estate Marketplace"
+  orbitTopOffset="12%"
+  orbitBottomOffset="62%"
+  heroImage="/casestudy/idealista/hero.png"
+  details={[
+    { label: 'Platform', value: 'Web' },
+    { label: 'Role', value: 'Product Designer' },
+    { label: 'Date', value: '2023' },
+  ]}
+>
+  <ContentBlock title="Overview">
+    <p>
+      Idealista is the leading real estate marketplace in southern Europe. It currently ranks number one in all
+      three countries in Spain, Italy, and Portugal. It is the marketplace used by over 50,000 real estate
+      agencies, with over 3 million property listings.
+    </p>
+    <ContentMedia src="/casestudy/idealista/current.webp" alt="The current Idealista website" width={2880} height={1400} />
+  </ContentBlock>
+
+  <ContentBlock title="Problem">
+    <p>
+      When I first encountered the Idealista website, stark contrasts immediately caught my attention. While
+      Idealista stands as a distinguished brand in the real estate space with a defined character, its online
+      interface seemed somewhat distant from that brand ethos. The challenge? To bridge this gap and craft an
+      interface that truly resonated with what Idealista represented. Additionally, there were usability concerns
+      – the main page wasn't intuitively guiding users based on their familiarity with the platform, and the
+      property detail page was fraught with redundant information blocks.
+    </p>
+  </ContentBlock>
+
+  <ContentBlock title="Process">
+    <Eyebrow as="h3">User research and benchmarking</Eyebrow>
+    <p>
+      Before diving headfirst into redesigning, I embarked on a journey of understanding the user. Through the
+      research, I clearly distinguished between two primary user groups: the seasoned Idealista visitors and the
+      newcomers. This distinction was pivotal in my redesign approach. Furthermore, I looked at market leaders and
+      emerging platforms in the real estate space, and Airbnb stood out with its seamless combination of map and
+      list views. This seemed like an intuitive solution for users wanting more context in their property search.
+    </p>
+
+    <div style={`height: var(--space-block)`} />
+
+    <p>Here's how the journey unfolded:</p>
+    <ul class="circle-list">
+      <li><span class="lead-in">Interviews & Surveys:</span> I began by reaching out to both frequent and first-time users of Idealista, aiming to get insights into their pain points, needs, and expectations from the platform. Questions revolved around their primary objectives when visiting the site, the challenges they faced, and features they wished were present.</li>
+      <li><span class="lead-in">Observational studies:</span> Observing users in their natural environment as they navigated through the site provided invaluable insights. This helped in understanding both user groups' intuitive patterns and where they were met with friction or confusion.</li>
+      <li><span class="lead-in">Competitive analysis:</span> Benchmarking against other leading real estate platforms, not just in terms of design but also functionality, provided a broader perspective. This highlighted areas where Idealista could potentially lead or improve upon.</li>
+    </ul>
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">First-time users journey</Eyebrow>
+    <ContentMedia src="/casestudy/idealista/first-time.png" alt="First-time user journey on Idealista" width={2600} height={1416} />
+    <Eyebrow as="h3">Returning users journey</Eyebrow>
+    <ContentMedia src="/casestudy/idealista/returning-users.png" alt="Returning user journey on Idealista" width={2600} height={1480} />
+  </ContentBlock>
+
+  <ContentBlock title="Solution">
+    <Eyebrow as="h3">Bridging the brand-interface gap</Eyebrow>
+    <p>
+      The new interface is a harmonious blend of Idealista's robust tech character and its stature as a solid real
+      estate marketplace. It's a visual delight and a reflection of the brand's promise.
+    </p>
+    <ContentMedia src="/casestudy/idealista/brand-interface.png" alt="The redesigned Idealista interface" width={2880} height={1936} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">Personalized user journeys</Eyebrow>
+    <p>
+      The main webpage unfolds like a welcoming guide for first-time visitors, showcasing the unique benefits of
+      using Idealista with handpicked property examples. In contrast, seasoned users are greeted with their main
+      activities, making their journey on the site feel personalized and efficient.
+    </p>
+    <ContentMedia src="/casestudy/idealista/personalised-journeys.png" alt="Personalized journeys for first-time and returning users" width={2920} height={1892} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">Unified search experience</Eyebrow>
+    <p>
+      The fusion of map and list views is inspired by Airbnb's approach. This combination simplifies the user's
+      interface, providing a richer context during the property search.
+    </p>
+    <ContentMedia src="/casestudy/idealista/search-experience.png" alt="Unified map and list search experience" width={2880} height={1800} />
+
+    <div style={`height: var(--space-block-lg)`} />
+
+    <Eyebrow as="h3">Streamlined property details</Eyebrow>
+    <p>
+      The revamped property detail page is a testament to the power of clarity. Users can now perform a swift yet
+      comprehensive property analysis by placing priority elements such as photos, price, concise information,
+      apartment plan, and location at the forefront. Gone are the days of wading through repetitive blocks of
+      information.
+    </p>
+    <ContentMedia src="/casestudy/idealista/property-details.png" alt="Streamlined property detail page" width={2880} height={1800} />
+  </ContentBlock>
+
+  <ContentBlock title="Conclusion">
+    <p>
+      With these changes, I aimed to redefine the Idealista user experience — ensuring that every interaction
+      reflects the brand's ethos and an effortless journey for the user. It's not just about redesigning; it's
+      about reimagining how users connect with Idealista.
+    </p>
+  </ContentBlock>
+</CaseStudyLayout>

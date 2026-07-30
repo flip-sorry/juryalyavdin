@@ -1,29 +1,44 @@
 ---
 /**
  * Port of `img.content-image` (style/casestudy.css:99-102, <= 380 override
- * casestudy.css:195-197). Video is new: source GIFs were converted at build
- * time to `.mp4`/`.webm` pairs with a `-poster.jpg` first frame (plan Phase
- * 1); this renders the pair as a silent autoplay loop with the same
- * margins/radius as the image variant, sized via `aspect-ratio` instead of
- * the invalid `width="100%"` attribute the source put on `<video>`.
+ * casestudy.css:195-197). Video covers two distinct source patterns found
+ * across the 7 case studies:
+ *
+ * 1. GIF replacements (the majority): converted at build time to `.mp4`/
+ *    `.webm` pairs with a `-poster.jpg` first frame (plan Phase 1) — a
+ *    silent, controls-less autoplay loop. Default behaviour (`controls`
+ *    omitted, `webm` true).
+ * 2. Pre-existing native demo clips (impress-app's sol01-03/usertesting,
+ *    market's market-custdev): were already `<video controls autoplay
+ *    loop>` in source, single `.mp4` only, no poster. Pass `controls`
+ *    (drops `muted`/`playsinline` to match source exactly — browsers won't
+ *    autoplay an unmuted video without a user gesture, same as today) and
+ *    `webm={false}` (no sibling file to source), `poster={false}` (no file
+ *    to point at — would 404 otherwise).
+ *
+ * Sizing uses `aspect-ratio` from numeric width/height instead of the
+ * invalid `width="100%"` attribute the source put on `<video>`.
  *
  * Prop convention differs by kind: for `img` (default), `src` is the full
  * path including extension; for `video`, `src` is the base path WITHOUT
  * extension (e.g. `/casestudy/avito/avito-contacts`) — `.webm`/`.mp4` are
- * derived by appending, and `poster` defaults to `${src}-poster.jpg` unless
- * given explicitly.
+ * derived by appending. `poster` defaults to `${src}-poster.jpg`; pass
+ * `false` to opt out entirely (no default file) or a string to override.
  */
 interface Props {
   src: string;
   alt: string;
   kind?: 'img' | 'video';
-  poster?: string;
+  poster?: string | false;
+  controls?: boolean;
+  webm?: boolean;
   width: number;
   height: number;
 }
 
-const { src, alt, kind = 'img', poster, width, height } = Astro.props;
+const { src, alt, kind = 'img', poster, controls = false, webm = true, width, height } = Astro.props;
 const ratio = `${width} / ${height}`;
+const posterSrc = poster === false ? undefined : (poster ?? `${src}-poster.jpg`);
 ---
 
 {
@@ -33,13 +48,14 @@ const ratio = `${width} / ${height}`;
       style={`--media-ratio: ${ratio}`}
       autoplay
       loop
-      muted
-      playsinline
+      controls={controls}
+      muted={!controls}
+      playsinline={!controls}
       preload="metadata"
-      poster={poster ?? `${src}-poster.jpg`}
+      poster={posterSrc}
       aria-label={alt}
     >
-      <source src={`${src}.webm`} type="video/webm" />
+      {webm && <source src={`${src}.webm`} type="video/webm" />}
       <source src={`${src}.mp4`} type="video/mp4" />
     </video>
   ) : (
