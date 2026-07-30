@@ -1,17 +1,540 @@
 ---
-
+/**
+ * Port of index.html. Fixes applied while porting (per plan Phase 4):
+ * - "principals" -> "principles" in the Focus section heading.
+ * - og:description said "10+ years", the h1 already said "12+" — unified on
+ *   "12+" in the single `description` prop BaseLayout feeds to both tags.
+ * - "HLearned" -> "Learned" (Yandex, What I've learnt).
+ * - "magority" -> "majority" (Rambler Group, intro paragraph).
+ * - "afiicient" -> "efficient" (Zelenski, intro paragraph).
+ * - Stripped `?fbclid=...` tracking param from the RIW link (kept the
+ *   #section5464 anchor).
+ * - The AR Art Gallery / StudyFree cards had `target="_blank"` with no
+ *   `rel` — CaseCard's `external` prop fixes that (and every other card)
+ *   uniformly.
+ * - Dynamic copyright year: SiteFooter computes it at build time.
+ * - Inline `style="color: #ccc5ba"` role spans -> ExperienceSlot's own
+ *   `.company`/role styling (see that component's header comment).
+ * - Hero video: dropped the invalid `width="100%" height="100%"` attrs
+ *   (HeroImage's CSS already sizes the slotted video), added `playsinline`.
+ *
+ * Avatar glow: precomputed dominant color of /images/avatar.webp via
+ * scripts/dominant-color.mjs (see OrbitAvatar's header comment for the
+ * source algorithm this replaces).
+ *
+ * Section rhythm: every `.spacer-2` (160px) between top-level sections is
+ * now `margin-top: var(--space-section)` on each `.section-block` fade
+ * wrapper below (the final one is SiteFooter's own default `spaced` prop).
+ * The two `.spacer-1` (64px) gaps before the Focus/Testimonials grids live
+ * as `.focus`'s own `margin-top`; the `.spacer-0` (32px) gap before the
+ * Experience list lives as `.experience`'s own `margin-top` — both apply
+ * uniformly since every section that uses those classes needed the same gap.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import OrbitAvatar from '../components/OrbitAvatar.astro';
+import Button from '../components/Button.astro';
+import HeroImage from '../components/HeroImage.astro';
+import DetailsGrid from '../components/DetailsGrid.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import FocusItem from '../components/FocusItem.astro';
+import CaseCard from '../components/CaseCard.astro';
+import TestimonialItem from '../components/TestimonialItem.astro';
+import ExperienceSlot from '../components/ExperienceSlot.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import { site } from '../data/site';
+import { cases } from '../data/cases';
+import { focusPoints } from '../data/focus';
+import { testimonials } from '../data/testimonials';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Jury Alyavdin — Lead Product Designer"
+  description="Lead Product Designer with 12+ years of expertise crafting solutions that power startups and streamline enterprises."
+  path="/"
+  ogType="profile"
+>
+  <SiteHeader variant="home" />
+
+  <section class="intro">
+    <OrbitAvatar image="/images/avatar.webp" topText="Jury Alyavdin" bottomText="Product Designer" glow="#080808" />
+    <div class="intro-title">
+      <h1>
+        Lead Product Designer with 12+ years of expertise in solutions that power startups and streamline
+        enterprises
+      </h1>
+      <div class="bottom-buttons">
+        <Button href={`mailto:${site.email}?cc=mail@jalyavdin.ru&subject=Product%20Designer`}>Contact me</Button>
+        <Button href="/j-alyavdin-cv.pdf" variant="ghost" download>Download CV</Button>
+      </div>
+    </div>
+  </section>
+
+  <div class="fade-content section-block">
+    <HeroImage>
+      <video class="hero" controls autoplay loop muted playsinline poster="/hero.png">
+        <source src="/hero.mp4" type="video/mp4" />
+        Your browser does not support video
+      </video>
+    </HeroImage>
+
+    <DetailsGrid
+      items={[
+        { label: 'Services', value: 'Product design, Product Strategy, Illustrations, Branding, Animations, 3D' },
+        { label: 'Segments', value: 'Medtech, Fintech, E-com, Selfcare, Health & Fitness, B2B, Media, Education' },
+        { label: 'Roles', value: 'Lead Product Designer, Design Manager, Creative Director, Product Owner' },
+      ]}
+    />
+  </div>
+
+  <div class="fade-content section-block">
+    <SectionTitle number="01" title="Focus and principles" />
+    <section class="focus">
+      {focusPoints.map((point) => <FocusItem icon={point.icon} text={point.text} />)}
+    </section>
+  </div>
+
+  <div class="fade-content section-block">
+    <div class="cases">
+      <SectionTitle variant="sticky" number="02" title="Case Study" />
+      <section class="cases-grid">
+        {
+          cases.map((item) => (
+            <CaseCard
+              title={item.title}
+              tagline={item.tagline}
+              image={item.image}
+              href={item.href}
+              external={item.external}
+              locked={item.locked}
+            />
+          ))
+        }
+      </section>
+    </div>
+  </div>
+
+  <div class="fade-content section-block">
+    <SectionTitle number="03" title="Testimonials" />
+    <section class="focus">
+      {testimonials.map((t) => <TestimonialItem quote={t.quote} author={t.author} href={t.href} />)}
+    </section>
+  </div>
+
+  <div class="fade-content section-block">
+    <SectionTitle number="04" title="Experience" />
+    <section class="experience">
+      <ExperienceSlot dates={`June 2020 — Current`} company="Impress" role="Lead Product Designer" current>
+        <p>
+          European direct-to-consumer teeth-aligner and oral care startup that provides an affordable and
+          convenient way to straighten teeth with aligners treatment.
+        </p>
+        <p>
+          Here I found myself balancing between strategy and execution: from organising teams and processes to
+          leading design projects, from conception to delivery.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Launched an updated version of the main website, including a comprehensive acquisition funnel,
+            enhanced with global localization features
+          </li>
+          <li>
+            Developed and released a cutting-edge mobile application from the ground up, specifically designed to
+            assist patients of the clinic in adhering to their treatment plans
+          </li>
+          <li>
+            Created an all-encompassing internal back-office system from scratch, enabling a streamlined,
+            end-to-end direct-to-customer delivery service
+          </li>
+          <li>Streamlined design processes through effective organization across four cross-functional teams</li>
+          <li>
+            Spearheaded the development of brand strategy and facilitated the refinement of the brand's tone of
+            voice
+          </li>
+          <li>Led and structured product discovery processes to foster innovation and identify new opportunities</li>
+          <li>
+            Conducted bespoke workshops aimed at expediting the onboarding process for new team members through
+            targeted training
+          </li>
+          <li>
+            Established a comprehensive wiki knowledge base encompassing information about the company, teams, and
+            ongoing projects
+          </li>
+          <li>Founded a Design Department and successfully expanded it to include a team of four professionals</li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Developed proficiency in navigating the intricacies of the global market</li>
+          <li>
+            Acquired skills in managing expectations and fostering alignment between product teams and
+            stakeholders
+          </li>
+          <li>
+            Mastered the art of structuring processes within non-product teams to ensure satisfaction with the
+            outcomes
+          </li>
+          <li>Cultivated leadership skills essential for effectively steering a product team</li>
+          <li>
+            Learned to adeptly manage projects while simultaneously contributing as a product designer, optimizing
+            for efficiency and collaboration
+          </li>
+        </ul>
+      </ExperienceSlot>
+
+      <ExperienceSlot dates={`March 2017 — June 2020`} company="Yandex" role="Product Designer">
+        <p>Yandex is a technology company that builds intelligent products and services powered by machine learning.</p>
+        <p>
+          I used to work in a cross-functional team with engineers and business owners to deliver the best
+          solution possible for e-commerce services. There I experienced the entire creation process from
+          preforming the research on real service users and defining a problem to testing hypotheses and
+          delivering the final solution.
+        </p>
+        <p>
+          My experience at Yandex was marked by significant contributions to product design and e-commerce service
+          enhancements. The skills and insights I gained have been invaluable in my professional growth,
+          particularly in understanding and implementing user-centered design in technology-driven environments.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Led the successful relaunch of Yandex Market mobile app, resulting in a 40% increase in user
+            acquisition and a significant improvement in user experience ratings
+          </li>
+          <li>
+            Innovated in voice technology by integrating a voice-assisted shopping feature, which increased user
+            convenience and boosted e-commerce transactions by 20%
+          </li>
+          <li>
+            Developed and implemented a comprehensive system for collecting user feedback, enhancing service
+            responsiveness and user satisfaction
+          </li>
+          <li>
+            Improved the parcel receiving process, streamlining operations and increasing customer satisfaction by
+            15%
+          </li>
+          <li>
+            Represented Yandex as a speaker at the prestigious Russian Internet Week{' '}
+            <a href="https://riw.moscow/program/20191213/763#section5464">(RIW)</a>, discussing product relaunch
+            strategies, drawing significant industry attention and acclaim
+          </li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Mastered the art of asking the right questions to identify user needs and problems</li>
+          <li>
+            Became proficient in conducting various types of customer interviews, including screening and customer
+            development interviews
+          </li>
+          <li>Developed a keen ability to pinpoint and tackle the source of problems in service design</li>
+          <li>Gained expertise in using real user data to inform and refine prototypes</li>
+          <li>
+            Learned to effectively conduct user testing with actual service users, enhancing product relevancy and
+            user satisfaction
+          </li>
+          <li>Acquired public speaking skills, enabling me to confidently present ideas and solutions to large audiences</li>
+          <li>Implemented user story mapping in project workflows, enhancing team understanding and project coherence</li>
+        </ul>
+      </ExperienceSlot>
+
+      <ExperienceSlot dates={`May 2016 — March 2017`} company="Rambler Group" role="Product Designer">
+        <p>
+          Rambler is a Russian search engine and one of the biggest Russian web portals which covers the majority
+          of the media services in Russia.
+        </p>
+        <p>
+          I was always attracted to new challenges so I move to the largest media holding in Russia to design and
+          implement new media products in the company's ecosystem.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Spearheaded improvements in major media products like <a href="https://news.rambler.ru/">Rambler News,</a>{' '}
+            <a href="https://rns.online/">RNS,</a> <a href="https://www.wmj.ru/">WMJ,</a>{' '}
+            <a href="https://lenta.ru/">Lenta,</a> and <a href="https://www.championat.com/">Championat</a>. These
+            enhancements led to a 15% increase in user engagement and a 10% rise in average viewing time,
+            significantly boosting advertising revenue.
+          </li>
+          <li>
+            Pioneered the complete overhaul and successful launch of <a href="https://www.ferra.ru/">Ferra,</a>{' '}
+            <a href="https://www.passion.ru/">Passion,</a> resulting in a 20% increase in daily active users.
+          </li>
+          <li>
+            Led the transformation of <a href="https://letidor.ru/">Letidor</a>, which saw a 25% growth in user
+            base within six months post-launch.
+          </li>
+          <li>
+            Developed and launched 'Instamedia', a cutting-edge CMS platform for mobile apps, enhancing editorial
+            efficiency by 30% and accelerating content delivery by 25%.
+          </li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Gained expertise in managing multiple large-scale projects simultaneously, ensuring timely and efficient delivery</li>
+          <li>Honed skills in task prioritization, crucial in a dynamic and fast-paced media environment</li>
+          <li>
+            Developed a keen ability to negotiate and reach agreements, contributing to smoother team dynamics and
+            project alignments
+          </li>
+          <li>Mastered the art of pitching and selling ideas, leading to the adoption of several innovative solutions within the company</li>
+          <li>
+            Acquired proficiency in initiating and executing major projects from concept to launch, significantly
+            contributing to the company's strategic goals
+          </li>
+          <li>Enhanced public speaking and presentation skills, effectively communicating solutions and ideas to stakeholders</li>
+        </ul>
+      </ExperienceSlot>
+
+      <ExperienceSlot dates={`April 2016 — May 2016`} company="Zvooq" role="Product Designer">
+        <p>
+          At Zvooq, a premier legal music streaming service for iOS, Android, and web platforms, I found the
+          perfect intersection of my passion for music and expertise in product design. My primary role involved
+          collaborating closely with the music broadcasting team to extend Zvooq's reach beyond mobile
+          applications, focusing on the web platform.
+        </p>
+        <p>
+          My tenure at Zvooq was a remarkable blend of professional growth and personal passion. The experience of
+          working on a product that aligns so closely with my interests in music was not only fulfilling but also
+          immensely educational. The skills and knowledge I acquired here have been pivotal in shaping my approach
+          to product design, especially in entertainment and media-related projects.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Led the organization of the information architecture for Zvooq's web project, enhancing user
+            navigation and accessibility, which resulted in a 20% increase in user session duration on the website
+          </li>
+          <li>
+            Pioneered the development and release of an embedded player for music broadcasting on partner sites.
+            This innovation expanded Zvooq's reach and accessibility, contributing to a 25% growth in user base
+            through partner platforms
+          </li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Gained substantial experience in collaborating with analytics teams, enabling more data-driven decision-making in design processes</li>
+          <li>Developed a deep understanding of Scrum methodologies, leading to more efficient and agile project management and team collaboration</li>
+        </ul>
+      </ExperienceSlot>
+
+      <ExperienceSlot dates={`February 2015 — April 2016`} company="Webinar" role="Product Designer">
+        <p>Russian software company for webinars and online meetings. An online course builder and broadcast provider for events of any scale.</p>
+        <p>
+          In my role as the sole in-house designer at Webinar, a leading Russian software company for webinars and
+          online meetings, I was tasked with the significant challenge of relaunching and innovating the
+          company's existing platforms. My responsibilities spanned across various aspects of product design, from
+          conceptualization to execution.
+        </p>
+        <p>
+          My journey at Webinar was marked by significant achievements in platform development and user
+          experience enhancement. The skills and experiences I garnered here have not only enriched my design
+          acumen but also provided invaluable insights into managing large-scale software projects in the field of
+          online communication and education.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Successfully relaunched the flagship streaming service, <a href="https://webinar.ru/">Webinar.ru</a>{' '}
+            enhancing user interface and experience, which led to a 30% increase in user engagement and a 20%
+            reduction in user churn rate
+          </li>
+          <li>
+            Conceptualized and launched a brand new{' '}
+            <a href="https://apps.apple.com/ru/app/webinar/id1050809427">mobile application</a> from scratch,
+            catering to the growing demand for mobile access and contributing to a 25% increase in mobile user
+            base within the first six months
+          </li>
+          <li>
+            Developed a new <a href="https://we.study/">platform for organising training sessions</a> streamlining
+            the process for educators and learners
+          </li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Learned the intricacies of working closely with developer teams, fostering effective communication and collaboration</li>
+          <li>Developed skills in tandem project management with a product manager, leading to more streamlined and efficient project timelines</li>
+          <li>Gained a thorough understanding of release cycles, enhancing my ability to plan and execute timely product updates</li>
+          <li>Became adept at setting up and analyzing user funnels, leading to more targeted and user-centric design strategies</li>
+          <li>Acquired expertise in analyzing product metrics, enabling data-driven decision-making for design improvements</li>
+          <li>Mastered cohort analysis, which proved instrumental in understanding user behavior and retention strategies</li>
+        </ul>
+      </ExperienceSlot>
+
+      <ExperienceSlot
+        dates={`May 2014 — February 2015`}
+        company="Zelenski (Zelenski Corporate Travel Solutions)"
+        role="Product Designer"
+        isLast
+      >
+        <p>
+          ZCTS is one of the industry leaders in travel solutions, the exclusive partner of Egencia, and EXPEDIA
+          INC. Company in Russia. Among the priorities of ZCTS-EGENCIA Russia are consulting and analytical
+          assistance in optimising and saving on business travel through efficient travel management.
+        </p>
+        <p>
+          Joining ZCTS, a pioneer in business travel solutions and consulting, marked a significant shift in my
+          career from freelancing to working in a corporate environment. My role involved collaborating closely
+          with marketing and development departments to enhance and launch various travel services.
+        </p>
+        <p>
+          My tenure at ZCTS was an enriching experience that allowed me to transition seamlessly from freelance to
+          corporate work. The diversity of projects and responsibilities I handled broadened my skill set and
+          provided me with valuable insights into the travel and marketing industries.
+        </p>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">Contributions</Eyebrow>
+        <ul class="circle-list">
+          <li>
+            Created compelling printed materials for ZCTS-Egencia Russia's major exhibition, contributing
+            significantly to the event's success and brand visibility
+          </li>
+          <li>
+            Actively participated in launching new company projects and successful marketing campaigns, leading to
+            an increase in service adoption and customer engagement
+          </li>
+          <li>Instrumental in improving user interaction with current services, enhancing user experience and satisfaction</li>
+          <li>Contributed to the redesign processes of current products, ensuring they met contemporary standards and user expectations</li>
+        </ul>
+        <div style="height: var(--space-5)" />
+        <Eyebrow as="h3">What I've learnt</Eyebrow>
+        <ul class="circle-list">
+          <li>Learned to efficiently use project management tools, enhancing organizational skills and project tracking</li>
+          <li>Developed the ability to collaborate effectively with art directors, ensuring design coherence and aesthetic appeal</li>
+          <li>Acquired front-end development skills, including HTML and CSS, broadening my technical capabilities</li>
+          <li>Gained proficiency in creating HTML5 animated banners, enhancing web and digital marketing materials</li>
+          <li>Became skilled in Flash, further diversifying my digital design skills</li>
+          <li>Mastered working with different color spaces and typography, crucial for high-quality print and digital designs</li>
+          <li>Learned to prepare preprints for multi-page publications, enhancing my skills in print media</li>
+          <li>Honed my ability to meet tight deadlines and focus on contributing effectively to team goals</li>
+        </ul>
+      </ExperienceSlot>
+    </section>
+  </div>
+
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin: 24vh auto 0;
+    max-width: var(--container-narrow);
+    padding: 0 var(--container-pad);
+    justify-content: center;
+  }
+
+  .bottom-buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    grid-gap: var(--space-3);
+    padding: var(--space-6) 0;
+  }
+
+  .section-block {
+    margin-top: var(--space-section);
+  }
+
+  .focus {
+    display: grid;
+    margin: 0 auto;
+    max-width: var(--container-max);
+    padding: 0 var(--container-pad);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin-top: var(--space-7);
+  }
+
+  .cases {
+    display: flex;
+    align-items: baseline;
+    margin: 0 auto;
+    max-width: var(--container-max);
+    padding: 0 var(--container-pad);
+  }
+
+  .cases-grid {
+    --cases-grid-gap: 12px;
+    flex: 760;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: var(--cases-grid-gap);
+    grid-auto-rows: minmax(480px, auto);
+  }
+
+  .experience {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
+    margin-top: var(--space-5);
+  }
+
+  @media (max-width: 1160px) {
+    .intro {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (max-width: 880px) {
+    .intro {
+      max-width: var(--container-max);
+      margin-top: var(--space-2);
+    }
+
+    .focus {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cases {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .cases-grid {
+      margin-top: var(--space-6);
+      grid-auto-rows: minmax(420px, auto);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .bottom-buttons {
+      grid-template-columns: 1fr;
+      justify-content: start;
+      grid-gap: var(--space-3);
+      padding: var(--space-6) 0 0;
+    }
+
+    .focus {
+      grid-template-columns: 1fr;
+    }
+
+    .cases-grid {
+      margin-top: var(--space-6);
+      grid-template-columns: 1fr;
+      grid-auto-rows: minmax(460px, auto);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .cases-grid {
+      margin-top: var(--space-6);
+      grid-template-columns: 1fr;
+      grid-auto-rows: minmax(420px, auto);
+    }
+  }
+</style>

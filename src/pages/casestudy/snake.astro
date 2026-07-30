@@ -1,9 +1,9 @@
 ---
 /**
  * Port of casestudy/snake.html (Shares app). Inline colored spans in the
- * Process/Solution lists -> `.lead-in`. Sub-headings -> `<Eyebrow as="h3">`.
- * Mid-content `.spacer-1`/`.spacer-2` -> token-driven spacer divs, same
- * pattern as avito/pepsi/impress-app.
+ * Process/Solution lists -> `<strong class="lead-in">`. Sub-headings ->
+ * `<Eyebrow as="h3">`. Mid-content `.spacer-1`/`.spacer-2` -> token-driven
+ * spacer divs, same pattern as avito/pepsi/impress-app.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
@@ -12,13 +12,14 @@ import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="Shares — Jury Alyavdin"
+  title="Shares — engagement case study · Jury Alyavdin"
   description="A viral snake-game waitlist mechanic that turned Shares' European launch into a talking point among users and developers alike."
   path="/casestudy/snake.html"
   h1="Enhancing Shares app engagement"
   avatarImage="/casestudy/snake/logo.png"
   orbitTop="Shares App"
   orbitBottom="Social • Investing"
+  glow="#5848f8"
   heroImage="/casestudy/snake/hero.png"
   details={[
     { label: 'Platform', value: 'iOS, Android' },
@@ -63,10 +64,10 @@ import Eyebrow from '../../components/Eyebrow.astro';
 
     <p>Observation of Current Practices:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">Pure Waitlist Systems:</span> Many FinTech apps offer basic waitlist systems, showing user position and total users ahead. This gives a sense of anticipation but can lack continuous engagement.</li>
-      <li><span class="lead-in">Referral Bonuses:</span> Platforms like Robinhood and Monzo incentivize user referrals. However, its appeal has been declining for new users.</li>
-      <li><span class="lead-in">Information Sharing:</span> Some platforms provide market insights to users while they wait. While it's informative, it may not always retain user interest.</li>
-      <li><span class="lead-in">Boosting Engagement:</span> Compound loops can be effective for engagement because they create a virtuous cycle. The more engaged a user is in one loop, the more likely they are to participate in another loop. This cumulative effect can lead to higher overall engagement across the platform.</li>
+      <li><strong class="lead-in">Pure Waitlist Systems:</strong> Many FinTech apps offer basic waitlist systems, showing user position and total users ahead. This gives a sense of anticipation but can lack continuous engagement.</li>
+      <li><strong class="lead-in">Referral Bonuses:</strong> Platforms like Robinhood and Monzo incentivize user referrals. However, its appeal has been declining for new users.</li>
+      <li><strong class="lead-in">Information Sharing:</strong> Some platforms provide market insights to users while they wait. While it's informative, it may not always retain user interest.</li>
+      <li><strong class="lead-in">Boosting Engagement:</strong> Compound loops can be effective for engagement because they create a virtuous cycle. The more engaged a user is in one loop, the more likely they are to participate in another loop. This cumulative effect can lead to higher overall engagement across the platform.</li>
     </ul>
     <ContentMedia src="/casestudy/snake/reforge.png" alt="Reforge engagement-loop framework reference" width={2622} height={1644} />
 
@@ -74,17 +75,17 @@ import Eyebrow from '../../components/Eyebrow.astro';
 
     <p>Identifying Gaps and Opportunities:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">Engaging through Identity:</span> An onboarding-like flow was developed where we asked users to claim their usernames. The driving force behind this was to play on a user's FOMO (Fear of Missing Out) — ensuring they secured their preferred username before others.</li>
-      <li><span class="lead-in">Value Proposition in Sharing:</span> We experimented with ideas, such as moving users up in the queue as a reward for sharing, but this didn't resonate as a significant value proposition.</li>
-      <li><span class="lead-in">Venturing Outside the Norm:</span> Recognizing our primary audience's preferences, we decided to break the mold and develop a viral mechanic to offer a digital reward, leading us to the snake game concept.</li>
+      <li><strong class="lead-in">Engaging through Identity:</strong> An onboarding-like flow was developed where we asked users to claim their usernames. The driving force behind this was to play on a user's FOMO (Fear of Missing Out) — ensuring they secured their preferred username before others.</li>
+      <li><strong class="lead-in">Value Proposition in Sharing:</strong> We experimented with ideas, such as moving users up in the queue as a reward for sharing, but this didn't resonate as a significant value proposition.</li>
+      <li><strong class="lead-in">Venturing Outside the Norm:</strong> Recognizing our primary audience's preferences, we decided to break the mold and develop a viral mechanic to offer a digital reward, leading us to the snake game concept.</li>
     </ul>
 
     <div style={`height: var(--space-block-lg)`} />
 
     <p>Brainstorming Session:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">Introduction of the Snake game:</span> Instead of conventional apples, our snake game would feature random stock tickers, offering an educational experience. This approach was intended to familiarize users with various stocks, preparing them for their use of Shares.</li>
-      <li><span class="lead-in">Social connection:</span> The game wasn't just for individual enjoyment. The main outcome was to encourage users to invite and challenge friends. These friends, once introduced, could later connect within the Shares app when it becomes fully operational in their country.</li>
+      <li><strong class="lead-in">Introduction of the Snake game:</strong> Instead of conventional apples, our snake game would feature random stock tickers, offering an educational experience. This approach was intended to familiarize users with various stocks, preparing them for their use of Shares.</li>
+      <li><strong class="lead-in">Social connection:</strong> The game wasn't just for individual enjoyment. The main outcome was to encourage users to invite and challenge friends. These friends, once introduced, could later connect within the Shares app when it becomes fully operational in their country.</li>
     </ul>
 
     <div style={`height: var(--space-section)`} />
@@ -98,7 +99,7 @@ import Eyebrow from '../../components/Eyebrow.astro';
       kind="video"
       src="/casestudy/snake/prototype"
       alt="Snake game prototype with stock ticker logos"
-      width={884}
+      width={885}
       height={362}
     />
   </ContentBlock>
@@ -106,9 +107,9 @@ import Eyebrow from '../../components/Eyebrow.astro';
   <ContentBlock title="Solution">
     <p>The game was designed with specific objectives:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">Viral Element:</span> Encourage sharing and challenging friends.</li>
-      <li><span class="lead-in">Engagement:</span> Ensure users continuously interact with the game.</li>
-      <li><span class="lead-in">Education:</span> Help users distinguish between stock prices and familiarize them with notable stocks.</li>
+      <li><strong class="lead-in">Viral Element:</strong> Encourage sharing and challenging friends.</li>
+      <li><strong class="lead-in">Engagement:</strong> Ensure users continuously interact with the game.</li>
+      <li><strong class="lead-in">Education:</strong> Help users distinguish between stock prices and familiarize them with notable stocks.</li>
     </ul>
     <ContentMedia src="/casestudy/snake/game.png" alt="The snake game screen with stock tickers" width={2618} height={1672} />
 

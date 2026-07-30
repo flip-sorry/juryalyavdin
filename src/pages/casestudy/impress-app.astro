@@ -2,8 +2,8 @@
 /**
  * Port of casestudy/impress-app.html. Inline `<span style="color:
  * rgb(252,112,11)">` labels in the Research/Benchmarking/Ideation lists ->
- * `<span class="lead-in">` (base.css utility, one of the plan's accent-color
- * consolidations). Sub-headings -> `<Eyebrow as="h3">`.
+ * `<strong class="lead-in">` (base.css utility, one of the plan's
+ * accent-color consolidations). Sub-headings -> `<Eyebrow as="h3">`.
  *
  * The 4 videos (usertesting, sol01-03) are the OTHER source video pattern:
  * pre-existing native `.mp4` clips with `controls autoplay loop` and no
@@ -19,13 +19,14 @@ import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="Impress — Jury Alyavdin"
+  title="Impress App — teeth alignment case study · Jury Alyavdin"
   description="Designing the Impress mobile app that moved treatment monitoring online for a European chain of orthodontic clinics."
   path="/casestudy/impress-app.html"
   h1="Streamline teeth alignment process with Impress App"
   avatarImage="/casestudy/impress-app/logo.png"
   orbitTop="Impress"
   orbitBottom="Orthodontic service"
+  glow="#f8d8d8"
   heroImage="/casestudy/impress-app/hero.png"
   details={[
     { label: 'Platform', value: 'iOS, Android' },
@@ -100,11 +101,11 @@ import Eyebrow from '../../components/Eyebrow.astro';
     <p>According to the provided information, I visualized the data on the user journey map to highlight the most valuable pain points.</p>
     <ContentMedia src="/casestudy/impress-app/journey02.png" alt="User journey map highlighting patient pain points" width={2880} height={1188} />
     <ul class="circle-list">
-      <li><span class="lead-in">Frequency of Visits:</span> A significant number of patients found the bi-weekly dental checkups disruptive. The impact was twofold: interrupting personal schedules and escalating treatment costs.</li>
-      <li><span class="lead-in">Wait Times:</span> Extended waiting periods, even with prior appointments, were a common grievance.</li>
-      <li><span class="lead-in">Lack of Progress Tracking:</span> A predominant wish was to have a tool to monitor treatment progress.</li>
-      <li><span class="lead-in">Communication Gaps:</span> Many patients felt left in the dark regarding when to switch aligners.</li>
-      <li><span class="lead-in">Booking System Inefficiencies:</span> A more streamlined booking process was a recurrent request.</li>
+      <li><strong class="lead-in">Frequency of Visits:</strong> A significant number of patients found the bi-weekly dental checkups disruptive. The impact was twofold: interrupting personal schedules and escalating treatment costs.</li>
+      <li><strong class="lead-in">Wait Times:</strong> Extended waiting periods, even with prior appointments, were a common grievance.</li>
+      <li><strong class="lead-in">Lack of Progress Tracking:</strong> A predominant wish was to have a tool to monitor treatment progress.</li>
+      <li><strong class="lead-in">Communication Gaps:</strong> Many patients felt left in the dark regarding when to switch aligners.</li>
+      <li><strong class="lead-in">Booking System Inefficiencies:</strong> A more streamlined booking process was a recurrent request.</li>
     </ul>
   </ContentBlock>
 
@@ -116,9 +117,9 @@ import Eyebrow from '../../components/Eyebrow.astro';
     </p>
     <ContentMedia src="/casestudy/impress-app/benchmarking.png" alt="Competitive benchmarking of orthodontic and telehealth apps" width={2600} height={1192} />
     <ul class="circle-list">
-      <li><span class="lead-in">Direct Competitors:</span> I observed that orthodontic practices worldwide have begun integrating virtual monitoring tools. While some opt for straightforward progress tracking through shared photos, others have implemented specialized software designed to chronologically map dental transformations.</li>
-      <li><span class="lead-in">Indirect Competitors:</span> With telehealth emerging as a robust trend, platforms such as Teladoc and Doctor On Demand have ushered in a new era of virtual medical consultations. I gleaned invaluable insights by delving into their user interface designs, onboarding procedures, and connectivity solutions. Moreover, messengers appeared to be the most relevant competitors considering treatment procedures in small or private clinics.</li>
-      <li><span class="lead-in">Non-healthcare Sectors:</span> Venturing beyond healthcare, I analyzed how entities in unrelated sectors managed regular check-ins and client consultations. Fitness applications like MyFitnessPal and 7 Minute Workout, emphasizing progress visualization, reminders, and expert connections, provided a blueprint adaptable to the orthodontic context.</li>
+      <li><strong class="lead-in">Direct Competitors:</strong> I observed that orthodontic practices worldwide have begun integrating virtual monitoring tools. While some opt for straightforward progress tracking through shared photos, others have implemented specialized software designed to chronologically map dental transformations.</li>
+      <li><strong class="lead-in">Indirect Competitors:</strong> With telehealth emerging as a robust trend, platforms such as Teladoc and Doctor On Demand have ushered in a new era of virtual medical consultations. I gleaned invaluable insights by delving into their user interface designs, onboarding procedures, and connectivity solutions. Moreover, messengers appeared to be the most relevant competitors considering treatment procedures in small or private clinics.</li>
+      <li><strong class="lead-in">Non-healthcare Sectors:</strong> Venturing beyond healthcare, I analyzed how entities in unrelated sectors managed regular check-ins and client consultations. Fitness applications like MyFitnessPal and 7 Minute Workout, emphasizing progress visualization, reminders, and expert connections, provided a blueprint adaptable to the orthodontic context.</li>
     </ul>
 
     <div style={`height: var(--space-block)`} />
@@ -139,10 +140,10 @@ import Eyebrow from '../../components/Eyebrow.astro';
     <ContentMedia src="/casestudy/impress-app/ideation.png" alt="Brainstorming outcomes from the ideation sessions" width={1600} height={1160} />
     <p>From the brainstorming outcomes, I synthesized the ideas into coherent potential solutions. Each solution targeted a particular issue:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">A Remote Consultation System:</span> To address the need for frequent physical visits, I proposed a remote consultation system. This system would use video calls and messaging to allow for real-time interactions between patients and orthodontists, thereby reducing the need for in-clinic appointments.</li>
-      <li><span class="lead-in">Digital Treatment Monitoring Tools:</span> Recognizing the desire of patients to track their progress, I recommended the development of digital tools within our app. These tools would enable patients to monitor their treatment milestones through visual representations and notifications, empowering them with immediate insights into their progress.</li>
-      <li><span class="lead-in">Direct Communication Channel:</span> To eliminate communication barriers, I suggested implementing a direct communication channel within the app. This would facilitate immediate and clear communication between patients and their care teams, streamlining the information flow and ensuring that queries and concerns are swiftly addressed.</li>
-      <li><span class="lead-in">Appointment System Overhaul:</span> Lastly, the feedback pointed towards the need for a more user-friendly appointment system. I put forward the idea of revamping our existing system to include an intuitive, easy-to-navigate interface that would allow for seamless appointment scheduling and management.</li>
+      <li><strong class="lead-in">A Remote Consultation System:</strong> To address the need for frequent physical visits, I proposed a remote consultation system. This system would use video calls and messaging to allow for real-time interactions between patients and orthodontists, thereby reducing the need for in-clinic appointments.</li>
+      <li><strong class="lead-in">Digital Treatment Monitoring Tools:</strong> Recognizing the desire of patients to track their progress, I recommended the development of digital tools within our app. These tools would enable patients to monitor their treatment milestones through visual representations and notifications, empowering them with immediate insights into their progress.</li>
+      <li><strong class="lead-in">Direct Communication Channel:</strong> To eliminate communication barriers, I suggested implementing a direct communication channel within the app. This would facilitate immediate and clear communication between patients and their care teams, streamlining the information flow and ensuring that queries and concerns are swiftly addressed.</li>
+      <li><strong class="lead-in">Appointment System Overhaul:</strong> Lastly, the feedback pointed towards the need for a more user-friendly appointment system. I put forward the idea of revamping our existing system to include an intuitive, easy-to-navigate interface that would allow for seamless appointment scheduling and management.</li>
     </ul>
   </ContentBlock>
 

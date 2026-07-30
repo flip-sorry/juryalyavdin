@@ -1,8 +1,8 @@
 ---
 /**
- * Port of casestudy/idealista.html. Inline colored spans -> `.lead-in`.
- * Sub-headings -> `<Eyebrow as="h3">`. Mid-content spacers -> token-driven
- * spacer divs.
+ * Port of casestudy/idealista.html. Inline colored spans -> `<strong
+ * class="lead-in">`. Sub-headings -> `<Eyebrow as="h3">`. Mid-content
+ * spacers -> token-driven spacer divs.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
@@ -11,7 +11,7 @@ import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="Idealista — Jury Alyavdin"
+  title="Idealista — brand meets UX case study · Jury Alyavdin"
   description="Redesigning Idealista's web interface to match southern Europe's leading real-estate brand and streamline first-time and returning user journeys."
   path="/casestudy/idealista.html"
   h1="Idealista 2.0: where brand meets user experience"
@@ -20,6 +20,7 @@ import Eyebrow from '../../components/Eyebrow.astro';
   orbitBottom="Real Estate Marketplace"
   orbitTopOffset="12%"
   orbitBottomOffset="62%"
+  glow="#d8f848"
   heroImage="/casestudy/idealista/hero.png"
   details={[
     { label: 'Platform', value: 'Web' },
@@ -61,9 +62,9 @@ import Eyebrow from '../../components/Eyebrow.astro';
 
     <p>Here's how the journey unfolded:</p>
     <ul class="circle-list">
-      <li><span class="lead-in">Interviews & Surveys:</span> I began by reaching out to both frequent and first-time users of Idealista, aiming to get insights into their pain points, needs, and expectations from the platform. Questions revolved around their primary objectives when visiting the site, the challenges they faced, and features they wished were present.</li>
-      <li><span class="lead-in">Observational studies:</span> Observing users in their natural environment as they navigated through the site provided invaluable insights. This helped in understanding both user groups' intuitive patterns and where they were met with friction or confusion.</li>
-      <li><span class="lead-in">Competitive analysis:</span> Benchmarking against other leading real estate platforms, not just in terms of design but also functionality, provided a broader perspective. This highlighted areas where Idealista could potentially lead or improve upon.</li>
+      <li><strong class="lead-in">Interviews & Surveys:</strong> I began by reaching out to both frequent and first-time users of Idealista, aiming to get insights into their pain points, needs, and expectations from the platform. Questions revolved around their primary objectives when visiting the site, the challenges they faced, and features they wished were present.</li>
+      <li><strong class="lead-in">Observational studies:</strong> Observing users in their natural environment as they navigated through the site provided invaluable insights. This helped in understanding both user groups' intuitive patterns and where they were met with friction or confusion.</li>
+      <li><strong class="lead-in">Competitive analysis:</strong> Benchmarking against other leading real estate platforms, not just in terms of design but also functionality, provided a broader perspective. This highlighted areas where Idealista could potentially lead or improve upon.</li>
     </ul>
 
     <div style={`height: var(--space-block-lg)`} />
