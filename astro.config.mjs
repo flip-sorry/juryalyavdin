@@ -21,6 +21,13 @@ function toHtmlUrl(url) {
 // disable it, so this second integration runs its astro:build:done hook
 // after sitemap's (Astro runs hooks in integration-array order) and patches
 // the root URL back to end in '/'.
+//
+// Hardened (2026-07-31, ship red-team): if neither the bare nor the
+// slashed root <loc> shows up in ANY sitemap file, @astrojs/sitemap's
+// output structure has changed underneath this patch — throw instead of
+// silently no-oping, so a broken root URL fails the build loudly instead
+// of shipping. Already having the slashed form present (nothing to patch)
+// is the success case, not an error.
 function fixSitemapRootSlash() {
   let siteUrl;
   return {
@@ -35,14 +42,25 @@ function fixSitemapRootSlash() {
         const withSlash = `${bare}/`;
         const outDir = fileURLToPath(dir);
         const files = (await readdir(outDir)).filter((f) => /^sitemap-\d+\.xml$/.test(f));
+        let found = false;
         for (const file of files) {
           const filePath = path.join(outDir, file);
           const contents = await readFile(filePath, 'utf8');
+          if (contents.includes(`<loc>${withSlash}</loc>`)) {
+            found = true;
+            continue;
+          }
           const patched = contents.replace(`<loc>${bare}</loc>`, `<loc>${withSlash}</loc>`);
           if (patched !== contents) {
+            found = true;
             await writeFile(filePath, patched);
             logger.info(`Restored trailing slash on sitemap root URL in ${file}`);
           }
+        }
+        if (!found) {
+          throw new Error(
+            `fix-sitemap-root-slash: could not find the site-root <loc> (neither "${bare}" nor "${withSlash}") in any sitemap-*.xml file — @astrojs/sitemap's output structure may have changed and this patch needs updating.`
+          );
         }
       },
     },
@@ -58,6 +76,13 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // sorry.astro and 404.astro are both `noindex` — listing a noindex
+      // page in the sitemap is a direct signal conflict search engines
+      // flag, so exclude them here rather than relying on robots meta alone.
+      filter: (page) => {
+        const { pathname } = new URL(page);
+        return pathname !== '/sorry' && pathname !== '/sorry/' && pathname !== '/404' && pathname !== '/404/';
+      },
       serialize(item) {
         item.url = toHtmlUrl(item.url);
         return item;

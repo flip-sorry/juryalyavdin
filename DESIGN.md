@@ -82,8 +82,10 @@ Four rhythm tokens replace the source's `.spacer-05`/`.spacer-0`/`.spacer-1`/`.s
 - `--space-section` → `--space-10` (160) — `ContentBlock`'s `margin-top`, replacing the
   `.spacer-2` every case-study content section used to need explicitly
 
-All four (plus body/heading text size) halve under `@media (max-width:560px)` in tokens.css —
-the source's own responsive spacer-halving behavior, centralized instead of duplicated per page.
+Three of the four are exact halves at `@media (max-width:560px)`: `--space-block-sm` 16→8,
+`--space-block` 32→16, `--space-section` 160→80. `--space-block-lg` does **not** halve — it goes
+64→40, matching the source's own `.spacer-1` (which was never a true half either). Body/heading
+text size steps down in the same media query — see Typography.
 
 ## Radius / Shadow
 
@@ -174,7 +176,16 @@ ogType?, noindex?`) and `CaseStudyLayout` (the shared case-study skeleton over `
   88px) · `--site-header-height` / `--header-blur` (SiteHeader, 64px / 28px — `--site-header-height`
   is also SiteHeader's published layout contract, consumed by other components/pages to offset
   their first section) · `--copyright-min-width` (SiteFooter, 280px) · `--social-icon-size`
-  (SocialIcons, 40px).
+  (SocialIcons, 40px) · `--cases-grid-gap` (index.astro, 12px — page-level rather than a
+  component, but the same rule: off the 8pt scale by origin, matching the source's own
+  `.cases-grid { grid-gap: 12px 12px }`).
+
+  These are genuine local design decisions — distinct from **per-instance passthrough
+  properties** (`--avatar-image`, `--card-image`, `--glow`, `--hero-image`, `--icon`,
+  `--media-ratio`), which carry a *value* (a URL, a hex, a ratio) computed per component
+  instance via an inline `style` attribute, not a *design constant*. They're exempt from the
+  "raw values live only in tokens.css" rule because they aren't raw design values at all — just
+  a plumbing mechanism for getting instance data into scoped CSS.
 
   **2. Single-use page-local literals** — a value with nowhere else to earn a shared token,
   documented at the call site instead of promoted:

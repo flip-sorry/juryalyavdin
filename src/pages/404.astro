@@ -1,0 +1,49 @@
+---
+/**
+ * GitHub Pages' custom 404 document — served for any unmatched path.
+ * Minimal by design: reuses sorry.astro's `.intro` treatment (no
+ * OrbitAvatar, no header/footer chrome — this page has no logo/brand text
+ * to anchor an avatar to, and no in-page nav to justify the chrome).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="Page not found · Jury Alyavdin"
+  description="The page you're looking for doesn't exist — head back to the homepage."
+  path="/404.html"
+  noindex
+>
+  <section class="intro">
+    <h1>This page doesn't exist.</h1>
+    <Button href="/" variant="ghost">Back to Home</Button>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin: 24vh auto 0;
+    max-width: var(--container-narrow);
+    padding: 0 var(--container-pad);
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media (max-width: 1160px) {
+    .intro {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (max-width: 880px) {
+    .intro {
+      max-width: var(--container-max);
+      margin-top: var(--space-2);
+    }
+  }
+</style>

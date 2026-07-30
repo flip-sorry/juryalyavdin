@@ -9,12 +9,17 @@
  * yields directory-style URLs that 404 under `build.format:'file'`
  * (red-team blocker fix, see plan).
  *
- * og:image URLs are absolute (`site.origin` prefix, same helper as canonical/
- * og:url) — required by the OG spec, unlike root-relative canonical/og:url
- * which Facebook/LinkedIn/Twitter all resolve against og:url anyway. Same
- * three files, same order as source index.html:23-30 (incl. the 314 vs.
- * "600x315" comment mismatch — ported literally, not one of the plan's
- * enumerated typo fixes).
+ * og:image: ONE absolute tag (`site.origin` prefix, same helper as canonical/
+ * og:url — required by the OG spec) pointing at `ogimage-fb.jpg`, the
+ * largest of the three source images, with its measured actual dimensions
+ * (1200x630). Source declared all three ogimage*.jpg files as separate
+ * og:image tags with per-tag width/height (incl. a 314-vs-"600x315" comment
+ * mismatch on the one now used) — that's a pre-OG-spec pattern for serving
+ * different crops to different scrapers, which no longer matters now that
+ * every major consumer (Facebook/LinkedIn/Twitter/Slack) accepts one
+ * generously-sized image and scales it. All three files stay in public/ —
+ * this is a declaration change, not a URL-contract change (ogimage.jpg /
+ * ogimage-in.jpg may still be hotlinked directly).
  */
 import { site } from '../data/site';
 import '../styles/tokens.css';
@@ -45,13 +50,9 @@ const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:image" content={`${site.origin}/images/ogimage.jpg`} />
-    <meta property="og:image" content={`${site.origin}/images/ogimage-in.jpg`} />
-    <meta property="og:image:width" content="180" />
-    <meta property="og:image:height" content="110" />
     <meta property="og:image" content={`${site.origin}/images/ogimage-fb.jpg`} />
-    <meta property="og:image:width" content="600" />
-    <meta property="og:image:height" content="314" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -80,18 +81,24 @@ const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
             });
             return;
           }
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('is-visible');
-                  observer.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.15 }
-          );
-          items.forEach((el) => observer.observe(el));
+          const observerFor = (threshold) =>
+            new IntersectionObserver(
+              (entries, obs) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                  }
+                });
+              },
+              { threshold }
+            );
+          /* A block taller than the viewport caps its intersection ratio at
+             viewport/height, so 0.15 may be unreachable (Cases, Experience) —
+             those reveal on first touch instead. */
+          const standard = observerFor(0.15);
+          const tall = observerFor(0);
+          items.forEach((el) => (el.offsetHeight > innerHeight ? tall : standard).observe(el));
         });
       })();
     </script>
