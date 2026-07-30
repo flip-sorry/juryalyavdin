@@ -79,13 +79,17 @@ const posterSrc = poster === false ? undefined : (poster ?? `${src}-poster.jpg`)
     width: 100%;
     height: auto;
     aspect-ratio: var(--media-ratio);
-    margin: var(--space-4) 0;
+    /* Source img.content-image was inline (margin: 24px 0) so its top margin
+       never collapsed with the preceding p's 16px bottom margin; display:block
+       collapses them, so the 16px is folded in to keep the rendered 40px gap. */
+    margin: calc(var(--space-4) + var(--space-3)) 0 var(--space-4);
     border-radius: var(--radius-sm);
   }
 
   @media (max-width: 380px) {
     .content-media {
-      margin: var(--space-3) 0;
+      /* p margin-bottom is 16px at every width in source */
+      margin: calc(var(--space-3) + var(--space-3)) 0 var(--space-3);
     }
   }
 </style>

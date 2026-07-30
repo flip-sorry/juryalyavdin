@@ -76,8 +76,9 @@ async function preparePage(page) {
     style.setAttribute('data-compare-harness', 'true');
     style.textContent = `
       /* stylesheet !important beats the inline transform that the live
-         site's rAF loop rewrites every frame */
-      #mySVG { animation: none !important; transform: rotate(0deg) !important; }
+         site's rAF loop rewrites every frame; .orbit is the rebuilt
+         component's CSS-animated equivalent */
+      #mySVG, .orbit { animation: none !important; transform: rotate(0deg) !important; }
       .fade-content {
         opacity: 1 !important;
         transform: none !important;
@@ -99,10 +100,37 @@ async function preparePage(page) {
     }
   });
 
+  // Lazy images never load in a fullPage screenshot without scrolling, and
+  // CSS background-images (the live index's 24 card thumbs) may still be
+  // in flight: force-eager everything, walk the page bottom-up, then wait
+  // for every <img> to decode.
+  await page.evaluate(() => {
+    for (const img of document.querySelectorAll('img[loading]')) {
+      img.loading = 'eager';
+    }
+  });
+  await page.evaluate(async () => {
+    const step = window.innerHeight;
+    for (let y = 0; y <= document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 150));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page
+    .evaluate(() =>
+      Promise.all(
+        [...document.images]
+          .filter((img) => !img.complete)
+          .map((img) => img.decode().catch(() => {}))
+      )
+    )
+    .catch(() => {});
+
   // Playwright's 'networkidle' resolves once there's been no network
   // activity for 500ms. Best-effort: streaming media can keep the network
   // busy indefinitely, so cap it and settle briefly instead of failing.
-  await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+  await page.waitForLoadState('networkidle', { timeout: 20_000 }).catch(() => {});
   await page.waitForTimeout(500);
 }
 
@@ -138,7 +166,11 @@ async function capture({ base, out }) {
             await preparePage(page);
 
             const fileName = `${slug}-${width}.png`;
-            await page.screenshot({ path: path.join(out, fileName), fullPage: true });
+            await page.screenshot({
+              path: path.join(out, fileName),
+              fullPage: true,
+              animations: 'disabled',
+            });
             break;
           } catch (err) {
             if (attempt === MAX_ATTEMPTS) throw err;

@@ -78,7 +78,10 @@ import { site } from '../../data/site';
 
 <style>
   .policy-wrap {
-    max-width: var(--container-prose);
+    /* Source was content-box: 720px measure + 24px side padding. Under the
+       global border-box reset the padding must be added back or the prose
+       column narrows by 48px and every paragraph rewraps. */
+    max-width: calc(var(--container-prose) + 2 * var(--container-pad));
     margin: 0 auto;
     padding: var(--space-9) var(--container-pad) var(--space-8);
   }
