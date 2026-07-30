@@ -1,0 +1,94 @@
+---
+/**
+ * Port of the per-page `<head>` (identical across all 10 legacy pages plus
+ * the orphan head.html) and the reveal/header-class bootstrap (script.js /
+ * script-end.js — both 404 on every case-study page today; this replaces
+ * them with one small inline script that always loads).
+ *
+ * `path` drives canonical/og:url explicitly — never `Astro.url`, which
+ * yields directory-style URLs that 404 under `build.format:'file'`
+ * (red-team blocker fix, see plan).
+ *
+ * og:image content stays root-relative, same URLs same order as source
+ * index.html:23-30 (incl. the 314 vs. "600x315" comment mismatch — ported
+ * literally, not one of the plan's enumerated typo fixes).
+ */
+import { site } from '../data/site';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  ogType?: 'website' | 'article' | 'profile';
+  noindex?: boolean;
+}
+
+const { title, description, path, ogType = 'website', noindex = false } = Astro.props;
+const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
+---
+
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content="/images/ogimage.jpg" />
+    <meta property="og:image" content="/images/ogimage-in.jpg" />
+    <meta property="og:image:width" content="180" />
+    <meta property="og:image:height" content="110" />
+    <meta property="og:image" content="/images/ogimage-fb.jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="314" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="msapplication-TileColor" content="#1E1E1F" />
+    <meta name="theme-color" content="#1E1E1F" />
+
+    <link rel="preload" as="font" type="font/woff2" href="/font/Aeonik-Regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/font/Aeonik-Medium.woff2" crossorigin />
+
+    <script is:inline>
+      (() => {
+        document.documentElement.classList.add('js');
+        document.addEventListener('DOMContentLoaded', () => {
+          const items = document.querySelectorAll('.fade-content');
+          if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            items.forEach((el) => el.classList.add('is-visible'));
+            return;
+          }
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.15 }
+          );
+          items.forEach((el) => observer.observe(el));
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

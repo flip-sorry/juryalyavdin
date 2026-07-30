@@ -1,0 +1,44 @@
+---
+/**
+ * Port of one `.focus-grid` cell in its icon variant (style/layout.css:162-170,
+ * `.spacer-05` at layout.css:1-3, halved <= 560 in adaptive.css:68-70).
+ *
+ * `.focus-grid` is the source's (confusingly named) per-item class — the
+ * actual 3-column grid is `.focus`, which stays in the page that composes
+ * these cells. `margin-right` renders on every cell including row-enders
+ * (nothing in the source overrides it) — ported as-is. The `.spacer-05` div
+ * between icon and text is absorbed as `margin-bottom` on `.focus-img`.
+ */
+interface Props {
+  icon?: string;
+  text: string;
+}
+
+const { icon, text } = Astro.props;
+---
+
+<div class="focus-grid">
+  {icon && <div class="focus-img" style={`--icon: url("${icon}")`} />}
+  <p>{text}</p>
+</div>
+
+<style>
+  .focus-grid {
+    --focus-icon-size: 64px;
+    margin-right: var(--space-6);
+  }
+
+  .focus-img {
+    height: var(--focus-icon-size);
+    background-image: var(--icon);
+    background-size: auto var(--focus-icon-size), cover;
+    background-repeat: no-repeat;
+    margin-bottom: var(--space-3);
+  }
+
+  @media (max-width: 560px) {
+    .focus-img {
+      margin-bottom: var(--space-2);
+    }
+  }
+</style>

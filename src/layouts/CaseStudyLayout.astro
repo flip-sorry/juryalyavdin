@@ -1,0 +1,102 @@
+---
+/**
+ * Composes the case-study skeleton shared by all 7 case-study pages
+ * (avito.html used as the structural reference). `title`/`description`/
+ * `path` pass straight through to BaseLayout with `ogType` fixed to
+ * 'article'.
+ *
+ * `.intro` port: style/layout.css:61-71 (desktop) + adaptive.css:1-5
+ * (<= 1160) + adaptive.css:8-20 (<= 880 — the source assumed the header was
+ * hidden there; this plan restores it fixed, so the <= 880 margin-top
+ * compensates with `--site-header-height` instead of the source's bare 8px,
+ * per SiteHeader's own layout-contract comment). `.intro-title`'s own font
+ * rules are dropped: base.css already sizes h1/h2 globally off the same
+ * tokens, so the wrapper carries no styling of its own.
+ *
+ * `.spacer-1` (layout.css:9-11, halved <= 560 in adaptive.css:76-78)
+ * becomes the hero slot's margin-top, since no component in the inventory
+ * claims it.
+ *
+ * Hero -> Divider -> DetailsGrid is the plan's standardization, not every
+ * source page's literal order (avito.html has no divider there) — the plan
+ * calls this out explicitly as making all 7 case studies consistent.
+ */
+import BaseLayout from './BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import OrbitAvatar from '../components/OrbitAvatar.astro';
+import HeroImage from '../components/HeroImage.astro';
+import Divider from '../components/Divider.astro';
+import DetailsGrid from '../components/DetailsGrid.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  h1: string;
+  avatarImage: string;
+  orbitTop: string;
+  orbitBottom: string;
+  glow?: string;
+  heroImage?: string;
+  details: { label: string; value: string }[];
+}
+
+const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, glow, heroImage, details } =
+  Astro.props;
+---
+
+<BaseLayout title={title} description={description} path={path} ogType="article">
+  <SiteHeader variant="page" />
+  <section class="intro">
+    <OrbitAvatar image={avatarImage} topText={orbitTop} bottomText={orbitBottom} glow={glow} />
+    <div class="intro-title">
+      <h1>{h1}</h1>
+    </div>
+  </section>
+  <div class="hero-slot">
+    <HeroImage image={heroImage}>
+      <slot name="hero" />
+    </HeroImage>
+  </div>
+  <Divider />
+  <DetailsGrid items={details} />
+  <slot />
+  <SiteFooter />
+</BaseLayout>
+
+<style>
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin: 24vh auto 0;
+    max-width: var(--container-narrow);
+    padding: 0 var(--container-pad);
+    justify-content: center;
+  }
+
+  .hero-slot :global(.hero-image) {
+    margin-top: var(--space-7);
+  }
+
+  @media (max-width: 1160px) {
+    .intro {
+      margin-top: var(--space-8);
+    }
+  }
+
+  @media (max-width: 880px) {
+    .intro {
+      max-width: var(--container-max);
+      margin-top: calc(var(--site-header-height) + var(--space-2));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero-slot :global(.hero-image) {
+      margin-top: var(--space-6);
+    }
+  }
+</style>

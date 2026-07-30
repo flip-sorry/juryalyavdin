@@ -1,0 +1,35 @@
+---
+/**
+ * Port of the testimonial variant of `.focus-grid` (style/layout.css:162-164)
+ * plus `.simple-link` (layout.css:31-47). Muted -> full-color-on-hover per
+ * the plan's allowlist, replacing the source's rest-opacity-.4 fade.
+ */
+interface Props {
+  quote: string;
+  author: string;
+  href: string;
+}
+
+const { quote, author, href } = Astro.props;
+---
+
+<div class="focus-grid">
+  <p>{quote}</p>
+  <a class="simple-link" href={href}>{author}</a>
+</div>
+
+<style>
+  .focus-grid {
+    margin-right: var(--space-6);
+  }
+
+  .simple-link {
+    padding: var(--space-3) 0;
+    color: var(--color-text-muted);
+    transition: var(--duration-base);
+  }
+
+  .simple-link:hover {
+    color: var(--color-text);
+  }
+</style>

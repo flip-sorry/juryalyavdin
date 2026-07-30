@@ -1,0 +1,73 @@
+---
+/**
+ * Port of `img.content-image` (style/casestudy.css:99-102, <= 380 override
+ * casestudy.css:195-197). Video is new: source GIFs were converted at build
+ * time to `.mp4`/`.webm` pairs with a `-poster.jpg` first frame (plan Phase
+ * 1); this renders the pair as a silent autoplay loop with the same
+ * margins/radius as the image variant, sized via `aspect-ratio` instead of
+ * the invalid `width="100%"` attribute the source put on `<video>`.
+ *
+ * Prop convention differs by kind: for `img` (default), `src` is the full
+ * path including extension; for `video`, `src` is the base path WITHOUT
+ * extension (e.g. `/casestudy/avito/avito-contacts`) — `.webm`/`.mp4` are
+ * derived by appending, and `poster` defaults to `${src}-poster.jpg` unless
+ * given explicitly.
+ */
+interface Props {
+  src: string;
+  alt: string;
+  kind?: 'img' | 'video';
+  poster?: string;
+  width: number;
+  height: number;
+}
+
+const { src, alt, kind = 'img', poster, width, height } = Astro.props;
+const ratio = `${width} / ${height}`;
+---
+
+{
+  kind === 'video' ? (
+    <video
+      class="content-media"
+      style={`--media-ratio: ${ratio}`}
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      poster={poster ?? `${src}-poster.jpg`}
+      aria-label={alt}
+    >
+      <source src={`${src}.webm`} type="video/webm" />
+      <source src={`${src}.mp4`} type="video/mp4" />
+    </video>
+  ) : (
+    <img
+      class="content-media"
+      style={`--media-ratio: ${ratio}`}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading="lazy"
+    />
+  )
+}
+
+<style>
+  .content-media {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--media-ratio);
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 380px) {
+    .content-media {
+      margin: var(--space-3) 0;
+    }
+  }
+</style>

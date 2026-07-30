@@ -1,0 +1,61 @@
+---
+/**
+ * Port of `.content-block` / `.content-title` / `.content-text`
+ * (style/casestudy.css:73-97, <= 880 override casestudy.css:154-162).
+ *
+ * Owns `margin-top: var(--space-section)`, replacing the `.spacer-2` div the
+ * source places before every content-block. Reuses the shared `.container`
+ * utility for the 1160px/24px geometry the source declared inline.
+ *
+ * Sticky offset reuses `--site-header-height` (SiteHeader's layout contract)
+ * + `--space-2` — the source's literal `top: 72px` is exactly 64 (header) +
+ * 8. `margin-bottom: 14px` on `.content-title` is one of the plan's snapped
+ * outliers -> `--space-3` (16px), the nearest 8pt step.
+ */
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="container content-block">
+  <section class="content-title">
+    <h2>{title}</h2>
+  </section>
+  <section class="content-text">
+    <slot />
+  </section>
+</div>
+
+<style>
+  .content-block {
+    align-items: baseline;
+    display: grid;
+    grid-template-columns: 10fr 21fr;
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+    margin-top: var(--space-section);
+  }
+
+  .content-title {
+    position: sticky;
+    top: calc(var(--site-header-height) + var(--space-2));
+    margin-bottom: var(--space-3);
+  }
+
+  .content-text :global(p) {
+    margin-bottom: var(--space-3);
+  }
+
+  @media (max-width: 880px) {
+    .content-block {
+      grid-template-columns: 1fr;
+      grid-gap: var(--space-1);
+    }
+
+    .content-title {
+      position: static;
+    }
+  }
+</style>

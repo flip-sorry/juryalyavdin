@@ -1,0 +1,90 @@
+---
+/**
+ * Port of `.button` / `.string-button` (style/layout.css:357-426, <= 560
+ * override adaptive.css:166-178).
+ *
+ * Source rendered both as real `<button>` elements (an `onclick` handler, or
+ * wrapped in an `<a download>`); the plan replaces every case with a single
+ * real anchor, so the button-only resets (`appearance`, `position: static`,
+ * `left`/`top`) are dropped as no-ops and `display: inline-flex` is added to
+ * keep the label centered in the fixed-height box now that it's an inline
+ * element. `:focus` outline is dropped in favour of base.css's shared
+ * `:focus-visible` ring.
+ *
+ * Ghost is NOT `display: none` at <= 880px — deliberate allowlisted change
+ * (CV button + sorry-page "Back to Home" both need to stay visible on
+ * mobile).
+ */
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost';
+  download?: boolean;
+  external?: boolean;
+}
+
+const { href, variant = 'primary', download = false, external = false } = Astro.props;
+const className = variant === 'primary' ? 'button' : 'string-button';
+---
+
+<a
+  class={className}
+  href={href}
+  download={download ? true : undefined}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <slot />
+</a>
+
+<style>
+  .button,
+  .string-button {
+    --button-height: 72px;
+    display: inline-flex;
+    align-items: center;
+    height: var(--button-height);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-leading);
+    padding: 0 var(--space-4);
+    cursor: pointer;
+    transition: var(--duration-fast);
+  }
+
+  .button:active,
+  .string-button:active {
+    transform: scale(0.95);
+  }
+
+  .button {
+    background: var(--color-accent);
+    color: var(--color-text-on-accent);
+  }
+
+  .button:hover {
+    background: var(--color-accent-hover);
+    box-shadow: var(--shadow-raise);
+    transform: rotateX(5deg) scale(1.05);
+  }
+
+  .string-button {
+    background: none;
+    color: var(--color-accent);
+  }
+
+  .string-button:hover {
+    background-color: var(--color-surface-hover);
+    transform: rotateX(5deg) scale(1.05);
+  }
+
+  @media (max-width: 560px) {
+    .button,
+    .string-button {
+      --button-height: 56px;
+      font-size: var(--text-small-size);
+      line-height: var(--text-small-leading);
+      padding: 0 var(--space-3);
+    }
+  }
+</style>

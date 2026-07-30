@@ -1,0 +1,54 @@
+---
+/**
+ * Throwaway smoke page for the Phase 3 component set — never routed/built
+ * (underscore-prefixed). Exercises BaseLayout + SiteHeader + one of each new
+ * standalone component with plausible real media paths. Delete once Phase 4+
+ * migrates real pages that exercise the same components in context.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import FocusItem from '../components/FocusItem.astro';
+import TestimonialItem from '../components/TestimonialItem.astro';
+import Button from '../components/Button.astro';
+import HeroImage from '../components/HeroImage.astro';
+import ContentBlock from '../components/ContentBlock.astro';
+import ContentMedia from '../components/ContentMedia.astro';
+---
+
+<BaseLayout title="Smoke test" description="Phase 3 component smoke test." path="/_smoke">
+  <SiteHeader variant="page" />
+
+  <section style="margin-top: 96px; display: grid; gap: 40px;">
+    <FocusItem icon="/images/icon/strategy.png" text="Clearly define business goals and customer needs" />
+
+    <TestimonialItem
+      quote="He is a problem solving oriented person."
+      author="Elena • Lead Product Manager"
+      href="https://www.linkedin.com/in/j-alyavdin/#recommendations"
+    />
+
+    <div>
+      <Button href="/j-alyavdin-cv.pdf" download>Download CV</Button>
+      <Button href="/" variant="ghost">Back to Home</Button>
+    </div>
+
+    <HeroImage image="/casestudy/avito/avito-hero.png" />
+
+    <ContentBlock title="Overview">
+      <p>Smoke-test prose for ContentBlock, to confirm the sticky title and content-text spacing render.</p>
+    </ContentBlock>
+
+    <ContentMedia src="/casestudy/avito/avito-profile.png" alt="Avito applicant profile screen" width={800} height={598} />
+
+    <ContentMedia
+      kind="video"
+      src="/casestudy/pepsi/delivery"
+      alt="Pepsi delivery flow prototype"
+      width={800}
+      height={598}
+    />
+  </section>
+
+  <SiteFooter />
+</BaseLayout>
