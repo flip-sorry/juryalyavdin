@@ -1,0 +1,48 @@
+---
+/**
+ * Port of `.title` (style/layout.css:135-144) and `.cases-title`
+ * (layout.css:180-190, adaptive.css:42-45 / 127-131).
+ *
+ * `variant` picks between the two: `block` is the standalone numbered heading,
+ * `sticky` is the one that rides along the case grid inside `.cases`. Two
+ * invalid source declarations (`align-content: column`, `position: flex`) are
+ * dropped — browsers discard them, so nothing rendered depends on them.
+ */
+interface Props {
+  number: string;
+  title: string;
+  id?: string;
+  variant?: 'block' | 'sticky';
+}
+
+const { number, title, id, variant = 'block' } = Astro.props;
+---
+
+{
+  variant === 'sticky' ? (
+    <section class="cases-title" id={id}>
+      <p class="lead-in">{number}</p>
+      <h2>{title}</h2>
+    </section>
+  ) : (
+    <section class="container section-title" id={id}>
+      <p class="lead-in">{number}</p>
+      <h2>{title}</h2>
+    </section>
+  )
+}
+
+<style>
+  .cases-title {
+    flex: 360;
+    position: -webkit-sticky;
+    position: sticky;
+    top: var(--space-4);
+  }
+
+  @media (max-width: 880px) {
+    .cases-title {
+      position: static;
+    }
+  }
+</style>

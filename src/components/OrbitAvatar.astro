@@ -1,0 +1,102 @@
+---
+/**
+ * Port of `.about` / `.avatar` + the circular-text SVG
+ * (style/layout.css:536-565, index.html:68-85).
+ *
+ * Rotation replaces script-end.js, which stepped -0.4deg per frame from angle 0
+ * (≈15s per turn at 60fps) and overwrote the CSS `svg { rotate(-90deg) }` base
+ * on its first frame — so the animation starts at 0deg, not -90deg.
+ *
+ * Under `prefers-reduced-motion` the base.css damper collapses the animation to
+ * one 0.01ms iteration with no fill mode, leaving the SVG at its unanimated
+ * 0deg state. No extra rule needed.
+ */
+interface Props {
+  image: string;
+  topText: string;
+  bottomText: string;
+  /** Precomputed dominant colour of `image`; enables the source's drop glow. */
+  glow?: string;
+}
+
+const { image, topText, bottomText, glow } = Astro.props;
+---
+
+<div class="about">
+  <div
+    class:list={['avatar', { 'has-glow': glow }]}
+    style={glow ? `--avatar-image: url("${image}"); --glow: ${glow}` : `--avatar-image: url("${image}")`}
+  >
+  </div>
+  <svg
+    class="orbit"
+    width="160"
+    height="160"
+    viewBox="0 0 160 160"
+    role="img"
+    aria-label={`${topText} — ${bottomText}`}
+  >
+    <path
+      id="circlePath"
+      fill="none"
+      stroke="none"
+      d="M80,80 m-60,0 a60,60 0 1,1 120,0 a60,60 0 1,1 -120,0"></path>
+    <text>
+      <textPath xlink:href="#circlePath" startOffset="20%" style="text-anchor: middle;">
+        {topText}
+      </textPath>
+    </text>
+    <text>
+      <textPath xlink:href="#circlePath" startOffset="70%" style="text-anchor: middle;">
+        {bottomText}
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+<style>
+  .about {
+    --orbit-size: 160px;
+    --avatar-size: 88px;
+    position: relative;
+    width: var(--orbit-size);
+    height: var(--orbit-size);
+    justify-self: center;
+  }
+
+  .avatar {
+    background-image: var(--avatar-image);
+    height: var(--avatar-size);
+    width: var(--avatar-size);
+    background-size: auto var(--avatar-size), cover;
+    background-repeat: no-repeat;
+    border-radius: var(--radius-full);
+    background-color: var(--color-surface);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: var(--z-behind);
+  }
+
+  .avatar.has-glow {
+    box-shadow: var(--shadow-glow) var(--glow);
+  }
+
+  .orbit {
+    animation: orbit 15s linear infinite;
+  }
+
+  .orbit text {
+    fill: var(--color-text);
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+</style>

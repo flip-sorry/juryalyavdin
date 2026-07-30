@@ -1,0 +1,58 @@
+---
+/**
+ * Port of `footer` + `.copyright` (style/layout.css:428-441, adaptive.css:180-184).
+ *
+ * The source's competing `footer { height: 50vh }` rule is dropped: `max-height:
+ * 80px` clamped it to the same 80px, so it never rendered differently.
+ *
+ * `spaced` folds in the `.spacer-2` that precedes the footer on 9 of the 10
+ * pages; the privacy page (which ends with its own 80px padding) passes false.
+ */
+import SocialIcons from './SocialIcons.astro';
+import { site } from '../data/site';
+
+interface Props {
+  spaced?: boolean;
+}
+
+const { spaced = true } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class:list={['container site-footer', { spaced }]}>
+  <div class="copyright">
+    <p><span class="muted">© {site.name}, {year}</span></p>
+  </div>
+  <SocialIcons />
+</footer>
+
+<style>
+  .site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: var(--space-8);
+    padding-bottom: var(--space-4);
+  }
+
+  .site-footer.spaced {
+    margin-top: var(--space-section);
+  }
+
+  .copyright {
+    --copyright-min-width: 280px;
+    min-width: var(--copyright-min-width);
+  }
+
+  /* Source rendered this as `opacity: .4`; the plan swaps it for a solid AA-passing tone. */
+  .muted {
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 560px) {
+    .site-footer {
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+</style>

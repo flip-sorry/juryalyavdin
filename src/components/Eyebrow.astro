@@ -1,0 +1,16 @@
+---
+/**
+ * Port of the 58 misused `<h5>` elements (source basic.css:40-43).
+ *
+ * `.eyebrow` lives in base.css: accent colour + 16px block padding — the exact
+ * rendering of the source `h5`. Use `.lead-in` instead for the padding-free
+ * accent labels the source wrote as `.orange-p` / `.title p`.
+ */
+interface Props {
+  as?: 'p' | 'h3';
+}
+
+const { as: Tag = 'p' } = Astro.props;
+---
+
+<Tag class="eyebrow"><slot /></Tag>

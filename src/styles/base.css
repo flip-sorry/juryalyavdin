@@ -70,12 +70,23 @@ body {
   line-height: var(--text-body-leading);
   letter-spacing: var(--tracking-body);
   min-width: 320px;
+  /* Text-rendering hints ported from source basic.css:17-21 — the smoothing pair
+     visibly changes glyph weight on macOS, so it is load-bearing for the diff. */
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1, h2 {
   font-size: var(--text-heading-size);
   line-height: var(--text-heading-leading);
   font-weight: var(--font-weight-medium); /* explicit — source relied on a fake family, see plan "Font fix" */
+}
+
+h1 {
+  text-align: center; /* source basic.css:33 — overridden locally by the privacy page */
 }
 
 a {
@@ -88,7 +99,13 @@ a:visited {
   color: currentColor;
 }
 
+/* Shared container geometry. content-box is deliberate: the source had no
+   box-sizing rule, so `max-width:1160px` + `padding:0 24px` yields a 1160px
+   *content* column (1208px border box) that lines up exactly with `.divider`
+   (max-width:1160px, no padding). Under the border-box reset above the column
+   would shrink to 1112px and every divider would overhang by 24px per side. */
 .container {
+  box-sizing: content-box;
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-pad);

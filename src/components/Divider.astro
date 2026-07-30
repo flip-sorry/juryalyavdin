@@ -1,0 +1,21 @@
+---
+/**
+ * Port of `.divider` (style/layout.css:21-27).
+ *
+ * A hairline that sits flush with the bottom of whatever precedes it. It has no
+ * horizontal padding on purpose: at 1160px wide it lines up with the *content*
+ * column of every `.container` block (which is content-box — see base.css).
+ */
+---
+
+<div class="divider"></div>
+
+<style>
+  .divider {
+    margin: 0 auto;
+    max-width: var(--container-max);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    top: -1px;
+  }
+</style>

@@ -1,0 +1,86 @@
+---
+/**
+ * Port of `.header-main` (style/layout.css:49-59) and `.header`
+ * (style/casestudy.css:1-20).
+ *
+ * - `home`  — parked at `top: -64px`, slides in once scrollY >= 700.
+ * - `page`  — always pinned at `top: 0`.
+ *
+ * The source hid both variants below 880px (casestudy.css:124-130); the plan
+ * restores them as a compact bar. Because the `page` bar then overlaps the
+ * first section, this component publishes `--site-header-height` on `:root` as
+ * the layout contract — consumers offset their first section by it at <= 880px
+ * (see CaseStudyLayout `.intro`).
+ */
+import Divider from './Divider.astro';
+import SocialIcons from './SocialIcons.astro';
+import { site } from '../data/site';
+
+interface Props {
+  variant: 'home' | 'page';
+}
+
+const { variant } = Astro.props;
+---
+
+<header class:list={['site-header', variant]} id="site-header">
+  <div class="container header-content">
+    <a href="/"><p>{site.name}</p></a>
+    <SocialIcons />
+  </div>
+  <Divider />
+</header>
+
+{
+  variant === 'home' && (
+    <script is:inline>
+      (() => {
+        const header = document.getElementById('site-header');
+        if (!header) return;
+        const sync = () => header.classList.toggle('is-revealed', window.scrollY >= 700);
+        window.addEventListener('scroll', sync, { passive: true });
+        sync();
+      })();
+    </script>
+  )
+}
+
+<style is:global>
+  /* Layout contract: the height of the fixed bar, for pages that must not sit under it. */
+  :root {
+    --site-header-height: 64px;
+  }
+</style>
+
+<style>
+  .site-header {
+    --header-blur: 28px;
+    width: 100%;
+    height: var(--site-header-height);
+    position: fixed;
+    background: var(--color-bg-scrim);
+    -webkit-backdrop-filter: blur(var(--header-blur));
+    backdrop-filter: blur(var(--header-blur));
+    z-index: var(--z-header);
+  }
+
+  .site-header.page {
+    top: 0;
+  }
+
+  .site-header.home {
+    top: calc(-1 * var(--site-header-height));
+    transition: top var(--duration-base) var(--ease-default);
+  }
+
+  .site-header.home.is-revealed {
+    top: 0;
+  }
+
+  .header-content {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

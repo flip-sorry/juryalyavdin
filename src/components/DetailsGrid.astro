@@ -1,0 +1,47 @@
+---
+/**
+ * Port of `.details-grid` / `.details-cell` (style/casestudy.css:50-58).
+ *
+ * The source hid this grid entirely below 880px while still authoring a 2-column
+ * template underneath the `display: none` (casestudy.css:164-167). The plan
+ * restores it: 3 columns, 2 at <= 880 (the authored intent), 1 at <= 560 (new).
+ */
+interface Props {
+  items: { label: string; value: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="container details-grid">
+  {
+    items.map((item) => (
+      <div class="details-cell">
+        <p class="lead-in">{item.label}</p>
+        <p>{item.value}</p>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .details-grid {
+    display: grid;
+    padding-block: var(--space-3);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+  }
+
+  @media (max-width: 880px) {
+    .details-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

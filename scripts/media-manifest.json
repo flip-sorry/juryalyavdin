@@ -1,0 +1,1624 @@
+[
+  {
+    "path": "images/avatar.jpg",
+    "action": "compressed",
+    "origBytes": 296952,
+    "newBytes": 34730,
+    "width": 800,
+    "height": 800,
+    "savingsPct": 88.3
+  },
+  {
+    "path": "images/cases/alice.png",
+    "action": "compressed",
+    "origBytes": 541331,
+    "newBytes": 137458,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 74.6
+  },
+  {
+    "path": "images/cases/art.png",
+    "action": "compressed",
+    "origBytes": 1494848,
+    "newBytes": 501377,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 66.5
+  },
+  {
+    "path": "images/cases/aviapp.png",
+    "action": "compressed",
+    "origBytes": 1785576,
+    "newBytes": 293725,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 83.6
+  },
+  {
+    "path": "images/cases/backoffice.png",
+    "action": "compressed",
+    "origBytes": 1101433,
+    "newBytes": 171811,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 84.4
+  },
+  {
+    "path": "images/cases/blank.png",
+    "action": "copied",
+    "origBytes": 14734,
+    "newBytes": 14734,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/cases/book.png",
+    "action": "compressed",
+    "origBytes": 1050696,
+    "newBytes": 258991,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 75.4
+  },
+  {
+    "path": "images/cases/courses.png",
+    "action": "compressed",
+    "origBytes": 825718,
+    "newBytes": 135589,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 83.6
+  },
+  {
+    "path": "images/cases/ico.png",
+    "action": "compressed",
+    "origBytes": 287421,
+    "newBytes": 62617,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 78.2
+  },
+  {
+    "path": "images/cases/idealista.png",
+    "action": "compressed",
+    "origBytes": 568616,
+    "newBytes": 93121,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 83.6
+  },
+  {
+    "path": "images/cases/impress.png",
+    "action": "compressed",
+    "origBytes": 1779956,
+    "newBytes": 319088,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 82.1
+  },
+  {
+    "path": "images/cases/likevr.png",
+    "action": "compressed",
+    "origBytes": 1565538,
+    "newBytes": 202503,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 87.1
+  },
+  {
+    "path": "images/cases/live.png",
+    "action": "compressed",
+    "origBytes": 706819,
+    "newBytes": 288514,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 59.2
+  },
+  {
+    "path": "images/cases/locker.png",
+    "action": "copied",
+    "origBytes": 8407,
+    "newBytes": 8407,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/cases/mail.png",
+    "action": "compressed",
+    "origBytes": 190928,
+    "newBytes": 52211,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 72.7
+  },
+  {
+    "path": "images/cases/marketapp.png",
+    "action": "compressed",
+    "origBytes": 622405,
+    "newBytes": 163184,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 73.8
+  },
+  {
+    "path": "images/cases/pepsi.png",
+    "action": "compressed",
+    "origBytes": 1399149,
+    "newBytes": 142115,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 89.8
+  },
+  {
+    "path": "images/cases/rmblr.png",
+    "action": "compressed",
+    "origBytes": 1434727,
+    "newBytes": 383509,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 73.3
+  },
+  {
+    "path": "images/cases/rmblrrmblr.png",
+    "action": "compressed",
+    "origBytes": 1376967,
+    "newBytes": 304361,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 77.9
+  },
+  {
+    "path": "images/cases/run.png",
+    "action": "compressed",
+    "origBytes": 2616388,
+    "newBytes": 518056,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 80.2
+  },
+  {
+    "path": "images/cases/snake.png",
+    "action": "compressed",
+    "origBytes": 488614,
+    "newBytes": 55133,
+    "width": 1552,
+    "height": 1920,
+    "savingsPct": 88.7
+  },
+  {
+    "path": "images/cases/studyfree.png",
+    "action": "compressed",
+    "origBytes": 854689,
+    "newBytes": 128985,
+    "width": 776,
+    "height": 960,
+    "savingsPct": 84.9
+  },
+  {
+    "path": "images/cases/trew.png",
+    "action": "compressed",
+    "origBytes": 1668059,
+    "newBytes": 199414,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 88
+  },
+  {
+    "path": "images/cases/txplanner.png",
+    "action": "compressed",
+    "origBytes": 780173,
+    "newBytes": 151943,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 80.5
+  },
+  {
+    "path": "images/cases/viv.png",
+    "action": "compressed",
+    "origBytes": 74151,
+    "newBytes": 24672,
+    "width": 1164,
+    "height": 1224,
+    "savingsPct": 66.7
+  },
+  {
+    "path": "images/cases/webinar.png",
+    "action": "compressed",
+    "origBytes": 1195759,
+    "newBytes": 431649,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 63.9
+  },
+  {
+    "path": "images/cases/xchange.png",
+    "action": "compressed",
+    "origBytes": 371773,
+    "newBytes": 117091,
+    "width": 1164,
+    "height": 1440,
+    "savingsPct": 68.5
+  },
+  {
+    "path": "images/cases/zvq.png",
+    "action": "compressed",
+    "origBytes": 699697,
+    "newBytes": 174678,
+    "width": 1440,
+    "height": 1440,
+    "savingsPct": 75
+  },
+  {
+    "path": "images/experience/exp-current.png",
+    "action": "copied",
+    "origBytes": 4520,
+    "newBytes": 4520,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/experience/exp-last.png",
+    "action": "copied",
+    "origBytes": 1447,
+    "newBytes": 1447,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/hero.png",
+    "action": "compressed",
+    "origBytes": 789877,
+    "newBytes": 295945,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 62.5
+  },
+  {
+    "path": "images/icon/arch.png",
+    "action": "compressed",
+    "origBytes": 55725,
+    "newBytes": 9362,
+    "width": 256,
+    "height": 258,
+    "savingsPct": 83.2
+  },
+  {
+    "path": "images/icon/code.png",
+    "action": "compressed",
+    "origBytes": 70837,
+    "newBytes": 16459,
+    "width": 322,
+    "height": 258,
+    "savingsPct": 76.8
+  },
+  {
+    "path": "images/icon/comm.png",
+    "action": "copied",
+    "origBytes": 45188,
+    "newBytes": 45188,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/icon/copy.png",
+    "action": "copied",
+    "origBytes": 43450,
+    "newBytes": 43450,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/icon/data.png",
+    "action": "copied",
+    "origBytes": 40693,
+    "newBytes": 40693,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/icon/mov.png",
+    "action": "copied",
+    "origBytes": 30532,
+    "newBytes": 30532,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/icon/prot.png",
+    "action": "compressed",
+    "origBytes": 74721,
+    "newBytes": 21390,
+    "width": 448,
+    "height": 256,
+    "savingsPct": 71.4
+  },
+  {
+    "path": "images/icon/puzzle.png",
+    "action": "compressed",
+    "origBytes": 62771,
+    "newBytes": 9952,
+    "width": 272,
+    "height": 260,
+    "savingsPct": 84.1
+  },
+  {
+    "path": "images/icon/research.png",
+    "action": "compressed",
+    "origBytes": 53654,
+    "newBytes": 11580,
+    "width": 256,
+    "height": 270,
+    "savingsPct": 78.4
+  },
+  {
+    "path": "images/icon/strategy.png",
+    "action": "compressed",
+    "origBytes": 72911,
+    "newBytes": 16935,
+    "width": 440,
+    "height": 256,
+    "savingsPct": 76.8
+  },
+  {
+    "path": "images/lock.jpg",
+    "action": "copied",
+    "origBytes": 27397,
+    "newBytes": 27397,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/ogimage-fb.jpg",
+    "action": "compressed",
+    "origBytes": 251739,
+    "newBytes": 36342,
+    "width": 1200,
+    "height": 630,
+    "savingsPct": 85.6
+  },
+  {
+    "path": "images/ogimage-in.jpg",
+    "action": "copied",
+    "origBytes": 31890,
+    "newBytes": 31890,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/ogimage.jpg",
+    "action": "compressed",
+    "origBytes": 225577,
+    "newBytes": 33574,
+    "width": 1080,
+    "height": 1080,
+    "savingsPct": 85.1
+  },
+  {
+    "path": "images/social/dribbble-icon.png",
+    "action": "copied",
+    "origBytes": 2315,
+    "newBytes": 2315,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/social/facebook-icon.png",
+    "action": "copied",
+    "origBytes": 1482,
+    "newBytes": 1482,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/social/instagram-icon.png",
+    "action": "copied",
+    "origBytes": 1777,
+    "newBytes": 1777,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "images/social/linkedin-icon.png",
+    "action": "copied",
+    "origBytes": 924,
+    "newBytes": 924,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/avito/alex.png",
+    "action": "compressed",
+    "origBytes": 6306355,
+    "newBytes": 1989715,
+    "width": 2550,
+    "height": 1701,
+    "savingsPct": 68.4
+  },
+  {
+    "path": "casestudy/avito/avito-advice-contact.png",
+    "action": "compressed",
+    "origBytes": 1203909,
+    "newBytes": 275609,
+    "width": 2160,
+    "height": 1440,
+    "savingsPct": 77.1
+  },
+  {
+    "path": "casestudy/avito/avito-cjm.jpg",
+    "action": "compressed",
+    "origBytes": 354675,
+    "newBytes": 216404,
+    "width": 3167,
+    "height": 1262,
+    "savingsPct": 39
+  },
+  {
+    "path": "casestudy/avito/avito-hero.png",
+    "action": "compressed",
+    "origBytes": 2844170,
+    "newBytes": 793302,
+    "width": 2800,
+    "height": 1440,
+    "savingsPct": 72.1
+  },
+  {
+    "path": "casestudy/avito/avito-logo.png",
+    "action": "copied",
+    "origBytes": 11683,
+    "newBytes": 11683,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/avito/avito-profile.png",
+    "action": "compressed",
+    "origBytes": 1938056,
+    "newBytes": 594102,
+    "width": 1456,
+    "height": 968,
+    "savingsPct": 69.3
+  },
+  {
+    "path": "casestudy/avito/avito-research.png",
+    "action": "compressed",
+    "origBytes": 169301,
+    "newBytes": 35332,
+    "width": 1880,
+    "height": 1488,
+    "savingsPct": 79.1
+  },
+  {
+    "path": "casestudy/avito/avito-wireframe.png",
+    "action": "compressed",
+    "origBytes": 612012,
+    "newBytes": 199151,
+    "width": 2727,
+    "height": 1813,
+    "savingsPct": 67.5
+  },
+  {
+    "path": "casestudy/idealista/brand-interface.png",
+    "action": "compressed",
+    "origBytes": 2377766,
+    "newBytes": 635995,
+    "width": 2880,
+    "height": 1936,
+    "savingsPct": 73.3
+  },
+  {
+    "path": "casestudy/idealista/first-time.png",
+    "action": "compressed",
+    "origBytes": 180446,
+    "newBytes": 70986,
+    "width": 2600,
+    "height": 1416,
+    "savingsPct": 60.7
+  },
+  {
+    "path": "casestudy/idealista/hero.png",
+    "action": "compressed",
+    "origBytes": 991793,
+    "newBytes": 315652,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 68.2
+  },
+  {
+    "path": "casestudy/idealista/logo.jpg",
+    "action": "copied",
+    "origBytes": 5781,
+    "newBytes": 5781,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/idealista/logo.png",
+    "action": "copied",
+    "origBytes": 8764,
+    "newBytes": 8764,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/idealista/personalised-journeys.png",
+    "action": "compressed",
+    "origBytes": 3230395,
+    "newBytes": 857571,
+    "width": 2920,
+    "height": 1892,
+    "savingsPct": 73.5
+  },
+  {
+    "path": "casestudy/idealista/property-details.png",
+    "action": "compressed",
+    "origBytes": 2153814,
+    "newBytes": 784775,
+    "width": 2880,
+    "height": 1800,
+    "savingsPct": 63.6
+  },
+  {
+    "path": "casestudy/idealista/returning-users.png",
+    "action": "compressed",
+    "origBytes": 195169,
+    "newBytes": 77193,
+    "width": 2600,
+    "height": 1480,
+    "savingsPct": 60.4
+  },
+  {
+    "path": "casestudy/idealista/search-experience.png",
+    "action": "compressed",
+    "origBytes": 2819858,
+    "newBytes": 837324,
+    "width": 2880,
+    "height": 1800,
+    "savingsPct": 70.3
+  },
+  {
+    "path": "casestudy/impress-app/benchmarking.png",
+    "action": "compressed",
+    "origBytes": 1019250,
+    "newBytes": 324833,
+    "width": 2600,
+    "height": 1192,
+    "savingsPct": 68.1
+  },
+  {
+    "path": "casestudy/impress-app/customer.png",
+    "action": "compressed",
+    "origBytes": 2975886,
+    "newBytes": 1023764,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 65.6
+  },
+  {
+    "path": "casestudy/impress-app/first-time.png",
+    "action": "compressed",
+    "origBytes": 180446,
+    "newBytes": 70986,
+    "width": 2600,
+    "height": 1416,
+    "savingsPct": 60.7
+  },
+  {
+    "path": "casestudy/impress-app/hero.png",
+    "action": "compressed",
+    "origBytes": 812241,
+    "newBytes": 285438,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 64.9
+  },
+  {
+    "path": "casestudy/impress-app/ideation.png",
+    "action": "compressed",
+    "origBytes": 2403970,
+    "newBytes": 812188,
+    "width": 1600,
+    "height": 1160,
+    "savingsPct": 66.2
+  },
+  {
+    "path": "casestudy/impress-app/impress-clinic.jpeg",
+    "action": "compressed",
+    "origBytes": 1228164,
+    "newBytes": 102365,
+    "width": 1400,
+    "height": 800,
+    "savingsPct": 91.7
+  },
+  {
+    "path": "casestudy/impress-app/journey01.png",
+    "action": "compressed",
+    "origBytes": 239567,
+    "newBytes": 94000,
+    "width": 2600,
+    "height": 1608,
+    "savingsPct": 60.8
+  },
+  {
+    "path": "casestudy/impress-app/journey02.png",
+    "action": "compressed",
+    "origBytes": 653851,
+    "newBytes": 260787,
+    "width": 2880,
+    "height": 1188,
+    "savingsPct": 60.1
+  },
+  {
+    "path": "casestudy/impress-app/logo.png",
+    "action": "copied",
+    "origBytes": 6412,
+    "newBytes": 6412,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/impress-app/patient.jpeg",
+    "action": "copied",
+    "origBytes": 229067,
+    "newBytes": 229067,
+    "width": 2000,
+    "height": 1333,
+    "reason": "savings-below-20pct(7.4%)"
+  },
+  {
+    "path": "casestudy/impress-app/results01.png",
+    "action": "compressed",
+    "origBytes": 713859,
+    "newBytes": 243598,
+    "width": 3752,
+    "height": 2500,
+    "savingsPct": 65.9
+  },
+  {
+    "path": "casestudy/impress-app/results02.png",
+    "action": "compressed",
+    "origBytes": 1714593,
+    "newBytes": 510194,
+    "width": 2880,
+    "height": 1720,
+    "savingsPct": 70.2
+  },
+  {
+    "path": "casestudy/impress-app/sol04.png",
+    "action": "compressed",
+    "origBytes": 1986838,
+    "newBytes": 695029,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 65
+  },
+  {
+    "path": "casestudy/market/journey.png",
+    "action": "compressed",
+    "origBytes": 67365,
+    "newBytes": 20009,
+    "width": 1768,
+    "height": 1254,
+    "savingsPct": 70.3
+  },
+  {
+    "path": "casestudy/market/jtbd.png",
+    "action": "compressed",
+    "origBytes": 128492,
+    "newBytes": 50113,
+    "width": 2000,
+    "height": 976,
+    "savingsPct": 61
+  },
+  {
+    "path": "casestudy/market/market-01.png",
+    "action": "compressed",
+    "origBytes": 526610,
+    "newBytes": 135896,
+    "width": 1728,
+    "height": 1260,
+    "savingsPct": 74.2
+  },
+  {
+    "path": "casestudy/market/market-02.png",
+    "action": "compressed",
+    "origBytes": 813748,
+    "newBytes": 261177,
+    "width": 1728,
+    "height": 1260,
+    "savingsPct": 67.9
+  },
+  {
+    "path": "casestudy/market/market-final.jpg",
+    "action": "compressed",
+    "origBytes": 2370662,
+    "newBytes": 384718,
+    "width": 3480,
+    "height": 1800,
+    "savingsPct": 83.8
+  },
+  {
+    "path": "casestudy/market/market-graph.jpg",
+    "action": "compressed",
+    "origBytes": 986506,
+    "newBytes": 134254,
+    "width": 2280,
+    "height": 1800,
+    "savingsPct": 86.4
+  },
+  {
+    "path": "casestudy/market/market-hero.png",
+    "action": "compressed",
+    "origBytes": 2012021,
+    "newBytes": 588746,
+    "width": 3480,
+    "height": 1860,
+    "savingsPct": 70.7
+  },
+  {
+    "path": "casestudy/market/market-logo.jpg",
+    "action": "copied",
+    "origBytes": 6927,
+    "newBytes": 6927,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/market/market-main.png",
+    "action": "compressed",
+    "origBytes": 698233,
+    "newBytes": 216052,
+    "width": 1728,
+    "height": 1260,
+    "savingsPct": 69.1
+  },
+  {
+    "path": "casestudy/market/market-solution.png",
+    "action": "compressed",
+    "origBytes": 1233725,
+    "newBytes": 274967,
+    "width": 1482,
+    "height": 1326,
+    "savingsPct": 77.7
+  },
+  {
+    "path": "casestudy/market/market-stories.png",
+    "action": "compressed",
+    "origBytes": 1296998,
+    "newBytes": 353687,
+    "width": 1728,
+    "height": 1260,
+    "savingsPct": 72.7
+  },
+  {
+    "path": "casestudy/market/market-webview.png",
+    "action": "compressed",
+    "origBytes": 202965,
+    "newBytes": 74195,
+    "width": 2280,
+    "height": 1152,
+    "savingsPct": 63.4
+  },
+  {
+    "path": "casestudy/market/old-logo.jpg",
+    "action": "copied",
+    "origBytes": 15565,
+    "newBytes": 15565,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/market/persona.png",
+    "action": "compressed",
+    "origBytes": 2078250,
+    "newBytes": 583025,
+    "width": 2480,
+    "height": 1368,
+    "savingsPct": 71.9
+  },
+  {
+    "path": "casestudy/pepsi/delivery.png",
+    "action": "compressed",
+    "origBytes": 99596,
+    "newBytes": 37058,
+    "width": 296,
+    "height": 296,
+    "savingsPct": 62.8
+  },
+  {
+    "path": "casestudy/pepsi/flow.png",
+    "action": "copied",
+    "origBytes": 45439,
+    "newBytes": 45439,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/pepsi/hero.png",
+    "action": "compressed",
+    "origBytes": 733337,
+    "newBytes": 245030,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 66.6
+  },
+  {
+    "path": "casestudy/pepsi/manager.png",
+    "action": "compressed",
+    "origBytes": 123528,
+    "newBytes": 40132,
+    "width": 296,
+    "height": 296,
+    "savingsPct": 67.5
+  },
+  {
+    "path": "casestudy/pepsi/pepsi-logo.png",
+    "action": "copied",
+    "origBytes": 8764,
+    "newBytes": 8764,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/pepsi/scenario.png",
+    "action": "compressed",
+    "origBytes": 118160,
+    "newBytes": 36481,
+    "width": 2320,
+    "height": 1306,
+    "savingsPct": 69.1
+  },
+  {
+    "path": "casestudy/pepsi/worker.png",
+    "action": "compressed",
+    "origBytes": 156332,
+    "newBytes": 43780,
+    "width": 296,
+    "height": 296,
+    "savingsPct": 72
+  },
+  {
+    "path": "casestudy/run/run.png",
+    "action": "copied",
+    "origBytes": 26841,
+    "newBytes": 26841,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/run/run2.png",
+    "action": "copied",
+    "origBytes": 24720,
+    "newBytes": 24720,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/snake/brand-interface.png",
+    "action": "compressed",
+    "origBytes": 2377766,
+    "newBytes": 635995,
+    "width": 2880,
+    "height": 1936,
+    "savingsPct": 73.3
+  },
+  {
+    "path": "casestudy/snake/development.png",
+    "action": "compressed",
+    "origBytes": 357728,
+    "newBytes": 102563,
+    "width": 3266,
+    "height": 1852,
+    "savingsPct": 71.3
+  },
+  {
+    "path": "casestudy/snake/first-time.png",
+    "action": "compressed",
+    "origBytes": 180446,
+    "newBytes": 70986,
+    "width": 2600,
+    "height": 1416,
+    "savingsPct": 60.7
+  },
+  {
+    "path": "casestudy/snake/game.png",
+    "action": "compressed",
+    "origBytes": 269855,
+    "newBytes": 100135,
+    "width": 2618,
+    "height": 1672,
+    "savingsPct": 62.9
+  },
+  {
+    "path": "casestudy/snake/hero.png",
+    "action": "compressed",
+    "origBytes": 451610,
+    "newBytes": 112423,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 75.1
+  },
+  {
+    "path": "casestudy/snake/linkedin.png",
+    "action": "compressed",
+    "origBytes": 678211,
+    "newBytes": 243243,
+    "width": 2444,
+    "height": 1788,
+    "savingsPct": 64.1
+  },
+  {
+    "path": "casestudy/snake/logo.png",
+    "action": "copied",
+    "origBytes": 5786,
+    "newBytes": 5786,
+    "reason": "below-50kb-threshold"
+  },
+  {
+    "path": "casestudy/snake/observation.png",
+    "action": "compressed",
+    "origBytes": 5268749,
+    "newBytes": 1383174,
+    "width": 3395,
+    "height": 3052,
+    "savingsPct": 73.7
+  },
+  {
+    "path": "casestudy/snake/personalised-journeys.png",
+    "action": "compressed",
+    "origBytes": 3230395,
+    "newBytes": 857571,
+    "width": 2920,
+    "height": 1892,
+    "savingsPct": 73.5
+  },
+  {
+    "path": "casestudy/snake/property-details.png",
+    "action": "compressed",
+    "origBytes": 2153814,
+    "newBytes": 784775,
+    "width": 2880,
+    "height": 1800,
+    "savingsPct": 63.6
+  },
+  {
+    "path": "casestudy/snake/reforge.png",
+    "action": "compressed",
+    "origBytes": 133323,
+    "newBytes": 38156,
+    "width": 2622,
+    "height": 1644,
+    "savingsPct": 71.4
+  },
+  {
+    "path": "casestudy/snake/returning-users.png",
+    "action": "compressed",
+    "origBytes": 195169,
+    "newBytes": 77193,
+    "width": 2600,
+    "height": 1480,
+    "savingsPct": 60.4
+  },
+  {
+    "path": "casestudy/snake/search-experience.png",
+    "action": "compressed",
+    "origBytes": 2819858,
+    "newBytes": 837324,
+    "width": 2880,
+    "height": 1800,
+    "savingsPct": 70.3
+  },
+  {
+    "path": "casestudy/snake/shares-about.png",
+    "action": "compressed",
+    "origBytes": 434870,
+    "newBytes": 137447,
+    "width": 2622,
+    "height": 1644,
+    "savingsPct": 68.4
+  },
+  {
+    "path": "hero.png",
+    "action": "compressed",
+    "origBytes": 368065,
+    "newBytes": 86821,
+    "width": 2320,
+    "height": 1240,
+    "savingsPct": 76.4
+  },
+  {
+    "path": "casestudy/idealista/current.webp",
+    "action": "copied",
+    "origBytes": 153596,
+    "newBytes": 153596,
+    "reason": "webp-not-in-compress-scope"
+  },
+  {
+    "path": "casestudy/snake/current.webp",
+    "action": "copied",
+    "origBytes": 153596,
+    "newBytes": 153596,
+    "reason": "webp-not-in-compress-scope"
+  },
+  {
+    "path": "casestudy/avito/avito-advice.gif",
+    "action": "converted",
+    "origBytes": 18165506,
+    "newBytes": 746624,
+    "format": "mp4",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-advice.gif",
+    "action": "converted",
+    "origBytes": 18165506,
+    "newBytes": 407819,
+    "format": "webm",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-advice.gif",
+    "action": "converted",
+    "origBytes": 18165506,
+    "newBytes": 37153,
+    "format": "poster.jpg",
+    "width": 1080,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/avito/avito-contacts.gif",
+    "action": "converted",
+    "origBytes": 6622164,
+    "newBytes": 669110,
+    "format": "mp4",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-contacts.gif",
+    "action": "converted",
+    "origBytes": 6622164,
+    "newBytes": 645211,
+    "format": "webm",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-contacts.gif",
+    "action": "converted",
+    "origBytes": 6622164,
+    "newBytes": 34596,
+    "format": "poster.jpg",
+    "width": 1080,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/avito/avito-duration.gif",
+    "action": "converted",
+    "origBytes": 16506412,
+    "newBytes": 1182068,
+    "format": "mp4",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-duration.gif",
+    "action": "converted",
+    "origBytes": 16506412,
+    "newBytes": 999643,
+    "format": "webm",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-duration.gif",
+    "action": "converted",
+    "origBytes": 16506412,
+    "newBytes": 37153,
+    "format": "poster.jpg",
+    "width": 1080,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/avito/avito-personalization.gif",
+    "action": "converted",
+    "origBytes": 1074558,
+    "newBytes": 152261,
+    "format": "mp4",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-personalization.gif",
+    "action": "converted",
+    "origBytes": 1074558,
+    "newBytes": 149122,
+    "format": "webm",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-personalization.gif",
+    "action": "converted",
+    "origBytes": 1074558,
+    "newBytes": 36730,
+    "format": "poster.jpg",
+    "width": 1080,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/avito/avito-reviews.gif",
+    "action": "converted",
+    "origBytes": 7503961,
+    "newBytes": 623383,
+    "format": "mp4",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-reviews.gif",
+    "action": "converted",
+    "origBytes": 7503961,
+    "newBytes": 579659,
+    "format": "webm",
+    "width": 1080,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/avito/avito-reviews.gif",
+    "action": "converted",
+    "origBytes": 7503961,
+    "newBytes": 37153,
+    "format": "poster.jpg",
+    "width": 1080,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/pepsi/delivery.gif",
+    "action": "converted",
+    "origBytes": 946631,
+    "newBytes": 268835,
+    "format": "mp4",
+    "width": 800,
+    "height": 599,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/delivery.gif",
+    "action": "converted",
+    "origBytes": 946631,
+    "newBytes": 137683,
+    "format": "webm",
+    "width": 800,
+    "height": 599,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/delivery.gif",
+    "action": "converted",
+    "origBytes": 946631,
+    "newBytes": 41929,
+    "format": "poster.jpg",
+    "width": 800,
+    "height": 599,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/pepsi/manager.gif",
+    "action": "converted",
+    "origBytes": 855231,
+    "newBytes": 390214,
+    "format": "mp4",
+    "width": 960,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/manager.gif",
+    "action": "converted",
+    "origBytes": 855231,
+    "newBytes": 146987,
+    "format": "webm",
+    "width": 960,
+    "height": 720,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/manager.gif",
+    "action": "converted",
+    "origBytes": 855231,
+    "newBytes": 60700,
+    "format": "poster.jpg",
+    "width": 960,
+    "height": 720,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/pepsi/worker.gif",
+    "action": "converted",
+    "origBytes": 7517389,
+    "newBytes": 759550,
+    "format": "mp4",
+    "width": 479,
+    "height": 957,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/worker.gif",
+    "action": "converted",
+    "origBytes": 7517389,
+    "newBytes": 391493,
+    "format": "webm",
+    "width": 479,
+    "height": 957,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/pepsi/worker.gif",
+    "action": "converted",
+    "origBytes": 7517389,
+    "newBytes": 41250,
+    "format": "poster.jpg",
+    "width": 479,
+    "height": 957,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/snake/prototype.gif",
+    "action": "converted",
+    "origBytes": 397439,
+    "newBytes": 32592,
+    "format": "mp4",
+    "width": 885,
+    "height": 362,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/snake/prototype.gif",
+    "action": "converted",
+    "origBytes": 397439,
+    "newBytes": 14339,
+    "format": "webm",
+    "width": 885,
+    "height": 362,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/snake/prototype.gif",
+    "action": "converted",
+    "origBytes": 397439,
+    "newBytes": 3411,
+    "format": "poster.jpg",
+    "width": 885,
+    "height": 362,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "casestudy/run/run.gif",
+    "action": "converted",
+    "origBytes": 4139132,
+    "newBytes": 733496,
+    "format": "mp4",
+    "width": 640,
+    "height": 370,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/run/run.gif",
+    "action": "converted",
+    "origBytes": 4139132,
+    "newBytes": 355999,
+    "format": "webm",
+    "width": 640,
+    "height": 370,
+    "note": "ui-screen-recording bucket: mp4 crf19, webm crf33 (all 10 content GIFs visually classified as flat UI/app screenshots, none photographic)"
+  },
+  {
+    "path": "casestudy/run/run.gif",
+    "action": "converted",
+    "origBytes": 4139132,
+    "newBytes": 6608,
+    "format": "poster.jpg",
+    "width": 640,
+    "height": 370,
+    "note": "first frame, sharp mozjpeg quality 80"
+  },
+  {
+    "path": "images/avatar.gif",
+    "action": "converted",
+    "origBytes": 5225415,
+    "newBytes": 352620,
+    "format": "webp",
+    "width": 176,
+    "height": 176,
+    "note": "animated webp, 187 frames, sharp q75 (ffmpeg build lacked libwebp encoder)"
+  },
+  {
+    "path": "hero.mp4",
+    "action": "compressed",
+    "origBytes": 14557103,
+    "newBytes": 5885076,
+    "note": "crf26 preset slow scale 1600w, no audio (source has none)"
+  },
+  {
+    "path": "casestudy/market/market-custdev.mp4",
+    "action": "compressed",
+    "origBytes": 19107176,
+    "newBytes": 3439044,
+    "note": "crf26 preset slow max width 1280, no audio (source has none)"
+  },
+  {
+    "path": "casestudy/impress-app/usertesting.mp4",
+    "action": "compressed",
+    "origBytes": 7031161,
+    "newBytes": 1539797,
+    "note": "crf26 preset slow max width 1280, no audio (source has none)"
+  },
+  {
+    "path": "casestudy/impress-app/sol01.mp4",
+    "action": "compressed",
+    "origBytes": 1818549,
+    "newBytes": 557248,
+    "note": "crf26 preset slow max width 1280; 69% savings, kept compressed (>30% threshold)"
+  },
+  {
+    "path": "casestudy/impress-app/sol02.mp4",
+    "action": "compressed",
+    "origBytes": 2968225,
+    "newBytes": 878863,
+    "note": "crf26 preset slow max width 1280; 70% savings, kept compressed (>30% threshold)"
+  },
+  {
+    "path": "casestudy/impress-app/sol03.mp4",
+    "action": "compressed",
+    "origBytes": 935655,
+    "newBytes": 289219,
+    "note": "crf26 preset slow max width 1280; 69% savings, kept compressed (>30% threshold)"
+  },
+  {
+    "path": "android-chrome-192x192.png",
+    "action": "copied",
+    "origBytes": 12204,
+    "newBytes": 12204
+  },
+  {
+    "path": "android-chrome-512x512.png",
+    "action": "copied",
+    "origBytes": 56369,
+    "newBytes": 56369
+  },
+  {
+    "path": "apple-touch-icon.png",
+    "action": "copied",
+    "origBytes": 10790,
+    "newBytes": 10790
+  },
+  {
+    "path": "favicon-16x16.png",
+    "action": "copied",
+    "origBytes": 465,
+    "newBytes": 465
+  },
+  {
+    "path": "favicon-32x32.png",
+    "action": "copied",
+    "origBytes": 931,
+    "newBytes": 931
+  },
+  {
+    "path": "favicon.ico",
+    "action": "copied",
+    "origBytes": 15406,
+    "newBytes": 15406
+  },
+  {
+    "path": "mstile-150x150.png",
+    "action": "copied",
+    "origBytes": 7943,
+    "newBytes": 7943
+  },
+  {
+    "path": "CNAME",
+    "action": "copied",
+    "origBytes": 14,
+    "newBytes": 14
+  },
+  {
+    "path": "j-alyavdin-cv.pdf",
+    "action": "copied",
+    "origBytes": 40627,
+    "newBytes": 40627
+  },
+  {
+    "path": "j-alyavdin-cv-black.pdf",
+    "action": "copied",
+    "origBytes": 9833359,
+    "newBytes": 9833359
+  },
+  {
+    "path": "cover-alyavdin.pdf",
+    "action": "copied",
+    "origBytes": 20632,
+    "newBytes": 20632
+  },
+  {
+    "path": "font/Aeonik-Regular.woff2",
+    "action": "copied",
+    "origBytes": 34228,
+    "newBytes": 34228
+  },
+  {
+    "path": "font/Aeonik-Medium.woff2",
+    "action": "copied",
+    "origBytes": 44632,
+    "newBytes": 44632
+  },
+  {
+    "path": "site.webmanifest",
+    "action": "copied",
+    "origBytes": 449,
+    "newBytes": 449,
+    "note": "FIXED: theme_color/background_color were invalid unquoted \"FC700B\" -> valid \"#1E1E1F\""
+  },
+  {
+    "path": "browserconfig.xml",
+    "action": "copied",
+    "origBytes": 244,
+    "newBytes": 244,
+    "note": "FIXED: TileColor was invalid unquoted FC700B -> valid #1E1E1F"
+  },
+  {
+    "path": "hero.mov",
+    "action": "excluded",
+    "origBytes": 101310703,
+    "newBytes": 0,
+    "reason": "approved orphan: 0 references found anywhere in html/css/js"
+  },
+  {
+    "path": "pepsico-dc.pdf",
+    "action": "excluded",
+    "origBytes": 41549521,
+    "newBytes": 0,
+    "reason": "approved orphan: 0 references found anywhere"
+  },
+  {
+    "path": "head.html",
+    "action": "excluded",
+    "origBytes": 435,
+    "newBytes": 0,
+    "reason": "approved orphan: 0 references (orphan head fragment, unused)"
+  },
+  {
+    "path": "font/Aeonik-Bold.otf",
+    "action": "excluded",
+    "origBytes": 119176,
+    "newBytes": 0,
+    "reason": "approved orphan: only woff2 used via @font-face, otf never referenced"
+  },
+  {
+    "path": "font/Aeonik-Medium.otf",
+    "action": "excluded",
+    "origBytes": 122080,
+    "newBytes": 0,
+    "reason": "approved orphan: only woff2 used via @font-face, otf never referenced"
+  },
+  {
+    "path": "font/Aeonik-Regular.otf",
+    "action": "excluded",
+    "origBytes": 118852,
+    "newBytes": 0,
+    "reason": "approved orphan: only woff2 used via @font-face, otf never referenced"
+  },
+  {
+    "path": "font/AeonikMono-Regular.woff2",
+    "action": "excluded",
+    "origBytes": 31600,
+    "newBytes": 0,
+    "reason": "approved orphan: 0 references, Montserrat/AeonikMono never rendered"
+  },
+  {
+    "path": "style/strategy.png",
+    "action": "excluded",
+    "origBytes": 72911,
+    "newBytes": 0,
+    "reason": "approved orphan: byte-identical duplicate of referenced images/icon/strategy.png; confirmed via shasum"
+  },
+  {
+    "path": ".DS_Store",
+    "action": "excluded",
+    "origBytes": 10244,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/.DS_Store",
+    "action": "excluded",
+    "origBytes": 8196,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "images/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "style/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/pepsi/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/avito/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/impress-app/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/live/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact -- note: casestudy/live/ dir contains ONLY this .DS_Store, no other files; images/cases/live.png IS referenced (index.html:397) and was kept/compressed"
+  },
+  {
+    "path": "casestudy/idealista/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/market/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/run/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "casestudy/snake/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "images/cases/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "images/icon/.DS_Store",
+    "action": "excluded",
+    "origBytes": 6148,
+    "newBytes": 0,
+    "reason": "macOS artifact"
+  },
+  {
+    "path": "font/Aeonik-Bold.woff2",
+    "action": "excluded",
+    "origBytes": 34716,
+    "newBytes": 0,
+    "reason": "NOT in approved orphan list, but excluded per explicit \"only Regular+Medium\" font instruction; also confirmed 0 references (no h2/bold usage in CSS)"
+  }
+]

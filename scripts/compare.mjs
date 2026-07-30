@@ -10,6 +10,7 @@ import { chromium } from 'playwright';
 import { PNG } from 'pngjs';
 import pixelmatch from 'pixelmatch';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const PAGES = [
@@ -54,6 +55,9 @@ function pageSlug(pagePath) {
 // orbit SVG frozen, and reveal-on-scroll content forced visible so a page
 // captured mid-animation never produces a false diff.
 async function preparePage(page) {
+  // goto resolves on domcontentloaded; give images/fonts a chance to finish
+  // without letting streaming media (autoplay hero video) hang us forever.
+  await page.waitForLoadState('load', { timeout: 60_000 }).catch(() => {});
   await page.evaluate(() => document.fonts.ready);
 
   await page.evaluate(() => {
@@ -71,7 +75,9 @@ async function preparePage(page) {
     const style = document.createElement('style');
     style.setAttribute('data-compare-harness', 'true');
     style.textContent = `
-      #mySVG { animation: none !important; }
+      /* stylesheet !important beats the inline transform that the live
+         site's rAF loop rewrites every frame */
+      #mySVG { animation: none !important; transform: rotate(0deg) !important; }
       .fade-content {
         opacity: 1 !important;
         transform: none !important;
@@ -94,8 +100,10 @@ async function preparePage(page) {
   });
 
   // Playwright's 'networkidle' resolves once there's been no network
-  // activity for 500ms — this *is* the "500ms network idle" wait.
-  await page.waitForLoadState('networkidle');
+  // activity for 500ms. Best-effort: streaming media can keep the network
+  // busy indefinitely, so cap it and settle briefly instead of failing.
+  await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
+  await page.waitForTimeout(500);
 }
 
 async function capture({ base, out }) {
@@ -111,17 +119,33 @@ async function capture({ base, out }) {
       const url = new URL(pagePath, base).toString();
 
       for (const width of WIDTHS) {
-        const context = await browser.newContext({ viewport: { width, height: HEIGHT } });
-        const page = await context.newPage();
-        try {
-          console.log(`capturing ${url} @ ${width}px`);
-          await page.goto(url, { waitUntil: 'load' });
-          await preparePage(page);
+        // Heavy autoplay media (the 14.5MB hero.mp4) makes the 'load' event
+        // unreliable on slow networks, so navigate on 'domcontentloaded'
+        // with a generous timeout and retry each page a few times.
+        const MAX_ATTEMPTS = 3;
+        // resume support: skip shots that already exist from a prior run
+        const existing = path.join(out, `${slug}-${width}.png`);
+        if (existsSync(existing)) {
+          console.log(`skipping ${slug}-${width}.png (already captured)`);
+          continue;
+        }
+        for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+          const context = await browser.newContext({ viewport: { width, height: HEIGHT } });
+          const page = await context.newPage();
+          try {
+            console.log(`capturing ${url} @ ${width}px (attempt ${attempt})`);
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120_000 });
+            await preparePage(page);
 
-          const fileName = `${slug}-${width}.png`;
-          await page.screenshot({ path: path.join(out, fileName), fullPage: true });
-        } finally {
-          await context.close();
+            const fileName = `${slug}-${width}.png`;
+            await page.screenshot({ path: path.join(out, fileName), fullPage: true });
+            break;
+          } catch (err) {
+            if (attempt === MAX_ATTEMPTS) throw err;
+            console.warn(`  retrying after: ${err.message.split('\n')[0]}`);
+          } finally {
+            await context.close();
+          }
         }
       }
     }

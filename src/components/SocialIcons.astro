@@ -1,0 +1,58 @@
+---
+/**
+ * Port of the 18 copy-pasted `.social-icons` blocks (style/layout.css:443-492).
+ *
+ * Icons keep the source's CSS-background technique (the file is passed through
+ * `--icon`), so the rendered box is identical. Rest opacity moves from the
+ * source's .4 to `--opacity-dim` (.55) per the plan's allowlist.
+ */
+import { social } from '../data/site';
+---
+
+<div class="social-icons">
+  {
+    social.map((link) => (
+      <a class="social-icons-link" href={link.href} aria-label={`Jury Alyavdin on ${link.name}`}>
+        <span class="social-icons-icon" style={`--icon: url("${link.icon}")`} aria-hidden="true" />
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .social-icons {
+    --social-icon-size: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, var(--social-icon-size));
+    grid-gap: var(--space-3);
+    padding: var(--space-4) 0;
+  }
+
+  .social-icons-link {
+    opacity: var(--opacity-dim);
+    transition: var(--duration-fast);
+  }
+
+  .social-icons-link:hover {
+    opacity: 1;
+    background-color: var(--color-surface-hover);
+    border-radius: var(--radius-sm);
+  }
+
+  .social-icons-icon {
+    display: block;
+    background-image: var(--icon);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: var(--social-icon-size);
+    width: var(--social-icon-size);
+  }
+
+  /* style/adaptive.css:186-189 — the chip background is permanent on small screens. */
+  @media (max-width: 560px) {
+    .social-icons-link {
+      background-color: var(--color-surface-hover);
+      border-radius: var(--radius-sm);
+    }
+  }
+</style>

@@ -1,0 +1,111 @@
+---
+/**
+ * Port of `.project` / `.project-img` / `.project-title` / `.case-top` /
+ * `.locker` (style/layout.css:202-241, cases.css:1-6, adaptive.css:133-138).
+ *
+ * Shadows are inset-only: the source declared a drop shadow first and then
+ * overwrote it with an inset one in the same block, both at rest and on hover,
+ * so the drop shadows never rendered.
+ *
+ * The <= 560 hover reset deliberately restores position/background/shadow but
+ * NOT the transform — ported as written, because that is what renders.
+ */
+import Eyebrow from './Eyebrow.astro';
+
+interface Props {
+  title: string;
+  tagline: string;
+  image: string;
+  href: string;
+  external?: boolean;
+  locked?: boolean;
+}
+
+const { title, tagline, image, href, external = false, locked = false } = Astro.props;
+---
+
+<a
+  class="project"
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <div class="project-img" style={`--card-image: url("${image}")`}>
+    <div class="project-title">
+      <div class="case-top">
+        <Eyebrow as="h3">{title}</Eyebrow>
+        {locked && <div class="locker" aria-hidden="true" />}
+        {
+          external && (
+            <div class="external-badge" aria-hidden="true">
+              <p class="eyebrow">🔗</p>
+            </div>
+          )
+        }
+      </div>
+      <p>{tagline}</p>
+    </div>
+  </div>
+</a>
+
+<style>
+  .project {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    transition: var(--duration-base);
+    position: relative;
+    top: 0;
+    overflow: hidden;
+  }
+
+  .project:hover {
+    top: calc(-1 * var(--space-1));
+    box-shadow: var(--shadow-card-hover);
+    background: var(--color-surface-hover);
+    transform: rotateX(5deg) scale(1.01);
+  }
+
+  .project-img {
+    background-image: var(--card-image);
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    height: 100%;
+  }
+
+  .project-title {
+    --card-pad-x: 28px;
+    padding: var(--space-2) var(--space-6) 0 var(--card-pad-x);
+  }
+
+  .case-top {
+    display: grid;
+    grid-template-columns: 1fr var(--space-6);
+    grid-gap: var(--space-4);
+  }
+
+  .locker {
+    background-image: url('/images/cases/locker.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+    position: relative;
+    right: -16px;
+  }
+
+  /* Port of the five inline `style="position: relative; right: -24px"` wrappers. */
+  .external-badge {
+    position: relative;
+    right: -24px;
+  }
+
+  @media (max-width: 560px) {
+    .project:hover {
+      top: 0;
+      background: var(--color-surface);
+      box-shadow: var(--shadow-card);
+    }
+  }
+</style>

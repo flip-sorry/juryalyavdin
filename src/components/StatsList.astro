@@ -1,0 +1,48 @@
+---
+/**
+ * Port of `.details-grid-two` / `.grid-two-cell`
+ * (style/casestudy.css:60-66, 184-193) plus the `.divider` the source always
+ * places immediately above it (e.g. casestudy/avito.html:145-146).
+ */
+import Divider from './Divider.astro';
+
+interface Props {
+  items: { label: string; value: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<Divider />
+<div class="details-grid-two">
+  {
+    items.map((item) => (
+      <div class="grid-two-cell">
+        <p class="lead-in">{item.label}</p>
+        <p>{item.value}</p>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .details-grid-two {
+    padding-top: var(--space-3);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: var(--space-6);
+    grid-auto-rows: minmax(0, auto);
+  }
+
+  @media (max-width: 380px) {
+    .details-grid-two {
+      grid-template-columns: 1fr;
+      grid-gap: 0;
+    }
+
+    .grid-two-cell {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+</style>
