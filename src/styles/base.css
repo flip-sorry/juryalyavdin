@@ -120,6 +120,20 @@ a:visited {
   color: var(--color-accent);
 }
 
+/* Standard visually-hidden pattern: present to screen readers, removed from
+   visual layout (not just `display:none`, which assistive tech skips too). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Reveal animation: hidden state only under html.js, so no-JS users see everything. */
 html.js .fade-content {
   opacity: 0;

@@ -70,11 +70,20 @@ const { variant } = Astro.props;
 
   .site-header.home {
     top: calc(-1 * var(--site-header-height));
-    transition: top var(--duration-base) var(--ease-default);
+    /* Parked off-screen isn't enough on its own: the link + social icons
+       inside stay in the tab order, so a keyboard user can land on
+       controls they can't see. `visibility` closes that gap; pairing it
+       with the `top` transition means it flips to visible immediately on
+       reveal (so it's tabbable as soon as it starts sliding in) and only
+       flips back to hidden once fully parked again (CSS discrete-property
+       transition behaviour — no flash either way). */
+    visibility: hidden;
+    transition: top var(--duration-base) var(--ease-default), visibility var(--duration-base) var(--ease-default);
   }
 
   .site-header.home.is-revealed {
     top: 0;
+    visibility: visible;
   }
 
   .header-content {

@@ -27,7 +27,7 @@ Three tiers — primitives feed semantics, semantics are what components actuall
 `--color-surface` (gray-800) · `--color-surface-hover` (gray-700) · `--color-border` (gray-800)
 `--color-text` (sand-300) · `--color-text-muted` (sand-600)
 `--color-accent` (orange-500) · `--color-accent-hover` (orange-400)
-`--color-text-on-accent` (white) · `--color-focus-ring` (orange-500)
+`--color-text-on-accent` (gray-900) · `--color-focus-ring` (orange-500)
 `--opacity-dim: .55` — icons/images only, **never text**
 
 **Muted-text decision:** the source rendered secondary text at `opacity:.4` on `--color-sand-300`
@@ -36,6 +36,12 @@ failing AA. Both call sites were consolidated into `--color-text-muted` (`#8F8A8
 **4.85:1** on `--color-bg` — passes AA. To revert a single call site, swap the token back for
 `opacity:.4` (or `rgba(204,197,186,.4)`) on `--color-text` — the visual result is identical to
 pre-refactor.
+
+**Button-label contrast decision:** the source rendered primary-button labels in `azure`
+(near-white) on `--color-accent` — roughly **2.81:1**, failing AA. `--color-text-on-accent` was
+darkened to `--color-gray-900` (2026-07-30), **≈8.8:1** on `--color-accent` — passes AA
+comfortably. To revert, point the token back at `--color-white`, knowingly reintroducing the
+2.81:1 failure.
 
 **CONSTRAINT:** `--color-text-muted` fails AA on `--color-surface` (4.07:1). Background-only
 token — never place muted text on a card/surface fill.
@@ -182,6 +188,9 @@ ogType?, noindex?`) and `CaseStudyLayout` (the shared case-study skeleton over `
     between two content blocks; internally still built from tokens (`--container-max`,
     `--radius-sm`, `--space-1`, `--space-2`), just not promoted to a shared component since
     nothing else uses this shape.
+  - `casestudy/run.astro`'s `.hero { aspect-ratio: 16/9 }` — the standard video aspect ratio, not
+    a design-scale value; reserves the YouTube iframe's box so nothing shifts once it loads (a11y
+    fix, 2026-07-30, alongside dropping the iframe's invalid `width="100%" height="100%"` attrs).
 
 - **Scoped styles by default.** Every component/page owns its own `<style>` (Astro's
   data-attribute scoping). `:global()` is the escape hatch, used only for slotted markup a

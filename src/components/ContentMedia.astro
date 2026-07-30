@@ -11,10 +11,12 @@
  * 2. Pre-existing native demo clips (impress-app's sol01-03/usertesting,
  *    market's market-custdev): were already `<video controls autoplay
  *    loop>` in source, single `.mp4` only, no poster. Pass `controls`
- *    (drops `muted`/`playsinline` to match source exactly — browsers won't
- *    autoplay an unmuted video without a user gesture, same as today) and
- *    `webm={false}` (no sibling file to source), `poster={false}` (no file
- *    to point at — would 404 otherwise).
+ *    (drops `muted`/`playsinline` to match source exactly) and `webm={false}`
+ *    (no sibling file to source), `poster={false}` (no file to point at —
+ *    would 404 otherwise). `autoplay` itself is now dropped whenever
+ *    `controls` is set (a11y fix, 2026-07-30): visible playback controls
+ *    signal real content, not a decorative loop, so it should wait for the
+ *    user to press play rather than start moving on its own.
  *
  * Sizing uses `aspect-ratio` from numeric width/height instead of the
  * invalid `width="100%"` attribute the source put on `<video>`.
@@ -46,7 +48,7 @@ const posterSrc = poster === false ? undefined : (poster ?? `${src}-poster.jpg`)
     <video
       class="content-media"
       style={`--media-ratio: ${ratio}`}
-      autoplay
+      autoplay={!controls || undefined}
       loop
       controls={controls}
       muted={!controls}

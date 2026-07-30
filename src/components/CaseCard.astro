@@ -9,6 +9,10 @@
  *
  * The <= 560 hover reset deliberately restores position/background/shadow but
  * NOT the transform — ported as written, because that is what renders.
+ *
+ * `locked` also renders an `.sr-only` span (base.css utility) announcing the
+ * lock: the `.locker` icon is `aria-hidden`, so without it screen-reader
+ * users get no indication the card is private.
  */
 import Eyebrow from './Eyebrow.astro';
 
@@ -34,7 +38,14 @@ const { title, tagline, image, href, external = false, locked = false } = Astro.
     <div class="project-title">
       <div class="case-top">
         <Eyebrow as="h3">{title}</Eyebrow>
-        {locked && <div class="locker" aria-hidden="true" />}
+        {
+          locked && (
+            <>
+              <div class="locker" aria-hidden="true" />
+              <span class="sr-only">(private — not publicly available)</span>
+            </>
+          )
+        }
         {
           external && (
             <div class="external-badge" aria-hidden="true">

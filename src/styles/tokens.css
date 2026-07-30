@@ -11,7 +11,8 @@
   --color-border:var(--color-gray-800);
   --color-text:var(--color-sand-300); --color-text-muted:var(--color-sand-600);
   --color-accent:var(--color-orange-500); --color-accent-hover:var(--color-orange-400);
-  --color-text-on-accent:var(--color-white); --color-focus-ring:var(--color-orange-500);
+  --color-text-on-accent:var(--color-gray-900); /* was white (source: azure), darkened for AA 2026-07 (~8.8:1 on --color-accent); revert = point back to --color-white, knowingly failing 2.81:1 */
+  --color-focus-ring:var(--color-orange-500);
   --opacity-dim:.55;                     /* icons/images only, never text */
   /* Type */
   --font-sans:'Aeonik','Helvetica Neue',Arial,sans-serif; --font-mono:'SF Mono',Menlo,monospace;

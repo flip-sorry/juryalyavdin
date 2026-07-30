@@ -4,10 +4,15 @@
  * named "hero" slot instead of `heroImage`: source's hero is a YouTube
  * `<iframe>`, not a background image. `class="hero"` goes on the wrapping
  * div (matching source structure) so HeroImage's `:global(.hero)` rule
- * gives it `height: 100%`; the iframe keeps its own literal `width="100%"
- * height="100%"` attributes since, unlike `<video>`, percentage width/height
- * are valid on `<iframe>`. `loading="lazy"` added per the plan's explicit
+ * gives it `height: 100%`. `loading="lazy"` added per the plan's explicit
  * "slots for ... run.html YouTube iframe (lazy)" note.
+ *
+ * Sizing (a11y fix, 2026-07-30): source's `width="100%" height="100%"` on
+ * the iframe are dropped and replaced with scoped CSS (`aspect-ratio: 16/9`
+ * on the `.hero` wrapper + `width/height: 100%` on the iframe itself) —
+ * same "no attribute sizing on embeds" rule `ContentMedia` already
+ * enforces, and it means the box is reserved before the iframe (or its CSS)
+ * finishes loading, so nothing shifts.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
@@ -32,8 +37,6 @@ import Divider from '../../components/Divider.astro';
 >
   <div class="hero" slot="hero">
     <iframe
-      width="100%"
-      height="100%"
       src="https://www.youtube.com/embed/3_RzI-oWqK4"
       title="YouTube video player"
       loading="lazy"
@@ -69,3 +72,15 @@ import Divider from '../../components/Divider.astro';
     <ContentMedia kind="video" src="/casestudy/run/run" alt="Prototype of the run-pace-matched music player" width={640} height={370} />
   </ContentBlock>
 </CaseStudyLayout>
+
+<style>
+  .hero {
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
