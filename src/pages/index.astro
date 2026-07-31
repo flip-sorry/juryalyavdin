@@ -429,6 +429,7 @@ import { testimonials } from '../data/testimonials';
   .focus {
     display: grid;
     margin: 0 auto;
+    box-sizing: content-box; /* source measured 1160px of content + padding */
     max-width: var(--container-max);
     padding: 0 var(--container-pad);
     grid-template-columns: repeat(3, 1fr);
@@ -441,6 +442,7 @@ import { testimonials } from '../data/testimonials';
     display: flex;
     align-items: baseline;
     margin: 0 auto;
+    box-sizing: content-box; /* source measured 1160px of content + padding */
     max-width: var(--container-max);
     padding: 0 var(--container-pad);
   }
@@ -455,6 +457,7 @@ import { testimonials } from '../data/testimonials';
   }
 
   .experience {
+    box-sizing: content-box; /* source measured 1160px of content + padding */
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--container-pad);
