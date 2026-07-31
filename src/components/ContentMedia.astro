@@ -88,9 +88,21 @@ const posterSrc = poster === false ? undefined : (poster ?? `${src}-poster.jpg`)
     border-radius: var(--radius-sm);
   }
 
+  /* After a PARAGRAPH the source gap was 40px (the p's 16px bottom margin
+     never collapsed with the inline image's 24px). Scoped here (not in
+     base.css) so the compiled selector outranks the shorthand above —
+     a global p + .content-media at (0,1,1) loses to the scoped (0,2,0). */
+  :global(p) + .content-media {
+    margin-top: calc(var(--space-4) + var(--space-3));
+  }
+
   @media (max-width: 380px) {
     .content-media {
       margin: var(--space-3) 0 calc(var(--space-3) + 11px);
+    }
+
+    :global(p) + .content-media {
+      margin-top: calc(var(--space-3) + var(--space-3));
     }
   }
 </style>

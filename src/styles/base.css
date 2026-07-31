@@ -163,18 +163,3 @@ html.js .fade-content.is-visible {
     scroll-behavior: auto !important;
   }
 }
-
-/* An image/video directly after a paragraph gets the paragraph's 16px
-   bottom margin added on top of its own 24px: in the source the image was
-   inline, so the two margins never collapsed. After headings/eyebrows the
-   source gap really is 24px, so ContentMedia's own default stays lower.
-   Global (not scoped) because the p sibling lives in page scope. */
-p + .content-media {
-  margin-top: calc(var(--space-4) + var(--space-3));
-}
-
-@media (max-width: 380px) {
-  p + .content-media {
-    margin-top: calc(var(--space-3) + var(--space-3));
-  }
-}
