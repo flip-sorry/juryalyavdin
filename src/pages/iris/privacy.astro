@@ -102,10 +102,10 @@ import { site } from '../../data/site';
   }
 
   .policy-wrap h2 {
-    /* Source 24/40 == the body pair; tracking the tokens also gives this
-       page the ≤560 scaling it never had. 48px top margin is off-scale. */
-    font-size: var(--text-body-size);
-    line-height: var(--text-body-leading);
+    /* Literal 24/40, NOT the body tokens: those shrink at ≤560 and the
+       source page renders 24px headings at every width. 48px is off-scale. */
+    font-size: 24px;
+    line-height: 40px;
     font-weight: var(--font-weight-medium);
     margin-top: 48px;
     margin-bottom: var(--space-2);

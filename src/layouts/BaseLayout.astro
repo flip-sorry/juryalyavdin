@@ -81,24 +81,22 @@ const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
             });
             return;
           }
-          const observerFor = (threshold) =>
-            new IntersectionObserver(
-              (entries, obs) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    obs.unobserve(entry.target);
-                  }
-                });
-              },
-              { threshold }
-            );
-          /* A block taller than the viewport caps its intersection ratio at
-             viewport/height, so 0.15 may be unreachable (Cases, Experience) —
-             those reveal on first touch instead. */
-          const standard = observerFor(0.15);
-          const tall = observerFor(0);
-          items.forEach((el) => (el.offsetHeight > innerHeight ? tall : standard).observe(el));
+          /* Not a ratio threshold: a block taller than ~6.7x the viewport caps
+             its intersection ratio below 0.15 and would never reveal (Cases,
+             Experience). The trigger is instead a line 15% of the viewport
+             above its bottom edge — uniform for every block height. */
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0, rootMargin: '0px 0px -15% 0px' }
+          );
+          items.forEach((el) => observer.observe(el));
         });
       })();
     </script>
