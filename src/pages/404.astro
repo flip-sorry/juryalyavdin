@@ -28,7 +28,7 @@ import Button from '../components/Button.astro';
     grid-gap: var(--space-6);
     grid-auto-rows: minmax(0, auto);
     margin: 24vh auto 0;
-    max-width: var(--container-narrow);
+    max-width: calc(var(--container-narrow) + 2 * var(--container-pad)); /* content-box parity: source measured 800px of text + 24px side padding */
     padding: 0 var(--container-pad);
     justify-content: center;
     text-align: center;
