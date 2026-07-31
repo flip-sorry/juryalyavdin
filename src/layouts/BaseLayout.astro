@@ -70,6 +70,13 @@ const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
     <script is:inline>
       (() => {
         document.documentElement.classList.add('js');
+        try {
+          if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.dataset.theme = 'light';
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', '#F6F0E5');
+          }
+        } catch (e) { /* storage blocked → stay dark */ }
         document.addEventListener('DOMContentLoaded', () => {
           const items = document.querySelectorAll('.fade-content');
           if (matchMedia('(prefers-reduced-motion: reduce)').matches) {

@@ -5,13 +5,17 @@
   --color-gray-900:#1E1E1F; --color-gray-800:#2B2C2D; --color-gray-700:#323639;
   --color-sand-300:#CCC5BA; --color-sand-600:#8F8A80;
   --color-orange-500:#FC700B; --color-orange-400:#FE811B; --color-white:#FFF;
+  --color-sand-50:#F6F0E5; --color-sand-100:#ECE4D5; --color-sand-200:#DFD4C0;
+  --color-sand-700:#6E675B;
+  --color-orange-600:#C25200; --color-orange-700:#AC4600;  /* 700 = light accent, verified 5.10:1 on bg #F6F0E5, 4.58:1 on surface #ECE4D5, white-on-accent 5.79:1 */
   /* Semantic color */
+  color-scheme:dark;
   --color-bg:var(--color-gray-900); --color-bg-scrim:rgb(30 30 31/.9);
   --color-surface:var(--color-gray-800); --color-surface-hover:var(--color-gray-700);
   --color-border:var(--color-gray-800);
   --color-text:var(--color-sand-300); --color-text-muted:var(--color-sand-600);
   --color-accent:var(--color-orange-500); --color-accent-hover:var(--color-orange-400);
-  --color-text-on-accent:var(--color-gray-900); /* was white (source: azure), darkened for AA 2026-07 (~8.8:1 on --color-accent); revert = point back to --color-white, knowingly failing 2.81:1 */
+  --color-text-on-accent:var(--color-gray-900); /* was white (source: azure), darkened for AA 2026-07 (5.92:1 on --color-accent); revert = point back to --color-white, knowingly failing 2.81:1 */
   --color-focus-ring:var(--color-orange-500);
   --opacity-dim:.55;                     /* icons/images only, never text */
   /* Type */
@@ -36,6 +40,24 @@
   --duration-fast:150ms; --duration-base:300ms; --duration-reveal:1s; --ease-default:ease-in-out;
   --z-behind:-1; --z-sticky:10; --z-header:100;
   --container-max:1160px; --container-narrow:800px; --container-prose:720px; --container-pad:24px;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: var(--color-sand-50);
+  --color-bg-scrim: rgb(246 240 229/.9);      /* sand-50 @ .9, mirrors dark literal */
+  --color-surface: var(--color-sand-100);
+  --color-surface-hover: var(--color-sand-200);
+  --color-border: var(--color-sand-200);
+  --color-text: var(--color-gray-900);
+  --color-text-muted: var(--color-sand-700);
+  --color-accent: var(--color-orange-700);
+  --color-accent-hover: var(--color-orange-600);
+  --color-text-on-accent: var(--color-white);  /* flips from gray-900 — see DESIGN.md ratios */
+  --color-focus-ring: var(--color-orange-700);
+  --shadow-card: inset 0 1px 0 rgb(255 255 255/.65);
+  --shadow-card-hover: inset 0 -2px 0 rgb(0 0 0/.12);
+  --shadow-raise: 0 4px 16px rgb(0 0 0/.15);
+  --border-hairline: .5px solid rgb(0 0 0/.08);
 }
 @media (max-width:560px){ :root {
   --text-body-size:20px; --text-body-leading:32px;

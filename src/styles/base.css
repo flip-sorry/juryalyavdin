@@ -163,3 +163,10 @@ html.js .fade-content.is-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* Theme-flip guard: CaseCard/Button/SocialIcons use bare `transition:` (= all),
+   which would otherwise animate 150-300ms during a theme switch while every
+   other property snaps. ThemeToggle adds/removes this class across two rAFs. */
+.theme-switching * {
+  transition: none !important;
+}

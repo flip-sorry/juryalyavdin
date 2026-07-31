@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8" />
+<title>Jury Alyavdin — CV</title>
+<style>
+  /* Same visual system as the original one-pager: white canvas, dark text,
+     orange institutions/links, gray dates. Aeonik ties it to the site brand. */
+  @font-face { font-family: 'Aeonik'; src: url('../../public/font/Aeonik-Regular.woff2') format('woff2'); font-weight: 400; }
+  @font-face { font-family: 'Aeonik'; src: url('../../public/font/Aeonik-Medium.woff2') format('woff2'); font-weight: 500; }
+
+  :root {
+    --ink: #1e1e1f;
+    --accent: #fc700b;
+    --dim: #a9a49c;
+    --label-w: 150px;
+    --entry-w: 175px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { background: #fff; }
+
+  body {
+    font-family: 'Aeonik', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    width: 794px;              /* A4 @ 96dpi */
+    padding: 42px 56px 32px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+
+  section { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 24px; }
+  section:last-child { margin-bottom: 0; }
+
+  .label { font-weight: 500; font-size: 14px; }
+
+  /* Header */
+  header { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 28px; }
+  .who p:first-child { font-weight: 500; }
+  .contacts { display: grid; grid-template-columns: var(--entry-w) 1fr; }
+
+  /* Experience */
+  .xp { display: grid; grid-template-columns: var(--entry-w) 1fr; gap: 0 24px; }
+  .xp + .xp { margin-top: 11px; }
+  .xp .org { color: var(--accent); }
+  .xp .dates { color: var(--dim); }
+
+  /* Education + Skills: three-column card grids */
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 24px; }
+  .grid3 .org, .grid3 .skill { color: var(--accent); }
+  .grid3 .dates { color: var(--dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="who">
+    <p>Jury Alyavdin</p>
+    <p>Staff Product Designer</p>
+    <p><a href="https://j-alyavdin.com">j-alyavdin.com</a></p>
+  </div>
+  <div class="contacts">
+    <div>
+      <p><a href="https://www.linkedin.com/in/j-alyavdin/">in/j-alyavdin</a></p>
+      <p><a href="mailto:mail@j-alyavdin.com">mail@j-alyavdin.com</a></p>
+      <p>+34 698999828</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <p class="label">About</p>
+  <p>
+    With 14+ years in digital product design, I've crafted solutions that power startups and
+    streamline enterprises. Today I drive the AI design strategy at PandaDoc — shaping how
+    documents get created, negotiated, and signed in the age of AI. My role is pivotal in
+    connecting dots between teams, optimizing product development, and ensuring projects
+    meet the envisioned goals.
+  </p>
+</section>
+
+<section>
+  <p class="label">Experience</p>
+  <div>
+    <div class="xp">
+      <div>
+        <p class="org">PandaDoc</p>
+        <p>Staff Product Designer</p>
+        <p class="dates">Feb 2025 — Current</p>
+      </div>
+      <p>
+        Drive the AI design strategy for the document platform — anticipating trends in
+        generative document creation, model training, and metadata, and turning research
+        into shipped AI experiences people trust.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Shares</p>
+        <p>Product Design Lead</p>
+        <p class="dates">Jun 2022 — Feb 2025</p>
+      </div>
+      <p>
+        Tied growth, brand, and product into one design strategy for the European
+        social-investing app. Built a scalable design system, led growth design, and
+        mentored the team through the UK launch and EU expansion.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Impress</p>
+        <p>Founding Product Designer</p>
+        <p class="dates">May 2020 — Aug 2023</p>
+      </div>
+      <p>
+        Founded the design and research wing at the European orthodontic startup heading
+        toward a $125M Series B. Grew design from one person into a five-strong department
+        embedded across the company.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Yandex</p>
+        <p>Senior Product Designer</p>
+        <p class="dates">Mar 2017 — Aug 2020</p>
+      </div>
+      <p>
+        Helped found the mobile branch of Yandex.Market that quadrupled revenue and became
+        the nucleus of the e-commerce unit within the tech giant. Grew from designing
+        screens to steering the mobile design department.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Rambler Group</p>
+        <p>Product Designer</p>
+        <p class="dates">May 2016 — Mar 2017</p>
+      </div>
+      <p>
+        Initiated three new media platforms and augmented ad revenue across 12 established
+        media services for the major Russian media conglomerate.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Zvooq</p>
+        <p>Product Designer</p>
+        <p class="dates">Apr 2016 — May 2016</p>
+      </div>
+      <p>
+        Introduced a service that integrated leading Russian streaming content onto partner
+        platforms, enhancing service reach and audience engagement.
+      </p>
+    </div>
+    <div class="xp">
+      <div>
+        <p class="org">Webinar</p>
+        <p>Product Designer</p>
+        <p class="dates">Feb 2015 — Apr 2016</p>
+      </div>
+      <p>
+        Teamed with a digital agency to revamp and expand the product range for Russia's
+        premier video streaming service. Innovated a B2B online course service from
+        inception.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Education</p>
+  <div class="grid3">
+    <div>
+      <p class="org">Reforge</p>
+      <p>Growth Series</p>
+      <p class="dates">2022</p>
+    </div>
+    <div>
+      <p class="org">Yandex Courses</p>
+      <p>Jobs to be Done: Theory to Practice</p>
+      <p class="dates">2017</p>
+    </div>
+    <div>
+      <p class="org">Yandex School of Data Analysis</p>
+      <p>Designing mobile apps</p>
+      <p class="dates">2017</p>
+    </div>
+    <div>
+      <p class="org">Microsoft</p>
+      <p>Microsoft Inclusive Design, Industrial and Product Design</p>
+      <p class="dates">2016</p>
+    </div>
+    <div>
+      <p class="org">Moscow State Technological University</p>
+      <p>Specialist Diploma in Engineering</p>
+      <p class="dates">2008 — 2013</p>
+    </div>
+    <div>
+      <p class="org">High School №32 with advanced study of English</p>
+      <p>Foundation education</p>
+      <p class="dates">1997 — 2008</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="label">Skills</p>
+  <div class="grid3">
+    <div>
+      <p class="skill">Product &amp; Strategy</p>
+      <p>Aligning business objectives with its customer needs</p>
+    </div>
+    <div>
+      <p class="skill">Research</p>
+      <p>Pinpoint user pain points and ideate potential solutions</p>
+    </div>
+    <div>
+      <p class="skill">Prototyping</p>
+      <p>Validate hypotheses with customers through iterative fidelity stages</p>
+    </div>
+    <div>
+      <p class="skill">Information Architecture</p>
+      <p>Organising content and establishing intuitive navigation</p>
+    </div>
+    <div>
+      <p class="skill">Technology &amp; Data</p>
+      <p>Apprehending web and mobile development environment</p>
+    </div>
+    <div>
+      <p class="skill">Data-driven approach</p>
+      <p>Gauge project success through meticulous data analysis</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

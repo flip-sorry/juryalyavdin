@@ -5,11 +5,21 @@
  * Icons keep the source's CSS-background technique (the file is passed through
  * `--icon`), so the rendered box is identical. Rest opacity moves from the
  * source's .4 to `--opacity-dim` (.55) per the plan's allowlist.
+ *
+ * `compact` — header-only ≤560px treatment (see DESIGN.md Theming/Conventions):
+ * shrinks the icon grid so `ThemeToggle` fits beside it without wrapping the
+ * header name. The footer instance never passes it, so it stays byte-identical.
  */
 import { social } from '../data/site';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
 ---
 
-<div class="social-icons">
+<div class:list={['social-icons', { compact }]}>
   {
     social.map((link) => (
       <a class="social-icons-link" href={link.href} aria-label={`Jury Alyavdin on ${link.name}`}>
@@ -48,11 +58,22 @@ import { social } from '../data/site';
     width: var(--social-icon-size);
   }
 
+  /* Glyphs are pure white on transparent PNG; inverting reads near-black on cream. */
+  :global(html[data-theme='light']) .social-icons-icon {
+    filter: invert(1);
+  }
+
   /* style/adaptive.css:186-189 — the chip background is permanent on small screens. */
   @media (max-width: 560px) {
     .social-icons-link {
       background-color: var(--color-surface-hover);
       border-radius: var(--radius-sm);
+    }
+
+    /* Header-only: makes room for ThemeToggle beside it without wrapping the header name. */
+    .social-icons.compact {
+      --social-icon-size: 36px;
+      grid-gap: var(--space-2);
     }
   }
 </style>

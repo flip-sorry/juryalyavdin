@@ -1,0 +1,124 @@
+---
+/**
+ * Manual dark/light switch — header only (see DESIGN.md Theming: toggle
+ * placement). Icon = action semantics: sun shows in dark ("switch to
+ * light"), moon shows in light ("switch to dark") — swapped via
+ * `:global(html[data-theme='light'])`, not by JS class toggling.
+ *
+ * The click handler and the bootstrap in BaseLayout's head IIFE are the only
+ * two places `data-theme`/`localStorage['theme']` are written; this script
+ * additionally re-syncs `aria-pressed` and `meta[name=theme-color]` on load
+ * and on cross-tab `storage` events.
+ */
+---
+
+<button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+  <svg class="icon-sun" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+  <svg class="icon-moon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+  <span class="sr-only">Light theme</span>
+</button>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('theme-toggle');
+    const meta = document.querySelector('meta[name="theme-color"]');
+
+    const sync = () => {
+      const isLight = document.documentElement.dataset.theme === 'light';
+      if (btn) btn.setAttribute('aria-pressed', String(isLight));
+      if (meta) meta.setAttribute('content', isLight ? '#F6F0E5' : '#1E1E1F');
+    };
+
+    const apply = (theme) => {
+      if (theme === 'light') {
+        document.documentElement.dataset.theme = 'light';
+      } else {
+        delete document.documentElement.dataset.theme;
+      }
+      sync();
+    };
+
+    if (btn) {
+      btn.addEventListener('click', () => {
+        document.documentElement.classList.add('theme-switching');
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        apply(next);
+        try {
+          localStorage.setItem('theme', next);
+        } catch (e) {
+          /* storage blocked — theme still applies for this load */
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove('theme-switching');
+          });
+        });
+      });
+    }
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'theme') {
+        apply(e.newValue === 'light' ? 'light' : 'dark');
+      }
+    });
+
+    sync();
+  })();
+</script>
+
+<style>
+  .theme-toggle {
+    --toggle-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    color: currentColor;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: var(--opacity-dim);
+    transition: var(--duration-fast);
+  }
+
+  .theme-toggle:hover {
+    opacity: 1;
+    background-color: var(--color-surface-hover);
+    border-radius: var(--radius-sm);
+  }
+
+  .icon-moon {
+    display: none;
+  }
+
+  :global(html[data-theme='light']) .theme-toggle .icon-sun {
+    display: none;
+  }
+
+  :global(html[data-theme='light']) .theme-toggle .icon-moon {
+    display: block;
+  }
+
+  /* style/adaptive.css:186-189 parity — chip background permanent on small screens, same as SocialIcons. */
+  @media (max-width: 560px) {
+    .theme-toggle {
+      --toggle-size: 36px;
+      background-color: var(--color-surface-hover);
+      border-radius: var(--radius-sm);
+    }
+  }
+</style>

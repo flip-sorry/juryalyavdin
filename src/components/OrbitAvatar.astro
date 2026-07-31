@@ -93,6 +93,12 @@ const {
     box-shadow: var(--shadow-glow) var(--glow);
   }
 
+  /* Light ignores --glow entirely: a dark-tuned drop shadow either smudges
+     grey or vanishes against a cream canvas (see DESIGN.md Theming). */
+  :global(html[data-theme='light']) .avatar.has-glow {
+    box-shadow: var(--shadow-raise);
+  }
+
   .orbit {
     animation: orbit 15s linear infinite;
   }

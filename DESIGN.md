@@ -39,7 +39,7 @@ pre-refactor.
 
 **Button-label contrast decision:** the source rendered primary-button labels in `azure`
 (near-white) on `--color-accent` — roughly **2.81:1**, failing AA. `--color-text-on-accent` was
-darkened to `--color-gray-900` (2026-07-30), **≈8.8:1** on `--color-accent` — passes AA
+darkened to `--color-gray-900` (2026-07-30), **5.92:1** on `--color-accent` — passes AA
 comfortably. To revert, point the token back at `--color-white`, knowingly reintroducing the
 2.81:1 failure.
 
@@ -136,9 +136,143 @@ Three containers: `--container-max: 1160px` (`.container` utility — nearly eve
 
 Breakpoints, desktop-first `max-width`, canonical everywhere: **1160 / 880 / 560 / 380**.
 
+## Theming
+
+Two modes, one token set: `:root` is the dark default (unchanged, byte-identical except
+additive lines), and `[data-theme="light"]` overrides the same semantic tokens plus five
+theme-switched literals (scrim, the three shadows, hairline). There is no
+`prefers-color-scheme` — the toggle is manual-only, a deliberate product decision, not an
+oversight. Absence of `localStorage['theme']` means dark; `'light'` means light. `color-scheme`
+is set per theme (`dark` on `:root`, `light` on the light block) so native form controls and
+scrollbars follow. The bootstrap that reads `localStorage` and sets `data-theme` before first
+paint lives in `BaseLayout`'s existing head `is:inline` IIFE, immediately after
+`classList.add('js')` — this keeps `data-theme` set before any stylesheet loads, so there's no
+flash of the wrong theme. `.theme-switching` (added to `<html>` for two animation frames around
+a toggle click, `base.css`) forces `transition: none` on every element, because
+`CaseCard`/`Button`/`SocialIcons` all use bare `transition:` (= `all`) and would otherwise
+animate 150–300ms during the flip while everything else snaps instantly.
+
+`site.webmanifest` / `browserconfig.xml` stay dark-only — installed-tile/OS-chrome context has
+no runtime theme to read, so it's out of scope.
+
+### Two-mode semantic token table
+
+| Token | Dark (`:root`) | Light (`[data-theme="light"]`) |
+|---|---|---|
+| `--color-bg` | gray-900 `#1E1E1F` | sand-50 `#F6F0E5` |
+| `--color-bg-scrim` | `rgb(30 30 31/.9)` | `rgb(246 240 229/.9)` |
+| `--color-surface` | gray-800 `#2B2C2D` | sand-100 `#ECE4D5` |
+| `--color-surface-hover` | gray-700 `#323639` | sand-200 `#DFD4C0` |
+| `--color-border` | gray-800 | sand-200 |
+| `--color-text` | sand-300 `#CCC5BA` | gray-900 `#1E1E1F` |
+| `--color-text-muted` | sand-600 `#8F8A80` | sand-700 `#6E675B` |
+| `--color-accent` | orange-500 `#FC700B` | orange-700 `#AC4600` |
+| `--color-accent-hover` | orange-400 `#FE811B` | orange-600 `#C25200` |
+| `--color-text-on-accent` | gray-900 | white — flips, see decisions below |
+| `--color-focus-ring` | orange-500 | orange-700 |
+| `--shadow-card` | `inset 0 1px 0 rgb(255 255 255/.08)` | `inset 0 1px 0 rgb(255 255 255/.65)` |
+| `--shadow-card-hover` | `inset 0 -2px 0 rgb(0 0 0/.4)` | `inset 0 -2px 0 rgb(0 0 0/.12)` |
+| `--shadow-raise` | `0 4px 16px rgb(0 0 0/.35)` | `0 4px 16px rgb(0 0 0/.15)` |
+| `--border-hairline` | `.5px solid rgb(255 255 255/.05)` | `.5px solid rgb(0 0 0/.08)` |
+
+`--opacity-dim: .55` is shared, unchanged in both themes.
+
+### Light-theme ratios (verified `node -e` WCAG math, same method as the Color section above)
+
+| Pair | Ratio | Verdict |
+|---|---|---|
+| text `#1E1E1F` / bg `#F6F0E5` | 14.69 | pass |
+| text / surface `#ECE4D5` | 13.19 | pass |
+| muted `#6E675B` / bg | 4.93 | pass (dark parity 4.85) |
+| muted / surface | 4.43 | fails — same "bg-only token" constraint as dark (4.07) |
+| accent `#AC4600` / bg | 5.10 | pass |
+| accent / surface | 4.58 | pass |
+| accent-hover `#C25200` / bg | 4.11 | pass-large (transient) |
+| accent-hover / surface | 3.69 | pass-large (transient; dark parity 4.33) |
+| white-on-accent | 5.79 | pass |
+| focus-ring / bg | 5.10 | pass (≥3:1 non-text bar) |
+| inverted social glyph @ .55 / bg | 4.61 (4.30 on ≤560 sand-200 chip) | pass (≥3:1 non-text bar) |
+
+**CONSTRAINT (re-verified):** `--color-text-muted` fails AA on `--color-surface` **in both
+themes** (4.43 light / 4.07 dark) — background-only token in both modes; never place muted text
+on a card/surface fill in either theme.
+
+### Decisions (revert-instruction format)
+
+**Light accent darkens:** brand `#FC700B` is 2.48:1 on cream — fails even the 3:1 large-text
+bar. Brute-forcing sRGB at the brand hue puts the chroma ceiling at ~4.5:1 (bg) around `#B84D00`;
+beating it needs a ~10° hue rotation toward vermilion, a bigger brand break than accepted here.
+`--color-orange-700: #AC4600` clears AA on **both** `--color-bg` (5.10:1) and `--color-surface`
+(4.58:1 — eyebrows render on cards at 20px regular ≤560px, so the surface figure is load-bearing,
+not decorative). To revert, point `--color-accent`/`--color-focus-ring` back at a lighter orange,
+knowingly reintroducing the sub-3:1 failure on cream.
+
+**Light button-label flips to white:** gray-900 on the darkened accent is ≈3:1 (fails the
+≤560px 20px button label); `--color-text-on-accent: var(--color-white)` passes at 5.79:1. Dark
+theme is unaffected — it keeps gray-900 on `--color-accent` at 5.92:1 (see the correction below).
+
+**Light glow is off, not muted:** `OrbitAvatar`'s dark-mode `box-shadow: var(--shadow-glow)
+var(--glow)` renders per-image dominant-color glows (9 hexes) that only read against a dark
+canvas. Muting doesn't fix it: at 45% via `color-mix()`, the homepage's `#080808` glow composites
+to a 3.13:1 grey smudge on cream, while `#f8f8f8` vanishes (1.03:1) — a dark-tuned glow can't be
+tuned to work on a light background. `color-mix()` is also a fallback trap: per the CSS Variables
+spec, a `var()` referenced inside an unsupported function is invalid at computed-value-time and
+drops the *earlier* declaration, computing to `box-shadow: none` in pre-`color-mix` browsers — a
+dark-mode regression, not just a light-mode gap. Light instead overrides to `--shadow-raise` (a
+flat, theme-appropriate lift) via `:global(html[data-theme='light']) .avatar.has-glow`; the dark
+rule and all 9 glow hexes are untouched. To revert, delete the light override — light then
+inherits the invisible/smudged dark-tuned glow.
+
+**Icon filters (invert / invert+hue-rotate):** icon assets stay as the existing `public/` PNGs
+(immutable URL contracts) — theming is CSS filters only, no new image files.
+- `SocialIcons`' `.social-icons-icon`, `CaseCard`'s `.locker`: pure white/grayscale glyphs on a
+  transparent PNG. `filter: invert(1)` flips them to near-black, which reads on cream (social
+  ≈4.61:1 effective at rest, ≈15:1 hover; locker 13.49:1).
+- `FocusItem`'s `.focus-img`: grayscale pixels are invariant under `hue-rotate()`, so the pale
+  plate regions (60–79% of the asset, 1.26:1 on cream unmodified) invert to near-black
+  (`#171717`, ≈13:1) under `invert(1) hue-rotate(180deg)`, while the one baked-in orange
+  (`#F87818`) lands at ≈`#DE5E00` — same hue family, slightly deeper, not an accidental color
+  shift. `drop-shadow` was rejected: it only traces the alpha silhouette, so interiors would
+  still wash out on cream.
+- To revert any of the three, drop its `:global(html[data-theme='light'])` filter rule — the
+  asset falls back to invisible/near-invisible on a light background, matching pre-theming
+  behavior.
+
+**Toggle placement — header only:** `ThemeToggle` lives beside `SocialIcons` in `SiteHeader`,
+nowhere else. Accepted quirks: on the homepage the control only appears once the header slides
+in at the 700px scroll threshold (same reveal as the social links); `/sorry` has no header, so it
+has no toggle — a stored light preference still applies there, just uncontrollable from that
+page.
+
+**Compact header row at ≤560px:** the ≤560px row was already at zero slack (name + 4 social
+icons filled the full width); adding `ThemeToggle` overflowed it, wrapping the header name
+`{site.name}` to two lines. `SocialIcons` gained a `compact?: boolean` prop
+(`class:list={['social-icons', { compact }]}`) that, only inside the existing ≤560px media
+block, drops `--social-icon-size` to 36px and `grid-gap` to `--space-2`; `SiteHeader` passes
+`compact` and tightens `.header-actions`' own gap to `--space-2` at the same breakpoint;
+`ThemeToggle` drops `--toggle-size` to 36px in its matching block. Math at 390px: 4×36 (icons) +
+3×8 (icon gaps) + 8 (actions gap) + 36 (toggle) = 212px, plus the ≈116px name, well under the
+≈342px available. **Header-only, deliberately**: `SiteFooter`'s `<SocialIcons />` call never
+passes `compact`, so `class:list` renders it as plain `class="social-icons"` — byte-identical to
+before this change. To revert, drop the `compact` prop pass in `SiteHeader` and the three
+`.compact`/`--toggle-size` overrides — the row returns to its pre-toggle 40px sizing and
+overflows again once `ThemeToggle` is present.
+
+**Transition guard:** `.theme-switching * { transition: none !important; }` (`base.css`, next to
+the reduced-motion damper) is added to `<html>` for two animation frames around every toggle
+click and removed after. Without it, `CaseCard`/`Button`/`SocialIcons`' bare `transition:`
+shorthand (= `all`) animates 150–300ms during the theme flip while every other property snaps
+instantly.
+
+**Correction:** the button-label decision (Color section, above) previously claimed "~8.8:1" for
+gray-900-on-`--color-accent` in dark theme, and `tokens.css`'s line-comment repeated the same
+figure. Re-measured by the same `node -e` method that produced every ratio in this document, the
+actual figure is **5.92:1**. Still comfortably AA — the number was wrong, not the token choice.
+Both this file and the `tokens.css` comment are corrected.
+
 ## Component index
 
-All 17 components in `src/components/`. Read the file's own doc comment for the exact source
+All 18 components in `src/components/`. Read the file's own doc comment for the exact source
 CSS it ports — this table is the props contract, not the full rationale.
 
 | Component | Purpose | Props |
@@ -157,16 +291,17 @@ CSS it ports — this table is the props contract, not the full rationale.
 | `SectionTitle` | Numbered section heading, standalone or sticky | `number, title, id?, variant?:'block'\|'sticky'` |
 | `SiteFooter` | Footer + copyright + social icons | `spaced?` (default `true`) |
 | `SiteHeader` | Fixed top bar — scroll-revealed on home, pinned on inner pages | `variant:'home'\|'page'` |
-| `SocialIcons` | 4-icon social row (reads `data/site.ts`) | — |
+| `SocialIcons` | 4-icon social row (reads `data/site.ts`) | `compact?` (header-only ≤560px sizing) |
 | `StatsList` | 2-col (1-col ≤380) stat grid with its own leading divider | `items:{label,value}[]` |
 | `TestimonialItem` | One quote + attribution link | `quote, author, href` |
+| `ThemeToggle` | Header sun/moon manual dark/light switch | — |
 
 Layouts (not counted above, one level up): `BaseLayout` (head/meta/OG, `title, description, path,
 ogType?, noindex?`) and `CaseStudyLayout` (the shared case-study skeleton over `BaseLayout`).
 
 ## Conventions
 
-- **Raw values live only in `tokens.css`** — with two narrow, enumerated exceptions:
+- **Raw values live only in `tokens.css`** — with three narrow, enumerated exceptions:
 
   **1. Component-local custom properties** — declared inside a component's own `<style>` block
   when a value repeats ≥2× within that one file and isn't a candidate for the global token set
@@ -203,9 +338,19 @@ ogType?, noindex?`) and `CaseStudyLayout` (the shared case-study skeleton over `
     a design-scale value; reserves the YouTube iframe's box so nothing shifts once it loads (a11y
     fix, 2026-07-30, alongside dropping the iframe's invalid `width="100%" height="100%"` attrs).
 
+  **3. Meta-tag color literals** — `<meta name="theme-color">` / `<meta name="msapplication-TileColor">`
+  need a literal hex at parse time, before any stylesheet has run, so they've always carried
+  `#1E1E1F` directly in `BaseLayout`'s `<head>`, outside `tokens.css`. Theming extends this same
+  exception to the two script literals that rewrite `theme-color` at runtime — `#F6F0E5` (light)
+  and `#1E1E1F` (dark), in `BaseLayout`'s bootstrap IIFE and `ThemeToggle`'s `sync()` — because JS
+  running before any stylesheet loads can't read a CSS custom property either.
+
 - **Scoped styles by default.** Every component/page owns its own `<style>` (Astro's
   data-attribute scoping). `:global()` is the escape hatch, used only for slotted markup a
   component doesn't render directly (`HeroImage`'s slotted `video.hero`/`iframe.hero`,
-  `ContentBlock`'s `.circle-list`, `ExperienceSlot`'s slotted links) — plus the handful of true
+  `ContentBlock`'s `.circle-list`, `ExperienceSlot`'s slotted links), the theme overrides that key
+  off `html[data-theme='light']` from inside a scoped component style (`OrbitAvatar`,
+  `SocialIcons`, `FocusItem`, `CaseCard`, `ThemeToggle`'s icon swap — sanctioned, since the
+  attribute lives on `<html>`, outside any component's own markup) — plus the handful of true
   cross-page globals that live in `base.css` itself: the reset, `:focus-visible`, `.container`,
-  `.eyebrow`, `.lead-in`, `.fade-content`, and the reduced-motion damper.
+  `.eyebrow`, `.lead-in`, `.fade-content`, `.theme-switching`, and the reduced-motion damper.

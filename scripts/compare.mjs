@@ -3,7 +3,7 @@
 // Dependency-light by design: playwright + pixelmatch + pngjs only.
 //
 // Usage:
-//   node scripts/compare.mjs capture --base <URL> --out <dir>
+//   node scripts/compare.mjs capture --base <URL> --out <dir> [--theme light]
 //   node scripts/compare.mjs diff --a <dirA> --b <dirB> --out <dir> [--threshold 0.1]
 
 import { chromium } from 'playwright';
@@ -134,11 +134,14 @@ async function preparePage(page) {
   await page.waitForTimeout(500);
 }
 
-async function capture({ base, out }) {
+async function capture({ base, out, theme }) {
   if (!base || !out) {
     throw new Error('capture requires --base <URL> and --out <dir>');
   }
   await mkdir(out, { recursive: true });
+
+  let capturedCount = 0;
+  let skippedCount = 0;
 
   const browser = await chromium.launch();
   try {
@@ -155,10 +158,22 @@ async function capture({ base, out }) {
         const existing = path.join(out, `${slug}-${width}.png`);
         if (existsSync(existing)) {
           console.log(`skipping ${slug}-${width}.png (already captured)`);
+          skippedCount++;
           continue;
         }
         for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
           const context = await browser.newContext({ viewport: { width, height: HEIGHT } });
+          if (theme === 'light') {
+            // Runs before any page script, so BaseLayout's bootstrap picks it up
+            // the same way a real returning visitor's localStorage would.
+            await context.addInitScript(() => {
+              try {
+                localStorage.setItem('theme', 'light');
+              } catch {
+                // storage blocked — page stays dark, same as a real visitor
+              }
+            });
+          }
           const page = await context.newPage();
           try {
             console.log(`capturing ${url} @ ${width}px (attempt ${attempt})`);
@@ -171,6 +186,7 @@ async function capture({ base, out }) {
               fullPage: true,
               animations: 'disabled',
             });
+            capturedCount++;
             break;
           } catch (err) {
             if (attempt === MAX_ATTEMPTS) throw err;
@@ -184,6 +200,10 @@ async function capture({ base, out }) {
   } finally {
     await browser.close();
   }
+
+  // Guards the resume-skip trap: a run that only skips can otherwise produce
+  // a vacuous 0.0000% all-green diff against itself.
+  console.log(`\ncaptured ${capturedCount}, skipped ${skippedCount} (already existed)`);
 }
 
 async function loadPng(filePath) {
@@ -279,12 +299,12 @@ async function main() {
   const args = parseArgs(rest);
 
   if (mode === 'capture') {
-    await capture({ base: args.base, out: args.out });
+    await capture({ base: args.base, out: args.out, theme: args.theme });
   } else if (mode === 'diff') {
     await diff({ a: args.a, b: args.b, out: args.out, threshold: args.threshold });
   } else {
     console.error('Usage:');
-    console.error('  node scripts/compare.mjs capture --base <URL> --out <dir>');
+    console.error('  node scripts/compare.mjs capture --base <URL> --out <dir> [--theme light]');
     console.error('  node scripts/compare.mjs diff --a <dirA> --b <dirB> --out <dir> [--threshold 0.1]');
     process.exitCode = 1;
   }

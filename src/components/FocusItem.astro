@@ -36,6 +36,9 @@ const { icon, text } = Astro.props;
     margin-bottom: var(--space-3);
   }
 
+  /* Focus illustrations keep their original colors in both themes (owner
+     call 2026-07-31): unlike the pure-white social/lock glyphs, these are
+     colored artwork — invert+hue-rotate distorts them. */
   @media (max-width: 560px) {
     .focus-img {
       margin-bottom: var(--space-2);

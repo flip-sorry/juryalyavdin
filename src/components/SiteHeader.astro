@@ -14,6 +14,7 @@
  */
 import Divider from './Divider.astro';
 import SocialIcons from './SocialIcons.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -26,7 +27,7 @@ const { variant } = Astro.props;
 <header class:list={['site-header', variant]} id="site-header">
   <div class="container header-content">
     <a href="/"><p>{site.name}</p></a>
-    <SocialIcons />
+    <div class="header-actions"><SocialIcons compact /><ThemeToggle /></div>
   </div>
   <Divider />
 </header>
@@ -91,5 +92,19 @@ const { variant } = Astro.props;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* Compact row: SocialIcons(compact)+ThemeToggle at 36px each still fit beside
+     the header name without wrapping it — see DESIGN.md Theming/Conventions. */
+  @media (max-width: 560px) {
+    .header-actions {
+      gap: var(--space-2);
+    }
   }
 </style>
