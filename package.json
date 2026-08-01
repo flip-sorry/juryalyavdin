@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "build:cv": "node scripts/cv/render-cv.mjs",
     "check:links": "linkinator http://localhost:4321 --recurse --skip 'https?://(?!localhost)'"
   },
   "dependencies": {

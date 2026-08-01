@@ -10,6 +10,8 @@ site. See **DESIGN.md** for the token system before touching any UI.
   one instead of erroring)
 - `npm run build` — production build to `dist/`
 - `npm run preview` — preview the build
+- `npm run build:cv` — re-render `public/j-alyavdin-cv.pdf` (one-page A4) from `scripts/cv/cv.html`
+  via Playwright; edit content there, never the PDF. Must stay 1 page — check with `pdfinfo`
 - `node scripts/compare.mjs capture --base <URL> --out <dir>` — deterministic Playwright
   screenshot capture across all 10 legacy URLs × 5 widths (1440/1024/880/560/390)
 - `node scripts/compare.mjs diff --a <dirA> --b <dirB> --out <dir> [--threshold 0.1]` —

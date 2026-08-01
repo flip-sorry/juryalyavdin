@@ -25,32 +25,32 @@
     font-family: 'Aeonik', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 400;
     font-size: 11.5px;
-    line-height: 1.5;
+    line-height: 1.45;
     color: var(--ink);
     width: 794px;              /* A4 @ 96dpi */
-    padding: 42px 56px 32px;
+    padding: 36px 56px 28px;
   }
 
   a { color: var(--accent); text-decoration: none; }
 
-  section { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 24px; }
+  section { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 20px; }
   section:last-child { margin-bottom: 0; }
 
   .label { font-weight: 500; font-size: 14px; }
 
   /* Header */
-  header { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 28px; }
+  header { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 24px; }
   .who p:first-child { font-weight: 500; }
   .contacts { display: grid; grid-template-columns: var(--entry-w) 1fr; }
 
   /* Experience */
   .xp { display: grid; grid-template-columns: var(--entry-w) 1fr; gap: 0 24px; }
-  .xp + .xp { margin-top: 11px; }
+  .xp + .xp { margin-top: 9px; }
   .xp .org { color: var(--accent); }
   .xp .dates { color: var(--dim); }
 
   /* Education + Skills: three-column card grids */
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 24px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 24px; }
   .grid3 .org, .grid3 .skill { color: var(--accent); }
   .grid3 .dates { color: var(--dim); }
 </style>
@@ -113,7 +113,7 @@
     <div class="xp">
       <div>
         <p class="org">Impress</p>
-        <p>Founding Product Designer</p>
+        <p>Founding Product Designer &rarr; Product Design Lead</p>
         <p class="dates">May 2020 — Aug 2023</p>
       </div>
       <p>
@@ -168,6 +168,18 @@
         inception.
       </p>
     </div>
+    <div class="xp">
+      <div>
+        <p class="org">Zelenski</p>
+        <p>Product Designer</p>
+        <p class="dates">Dec 2013 — Feb 2015</p>
+      </div>
+      <p>
+        Traded freelancing for my first product seat at the exclusive Russian partner of
+        Egencia, Expedia's business-travel arm — designing across nine travel services
+        alongside marketing and engineering.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -198,11 +210,6 @@
       <p class="org">Moscow State Technological University</p>
       <p>Specialist Diploma in Engineering</p>
       <p class="dates">2008 — 2013</p>
-    </div>
-    <div>
-      <p class="org">High School №32 with advanced study of English</p>
-      <p>Foundation education</p>
-      <p class="dates">1997 — 2008</p>
     </div>
   </div>
 </section>
