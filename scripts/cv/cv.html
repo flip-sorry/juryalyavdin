@@ -5,14 +5,16 @@
 <title>Jury Alyavdin — CV</title>
 <style>
   /* Same visual system as the original one-pager: white canvas, dark text,
-     orange institutions/links, gray dates. Aeonik ties it to the site brand. */
+     orange institutions/links, gray dates. Aeonik ties it to the site brand.
+     Accent/dim are darkened from the site's #fc700b/#a9a49c to hold ≥4.5:1
+     on white — this document is read printed and at fit-to-width zoom. */
   @font-face { font-family: 'Aeonik'; src: url('../../public/font/Aeonik-Regular.woff2') format('woff2'); font-weight: 400; }
   @font-face { font-family: 'Aeonik'; src: url('../../public/font/Aeonik-Medium.woff2') format('woff2'); font-weight: 500; }
 
   :root {
     --ink: #1e1e1f;
-    --accent: #fc700b;
-    --dim: #a9a49c;
+    --accent: #c2540a;
+    --dim: #6f6a63;
     --label-w: 150px;
     --entry-w: 175px;
   }
@@ -24,8 +26,8 @@
   body {
     font-family: 'Aeonik', 'Helvetica Neue', Arial, sans-serif;
     font-weight: 400;
-    font-size: 11.5px;
-    line-height: 1.45;
+    font-size: 12px;
+    line-height: 1.5;
     color: var(--ink);
     width: 794px;              /* A4 @ 96dpi */
     padding: 36px 56px 28px;
@@ -33,41 +35,50 @@
 
   a { color: var(--accent); text-decoration: none; }
 
-  section { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 24px; }
+  section { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 32px; }
   section:last-child { margin-bottom: 0; }
 
-  .label { font-weight: 500; font-size: 15px; }
+  .label { font-weight: 500; font-size: 13px; }
 
-  /* Header */
-  header { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 24px; }
-  .who p:first-child { font-weight: 500; }
-  .contacts { display: grid; grid-template-columns: var(--entry-w) 1fr; }
+  /* Header: same grid and label treatment as every section — a 2-row,
+     3-column table. Fixed line-height keeps the rows aligned across the
+     13px name and 12px links. */
+  header { display: grid; grid-template-columns: var(--label-w) 1fr; margin-bottom: 32px; }
+  header p { line-height: 18px; }
+  .contacts { display: grid; grid-template-columns: var(--entry-w) 1fr; gap: 0 24px; }
 
-  /* Experience */
+  /* Experience: title trajectory is the spine — titles carry the weight,
+     org names carry the color. */
   .xp { display: grid; grid-template-columns: var(--entry-w) 1fr; gap: 0 24px; }
-  .xp + .xp { margin-top: 9px; }
+  .xp + .xp { margin-top: 17px; }
   .xp .org { color: var(--accent); }
+  .xp .role { font-weight: 500; }
   .xp .dates { color: var(--dim); }
 
-  /* Education + Skills: three-column card grids */
-  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 24px; }
+  /* Education + Skills: three-column card grids. First column matches the
+     entry column so the middle column sits exactly on the blurb rule. */
+  .grid3 { display: grid; grid-template-columns: var(--entry-w) 1fr 1fr; gap: 12px 24px; }
   .grid3 .org, .grid3 .skill { color: var(--accent); }
   .grid3 .dates { color: var(--dim); }
+
+  .nb { white-space: nowrap; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="who">
-    <p>Jury Alyavdin</p>
+    <p class="label">Jury Alyavdin</p>
     <p>Staff Product Designer</p>
-    <p><a href="https://j-alyavdin.com">j-alyavdin.com</a></p>
   </div>
   <div class="contacts">
     <div>
-      <p><a href="https://www.linkedin.com/in/j-alyavdin/">in/j-alyavdin</a></p>
+      <p><a href="https://j-alyavdin.com">j-alyavdin.com</a></p>
+      <p><a href="https://www.linkedin.com/in/j-alyavdin/">linkedin.com/in/j-alyavdin</a></p>
+    </div>
+    <div>
       <p><a href="mailto:mail@j-alyavdin.com">mail@j-alyavdin.com</a></p>
-      <p>+34 698999828</p>
+      <p>+34 698999828 &middot; Bilbao, Spain</p>
     </div>
   </div>
 </header>
@@ -75,11 +86,10 @@
 <section>
   <p class="label">About</p>
   <p>
-    With 14+ years in digital product design, I've crafted solutions that power startups and
-    streamline enterprises. Today I drive the AI design strategy at PandaDoc — shaping how
-    documents get created, negotiated, and signed in the age of AI. My role is pivotal in
-    connecting dots between teams, optimizing product development, and ensuring projects
-    meet the envisioned goals.
+    14+ years designing consumer and B2B products. I drive AI design strategy at
+    PandaDoc — shaping how documents get created, negotiated, and signed in the age
+    of AI. Earlier, I founded and scaled design at Impress (1&rarr;5) and helped build
+    the mobile arm of Yandex.Market, where revenue grew 4&times;.
   </p>
 </section>
 
@@ -89,93 +99,82 @@
     <div class="xp">
       <div>
         <p class="org">PandaDoc</p>
-        <p>Staff Product Designer</p>
-        <p class="dates">Feb 2025 — Current</p>
+        <p class="role">Staff Product Designer</p>
+        <p class="dates">Feb 2025 — Present</p>
       </div>
       <p>
-        Drive the AI design strategy for the document platform — anticipating trends in
-        generative document creation, model training, and metadata, and turning research
-        into shipped AI experiences people trust.
+        Drive AI design strategy for the document platform — generative document
+        creation, model training, and metadata — turning research into shipped AI
+        experiences people trust.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Shares</p>
-        <p>Product Design Lead</p>
+        <p class="role">Product Design Lead</p>
         <p class="dates">Jun 2022 — Feb 2025</p>
       </div>
       <p>
-        Tied growth, brand, and product into one design strategy for the European
-        social-investing app. Built a scalable design system, led growth design, and
-        mentored the team through the UK launch and EU expansion.
+        Owned a single design strategy across growth, brand, and product for the
+        European social-investing app. Built its scalable design system, led growth
+        design, and guided the design team through the UK launch and EU expansion.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Impress</p>
-        <p>Founding Product Designer &rarr; Product Design Lead</p>
+        <p class="role">Founding Product Designer &rarr; Product Design Lead</p>
         <p class="dates">May 2020 — Aug 2023</p>
       </div>
       <p>
-        Founded the design and research wing at the European orthodontic startup heading
-        toward a $125M Series B. Grew design from one person into a five-strong department
-        embedded across the company.
+        Founded the design and research wing at the Barcelona orthodontic startup
+        heading toward a $125M Series B. Grew design from one person to a five-person
+        department embedded across the company.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Yandex</p>
-        <p>Senior Product Designer</p>
+        <p class="role">Senior Product Designer</p>
         <p class="dates">Mar 2017 — Aug 2020</p>
       </div>
       <p>
-        Helped found the mobile branch of Yandex.Market that quadrupled revenue and became
-        the nucleus of the e-commerce unit within the tech giant. Grew from designing
-        screens to steering the mobile design department.
+        Founding designer of Yandex.Market's mobile branch — revenue grew 4&times; and
+        the unit became the core of Yandex's <span class="nb">e-commerce</span> business. Grew from designing
+        screens to leading the mobile design department.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Rambler Group</p>
-        <p>Product Designer</p>
+        <p class="role">Product Designer</p>
         <p class="dates">May 2016 — Mar 2017</p>
       </div>
       <p>
-        Initiated three new media platforms and augmented ad revenue across 12 established
-        media services for the major Russian media conglomerate.
-      </p>
-    </div>
-    <div class="xp">
-      <div>
-        <p class="org">Zvooq</p>
-        <p>Product Designer</p>
-        <p class="dates">Apr 2016 — May 2016</p>
-      </div>
-      <p>
-        Introduced a service that integrated leading Russian streaming content onto partner
-        platforms, enhancing service reach and audience engagement.
+        Designed three new media platforms 0&rarr;1 and grew ad revenue across 12
+        established media services for the major Russian media conglomerate.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Webinar</p>
-        <p>Product Designer</p>
+        <p class="role">Product Designer</p>
         <p class="dates">Feb 2015 — Apr 2016</p>
       </div>
       <p>
-        Teamed with a digital agency to revamp and expand the product range for Russia's
-        premier video streaming service. Innovated a B2B online course service from
-        inception.
+        Revamped and expanded the product range for Russia's largest webinar platform,
+        partnering with a digital agency. Launched a B2B online-course product from
+        scratch.
       </p>
     </div>
     <div class="xp">
       <div>
         <p class="org">Zelenski</p>
-        <p>Product Designer</p>
+        <p class="role">Product Designer</p>
         <p class="dates">Dec 2013 — Feb 2015</p>
       </div>
       <p>
-        Traded freelancing for my first product seat at the exclusive Russian partner of
+        Traded freelancing for an in-house product seat at the sole Russian partner of
         Egencia, Expedia's business-travel arm — designing across nine travel services.
       </p>
     </div>
@@ -202,7 +201,7 @@
     </div>
     <div>
       <p class="org">Microsoft</p>
-      <p>Microsoft Inclusive Design, Industrial and Product Design</p>
+      <p>Inclusive Design</p>
       <p class="dates">2016</p>
     </div>
     <div>
@@ -217,28 +216,16 @@
   <p class="label">Skills</p>
   <div class="grid3">
     <div>
-      <p class="skill">Product &amp; Strategy</p>
-      <p>Aligning business objectives with its customer needs</p>
+      <p class="skill">AI &amp; Agentic Design</p>
+      <p>Claude Code &amp; self-built agent harnesses; generative and agent-driven product UX</p>
     </div>
     <div>
-      <p class="skill">Research</p>
-      <p>Pinpoint user pain points and ideate potential solutions</p>
+      <p class="skill">Design Craft</p>
+      <p>Design systems &amp; tokens, growth design, information architecture</p>
     </div>
     <div>
-      <p class="skill">Prototyping</p>
-      <p>Validate hypotheses with customers through iterative fidelity stages</p>
-    </div>
-    <div>
-      <p class="skill">Information Architecture</p>
-      <p>Organising content and establishing intuitive navigation</p>
-    </div>
-    <div>
-      <p class="skill">Technology &amp; Data</p>
-      <p>Apprehending web and mobile development environment</p>
-    </div>
-    <div>
-      <p class="skill">Data-driven approach</p>
-      <p>Gauge project success through meticulous data analysis</p>
+      <p class="skill">Prototyping &amp; Data</p>
+      <p>Rapid prototypes in code (HTML/CSS/JS), user research, product analytics</p>
     </div>
   </div>
 </section>
