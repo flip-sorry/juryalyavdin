@@ -78,6 +78,112 @@ const canonical = path === '/' ? `${site.origin}/` : `${site.origin}${path}`;
     </script>
 
     <script is:inline>
+      /* Custom GA4 events — schema contract in ANALYTICS.md (names frozen, changes
+         additive-only). Clicks are delegated off `document`, so new links need no
+         wiring. section_view gets its own IntersectionObserver rather than reusing
+         the reveal one below: the reveal observer skips prefers-reduced-motion
+         sessions entirely and only watches `.fade-content`, which case-study pages
+         don't have. section_id carries no positional prefix — order travels in
+         section_index instead, so inserting/reordering sections doesn't rename
+         every value after it and break dimension history. */
+      (() => {
+        const track = (name, params) => { if (window.gtag) window.gtag('event', name, params); };
+        const slug = (s) =>
+          s.trim().toLowerCase().replace(/^\d+\s*/, '').replace(/[^a-z0-9]+/g, '_')
+            .replace(/^_+|_+$/g, '').slice(0, 40) || 'block';
+        const locOf = (a) => {
+          if (a.closest('footer')) return 'footer';
+          if (a.closest('header')) return 'header';
+          const section = a.closest('[data-ga-section]');
+          if (section) return section.dataset.gaSection;
+          return a.closest('.intro') ? 'intro' : 'page';
+        };
+
+        const onClick = (e) => {
+          if (e.button === 2) return; /* right-click: context menu, not navigation */
+          const a = e.target.closest ? e.target.closest('a[href]') : null;
+          if (!a) return;
+          const href = a.getAttribute('href');
+          if (href.startsWith('mailto:')) {
+            track('contact_click', { link_location: locOf(a) });
+          } else if (/cv[^/]*\.pdf($|\?)/.test(href)) {
+            /* CV files only — a generic .pdf match would let any future PDF
+               (case deck, cover letter) inflate a key event. Other PDFs are
+               covered by enhanced measurement's file_download. */
+            track('cv_download', {
+              file_name: href.split('/').pop().split('?')[0],
+              link_location: locOf(a),
+            });
+          } else if (a.classList.contains('project')) {
+            const external = a.hostname && a.hostname !== location.hostname;
+            const locked = !external && /\/sorry(\.html)?$/.test(a.pathname);
+            /* Internal case pages key on the path slug — it joins to page_path
+               and stays stable across title edits. Locked/external cards all
+               share one href (or none on-site), so only the title identifies
+               them. */
+            const title = a.querySelector('h3');
+            track('case_open', {
+              case_name: external || locked
+                ? slug((title || a).textContent)
+                : a.pathname.split('/').pop().replace('.html', ''),
+              case_target: external ? 'external' : locked ? 'locked' : 'case',
+            });
+          } else if (a.classList.contains('social-icons-link')) {
+            track('social_click', {
+              network: (a.hostname || '').replace('www.', '').split('.')[0],
+              link_location: locOf(a),
+            });
+          }
+        };
+        document.addEventListener('click', onClick);
+        document.addEventListener('auxclick', onClick); /* middle-click → background tab */
+
+        /* Page-level depth marks: section_view alone can't say how far into a
+           10 000px-tall section (Experience) a visitor got. 90% comes from
+           enhanced measurement's scroll event. */
+        const marks = [25, 50, 75];
+        let pending = false;
+        const checkDepth = () => {
+          pending = false;
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          if (max <= 0) return;
+          const pct = (window.scrollY / max) * 100;
+          while (marks.length && pct >= marks[0]) {
+            track('scroll_depth', { percent_scrolled: marks.shift() });
+          }
+        };
+        window.addEventListener('scroll', () => {
+          if (!pending) { pending = true; requestAnimationFrame(checkDepth); }
+        }, { passive: true });
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                observer.unobserve(entry.target);
+                track('section_view', {
+                  section_id: entry.target.dataset.gaSection,
+                  section_index: Number(entry.target.dataset.gaIndex),
+                });
+              });
+            },
+            { threshold: 0, rootMargin: '0px 0px -15% 0px' }
+          );
+          document.querySelectorAll('.fade-content, .content-block').forEach((el, i) => {
+            const title = el.querySelector('.section-title, .cases-title, .content-title');
+            const name = title
+              ? title.textContent
+              : ((el.firstElementChild && el.firstElementChild.className) || 'block').split(' ')[0];
+            el.dataset.gaSection = slug(name);
+            el.dataset.gaIndex = i + 1;
+            observer.observe(el);
+          });
+        });
+      })();
+    </script>
+
+    <script is:inline>
       (() => {
         document.documentElement.classList.add('js');
         try {

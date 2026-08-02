@@ -22,6 +22,13 @@ site. See **DESIGN.md** for the token system before touching any UI.
 ## Hard rules
 
 - **DESIGN.md is authoritative** for any UI change — tokens only, never a hardcoded hex/px/timing.
+- **ANALYTICS.md is the GA4 event-schema contract** — shipped event/param names are frozen;
+  changes are additive-only. New links/sections are auto-tracked by the delegated script in
+  `BaseLayout.astro`; check the schema before touching any DOM hook it keys on: classes
+  `.project`, `.social-icons-link`, `.content-block`, `.fade-content`, `.section-title`,
+  `.cases-title`, `.content-title`, `.intro`; elements `header`/`footer`; CaseCard's
+  `<Eyebrow as="h3">` (locked/external `case_name` reads the card's `h3` — drop the `as`
+  prop and those collapse to junk values); `mailto:`/`*cv*.pdf` href shapes.
 - **Never break the 10 legacy `.html` URLs.** `build.format:'file'` + `trailingSlash:'never'` in
   `astro.config.mjs` are load-bearing for this — don't change either without re-verifying every
   URL still resolves.

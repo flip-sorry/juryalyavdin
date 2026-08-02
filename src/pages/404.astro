@@ -19,6 +19,13 @@ import Button from '../components/Button.astro';
     <h1>This page doesn't exist.</h1>
     <Button href="/" variant="ghost">Back to Home</Button>
   </section>
+
+  <script is:inline>
+    /* Broken-URL alarm (ANALYTICS.md): the offending URL arrives as the event's
+       auto-collected page_location — no param needed. A custom insight in GA4
+       emails on ≥1/day, backstopping the never-break-legacy-URLs hard rule. */
+    if (window.gtag) window.gtag('event', 'page_not_found');
+  </script>
 </BaseLayout>
 
 <style>
