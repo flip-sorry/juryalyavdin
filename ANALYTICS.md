@@ -51,15 +51,25 @@ dimension only becomes informative once more CTAs exist — see Backlog.
 
 ## GA4 property configuration
 
-- **Key events:** `contact_click`, `cv_download`.
+Done 2026-08-02:
 - **Custom dimensions** (event-scoped, dimension name = param name): `link_location`,
   `case_name`, `case_target`, `network`, `section_id`, `section_index`.
   Not `file_name`/`percent_scrolled` — GA4 has predefined dimensions for those params.
-- **Data retention:** 14 months (default is 2 — too short for a job-hunt cycle).
-- **Audience "Hot leads":** users with `contact_click` OR `cv_download` in the last 7 days.
-- **Custom insights + email:** (1) daily `contact_click` ≥ 1 — a portfolio lead goes cold
-  in days; the alert is the trigger to follow up while they remember you. (2) daily
-  `page_not_found` ≥ 1 — backstops the never-break-legacy-URLs hard rule.
+- **Data retention:** 14 months, both event and user data (default 2 is too short for a
+  job-hunt cycle).
+- Template key events GA4 pre-seeded (`close_convert_lead`) unmarked; `qualify_lead`
+  refuses to unmark until another key event exists — retry after the step below.
+
+Pending — GA4 only accepts these once it has processed first events (≤24 h after
+2026-08-02; each is a minute in Admin → Data display):
+1. **Key events:** Events → Key events/Recent events → star `contact_click` and
+   `cv_download`; unstar `qualify_lead`.
+2. **Audience "Hot leads":** Audiences → New audience → users with `contact_click` OR
+   `cv_download` in the last 7 days.
+3. **Custom insights + email** (Insights → Create): (1) daily `contact_click` ≥ 1 — a
+   portfolio lead goes cold in days; the alert is the trigger to follow up while they
+   remember you. (2) daily `page_not_found` ≥ 1 — backstops the never-break-legacy-URLs
+   hard rule.
 
 ## Reading the data
 
