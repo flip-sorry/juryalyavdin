@@ -42,10 +42,12 @@ interface Props {
   orbitBottomOffset?: string;
   glow?: string;
   heroImage?: string;
+  /** `background-position` for the hero fill — see HeroImage. Default `center`. */
+  heroPosition?: string;
   details: { label: string; value: string }[];
 }
 
-const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, orbitTopOffset, orbitBottomOffset, glow, heroImage, details } =
+const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, orbitTopOffset, orbitBottomOffset, glow, heroImage, heroPosition, details } =
   Astro.props;
 ---
 
@@ -65,7 +67,7 @@ const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, orbitT
     </div>
   </section>
   <div class="hero-slot">
-    <HeroImage image={heroImage}>
+    <HeroImage image={heroImage} position={heroPosition}>
       <slot name="hero" />
     </HeroImage>
   </div>

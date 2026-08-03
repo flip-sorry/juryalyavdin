@@ -13,13 +13,25 @@
  */
 interface Props {
   image?: string;
+  /**
+   * `background-position` for the hero fill. Default `center`. Set it when an
+   * asset's subject sits off-center: `cover` crops the overflowing axis
+   * symmetrically, which severs edge content at phone widths (pepsi's PEPSICO
+   * wordmark + KPI row live in the left half). Only the overflowing axis
+   * responds — at ≥880 these heroes overflow vertically, so a horizontal
+   * value is a no-op there and safe to set unconditionally.
+   */
+  position?: string;
 }
 
-const { image } = Astro.props;
+const { image, position } = Astro.props;
+const heroVars = [`--hero-image: url("${image}")`, position && `--hero-pos: ${position}`]
+  .filter(Boolean)
+  .join('; ');
 ---
 
 <section class="hero-image">
-  {image ? <div class="hero" style={`--hero-image: url("${image}")`} /> : <slot />}
+  {image ? <div class="hero" style={heroVars} /> : <slot />}
 </section>
 
 <style>
@@ -39,7 +51,7 @@ const { image } = Astro.props;
        background at the sides. Plain `cover` is identical wherever the old
        value worked and fills the band where it gapped. */
     background-size: cover;
-    background-position: center;
+    background-position: var(--hero-pos, center);
     background-repeat: no-repeat;
   }
 
