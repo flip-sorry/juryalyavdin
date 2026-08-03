@@ -88,13 +88,34 @@ const { title } = Astro.props;
     margin-top: calc(var(--space-4) + var(--space-3));
   }
 
+  /* Step down with ContentMedia's own ≤380 rule, or wrapped figures sit 8px
+     looser than their unwrapped neighbours at the narrowest width. */
+  @media (max-width: 380px) {
+    .content-text :global(p + a .content-media),
+    .content-text :global(p + div .content-media) {
+      margin-top: calc(var(--space-3) + var(--space-3));
+    }
+  }
+
   /* Zoomable figures need a cue that survives without hover — on a phone the
-     link is the only route to a dense diagram's content. */
+     link is the only route to a dense diagram's content. It must group with the
+     figure it labels (hug it, keep the full gap before the next paragraph) and
+     it must read as a control: accent alone is how this page styles
+     NON-interactive lead-ins, so the underline is what distinguishes it. */
+  .content-text :global(a:has(.media-note)) {
+    margin-bottom: calc(var(--space-4) + 11px);
+  }
+
+  .content-text :global(a:has(.media-note) .content-media) {
+    margin-bottom: var(--space-2);
+  }
+
   .content-text :global(.media-note) {
     display: block;
-    margin-top: calc(-1 * var(--space-2));
     color: var(--color-accent);
     font-size: var(--text-caption-size);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
   .content-text :global(.circle-list) {
