@@ -33,7 +33,12 @@ const { image } = Astro.props;
   .hero-image :global(.hero) {
     height: 100%;
     background-image: var(--hero-image);
-    background-size: auto 100%, cover;
+    /* Was `auto 100%, cover` — the comma made `cover` a phantom second-layer
+       value that never applied, so a hero narrower than the band (e.g. a
+       1.94:1 image in the 2.2:1 880px band) rendered centered with bare
+       background at the sides. Plain `cover` is identical wherever the old
+       value worked and fills the band where it gapped. */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }

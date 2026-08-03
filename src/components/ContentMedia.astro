@@ -86,6 +86,11 @@ const posterSrc = poster === false ? undefined : (poster ?? `${src}-poster.jpg`)
        rule in base.css — after headings the source gap really is 24px. */
     margin: var(--space-4) 0 calc(var(--space-4) + 11px);
     border-radius: var(--radius-sm);
+    /* Figure/ground floor: media whose own background sits near the page
+       color (near-white posters on latte, near-black frames on dark) needs a
+       perceptible container edge. Theme-aware token, same treatment as
+       video.hero. */
+    border: var(--border-hairline);
   }
 
   /* After a PARAGRAPH the source gap was 40px (the p's 16px bottom margin
