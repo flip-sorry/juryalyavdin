@@ -87,6 +87,12 @@ const { title, description, path, h1, avatarImage, orbitTop, orbitBottom, orbitT
     justify-content: center;
   }
 
+  .intro-title h1 {
+    /* Long claim-shaped h1s orphan their last word at wide widths; balance
+       splits lines evenly (no-op where unsupported). */
+    text-wrap: balance;
+  }
+
   .hero-slot :global(.hero-image) {
     margin-top: var(--space-7);
   }
