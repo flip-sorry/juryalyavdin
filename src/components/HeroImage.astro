@@ -22,10 +22,22 @@ interface Props {
    * value is a no-op there and safe to set unconditionally.
    */
   position?: string;
+  /**
+   * `background-size` for the hero fill. Default `cover`. Pass `contain` when
+   * the asset is a single composed object (a device render) rather than a
+   * scene: `cover` crops the overflowing axis, which at phone widths slices a
+   * landscape render into an unreadable strip. `contain` letterboxes against
+   * the page background instead, keeping the object whole.
+   */
+  fit?: string;
 }
 
-const { image, position } = Astro.props;
-const heroVars = [`--hero-image: url("${image}")`, position && `--hero-pos: ${position}`]
+const { image, position, fit } = Astro.props;
+const heroVars = [
+  `--hero-image: url("${image}")`,
+  position && `--hero-pos: ${position}`,
+  fit && `--hero-fit: ${fit}`,
+]
   .filter(Boolean)
   .join('; ');
 ---
@@ -50,7 +62,7 @@ const heroVars = [`--hero-image: url("${image}")`, position && `--hero-pos: ${po
        1.94:1 image in the 2.2:1 880px band) rendered centered with bare
        background at the sides. Plain `cover` is identical wherever the old
        value worked and fills the band where it gapped. */
-    background-size: cover;
+    background-size: var(--hero-fit, cover);
     background-position: var(--hero-pos, center);
     background-repeat: no-repeat;
   }

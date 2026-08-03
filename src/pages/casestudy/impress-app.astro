@@ -1,251 +1,164 @@
 ---
 /**
- * Port of casestudy/impress-app.html. Inline `<span style="color:
- * rgb(252,112,11)">` labels in the Research/Benchmarking/Ideation lists ->
- * `<strong class="lead-in">` (base.css utility, one of the plan's
- * accent-color consolidations). Sub-headings -> `<Eyebrow as="h3">`.
+ * Rewrite 2026-08 from owner-supplied project facts. Standard tier: the
+ * previous page ran ~2,030 words and 14 media, and the >50% cut to ~850
+ * words and 5 media is explicitly approved.
  *
- * The 4 videos (usertesting, sol01-03) are the OTHER source video pattern:
- * pre-existing native `.mp4` clips with `controls autoplay loop` and no
- * `.webm`/poster sibling (unlike every other case study's GIF-converted
- * silent loops) — passed `controls webm={false} poster={false}` on
- * ContentMedia, which now supports that shape (see ContentMedia's doc
- * comment).
+ * Internal figures are published directionally (adoption, savings, per-visit
+ * cost, store ratings) per the owner's publication rule; the Series B is the
+ * one exact public figure and carries its source link.
+ *
+ * The 4 source videos are the "native clip" pattern — pre-existing .mp4 with
+ * no .webm/poster sibling — so they pass `controls webm={false}
+ * poster={false}` (see ContentMedia's doc comment).
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
 import ContentMedia from '../../components/ContentMedia.astro';
-import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="Impress App — teeth alignment case study · Jury Alyavdin"
-  description="Designing the Impress mobile app that moved treatment monitoring online for a European chain of orthodontic clinics."
+  title="Impress App — remote aligner monitoring case study · Jury Alyavdin"
+  description="The Impress app moved the fortnightly aligner check-up out of the clinic and onto the patient's phone — shipped in three months, with a clinician approving every step."
   path="/casestudy/impress-app.html"
-  h1="Streamline teeth alignment process with Impress App"
+  h1="Moving the fortnightly check-up from the clinic chair to a phone camera"
   avatarImage="/casestudy/impress-app/logo.png"
   orbitTop="Impress"
   orbitBottom="Orthodontic service"
   glow="#f8d8d8"
   heroImage="/casestudy/impress-app/hero.png"
+  heroFit="contain"
   details={[
     { label: 'Platform', value: 'iOS, Android' },
-    { label: 'Role', value: 'Product Designer, Manager, 3D modeler' },
-    { label: 'Date', value: '2022' },
+    { label: 'Role', value: 'Design Lead, 3D modeler' },
+    { label: 'Date', value: '2021–2023' },
   ]}
 >
   <ContentBlock title="Overview">
     <p>
-      Impress, Europe's leading chain of orthodontic clinics has made its mark in 9 countries, spanning over 130
-      cities. The Impress clear aligners, recommended by seasoned orthodontists with over 15 years of experience,
-      are a testament to the brand's promise: revolutionizing smiles in a discreet, comfortable, and efficient
-      manner. The Impress medical team, known for its expertise, collaborates seamlessly to craft personalized
-      treatment plans that are projected to yield results in under six months. Their dedication has led to an
-      impressive achievement: more than 50,000 patients wearing radiant and perfectly aligned smiles.
+      Impress runs its own chain of orthodontic clinics across Europe, straightening teeth with
+      clear aligners instead of braces — more than 50,000 patients as of 2023. I was Design Lead
+      on its patient app from 2021 to 2023, and the app did one main thing: it took the
+      fortnightly check-up out of the clinic and put it on the patient's phone. The first version
+      shipped in three months and is still live, largely as designed.
     </p>
-    <ContentMedia src="/casestudy/impress-app/impress-clinic.jpeg" alt="An Impress orthodontic clinic interior" width={1400} height={800} />
-  </ContentBlock>
-
-  <ContentBlock title="Context">
     <p>
-      Impress patients, especially adults, prefer clear aligners because they are virtually invisible, allowing
-      them to undergo orthodontic treatment without the aesthetic concerns associated with traditional metal
-      braces.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/customer.png" alt="An Impress patient wearing a clear aligner" width={2320} height={1240} />
-    <p>
-      Impress company uses advanced imaging technology, such as 3D scanners, to create a highly accurate digital
-      model of the patient's teeth. These models are then used to design and manufacture the series of custom
-      aligners. The aligners are typically made from a clear, medical-grade plastic that is both strong and
-      transparent.
-    </p>
-    <p>Here's a breakdown of how such treatments typically work:</p>
-    <ContentMedia src="/casestudy/impress-app/journey01.png" alt="Overview of the Impress treatment journey" width={2600} height={1608} />
-    <p>
-      The journey begins digitally, where future patients encounter Impress either via organic searches,
-      informative blog posts, or captivating paid ads. Drawn to the clinics, their initial visit facilitates a
-      mutual commitment: patients entrust their smiles and, with a prepayment, anchor their treatment journey.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/patient.jpeg" alt="A patient's initial clinic visit" width={2000} height={1333} />
-    <p>
-      Craftsmanship ensues as bespoke aligners are meticulously crafted for each patient. With the treatment's
-      onset, some collect their kits personally from clinics, while others opt for doorstep delivery. Slipping on
-      the first aligner marks the commencement of their transformative phase.
+      I wrote the research script, designed the app, built the 3D models behind its instructional
+      tutorials, and settled the clinical rules with the orthodontists who sign off on every case.
     </p>
   </ContentBlock>
 
   <ContentBlock title="Problem">
     <p>
-      While the Impress aligners are adept at achieving transformative dental results, the process has inherent
-      challenges. Patients shift between multiple sets of aligners throughout their treatment, transitioning every
-      few weeks that mandate validation from a dental professional, leading to frequent clinic visits. These
-      repetitive appointments deplete the clinic's time and resources by overloading clinic capacity. Considering
-      the customer acquisition costs and costs of clinic maintenance, the patient visit can cost the company 50 to
-      600 euros, depending on the daytime and clinic location.
+      Treatment runs in fortnightly steps — Impress said results could show in as little as six
+      months — and each step needs a professional to confirm the teeth have actually moved before
+      the patient switches to the next aligner. In practice that confirmation meant a clinic
+      visit. Once acquisition and clinic overheads were counted, those appointments carried real
+      cost for the company, and clinic capacity was being spent on visits that lasted minutes.
+      Patients paid in time: one described it, roughly, as taking a day off work for five minutes
+      in a chair.
     </p>
-    <Eyebrow as="h3">Objective</Eyebrow>
-    <p>
-      Minimize operational expenses and Improve clinic scheduling and time management, leading the patient through
-      the process and boosting the overall experience associated with the company.
-    </p>
-  </ContentBlock>
-
-  <ContentBlock title="Research">
-    <p>Determined to understand the depth of the challenges our patients faced, I spearheaded a comprehensive research process:</p>
-    <ul class="circle-list">
-      <li>I conceptualised a structured interview script and adapted it for our call center so they could asynchronously run the interview with existing patients.</li>
-      <li>Considering local clinic areas, I ensured the script's translation into multiple languages, including Spanish.</li>
-      <li>Collaborating with the customer care team, I gathered profound insights from patient interviews.</li>
-      <li>The collected data was transcribed, translated back to English, and systematically analyzed in the future in order to track and estimate the improvements.</li>
-    </ul>
-    <p>According to the provided information, I visualized the data on the user journey map to highlight the most valuable pain points.</p>
-    <ContentMedia src="/casestudy/impress-app/journey02.png" alt="User journey map highlighting patient pain points" width={2880} height={1188} />
-    <ul class="circle-list">
-      <li><strong class="lead-in">Frequency of Visits:</strong> A significant number of patients found the bi-weekly dental checkups disruptive. The impact was twofold: interrupting personal schedules and escalating treatment costs.</li>
-      <li><strong class="lead-in">Wait Times:</strong> Extended waiting periods, even with prior appointments, were a common grievance.</li>
-      <li><strong class="lead-in">Lack of Progress Tracking:</strong> A predominant wish was to have a tool to monitor treatment progress.</li>
-      <li><strong class="lead-in">Communication Gaps:</strong> Many patients felt left in the dark regarding when to switch aligners.</li>
-      <li><strong class="lead-in">Booking System Inefficiencies:</strong> A more streamlined booking process was a recurrent request.</li>
-    </ul>
-  </ContentBlock>
-
-  <ContentBlock title="Benchmarking">
-    <p>
-      Before devising the mobile application solution, I took the initiative to analyze existing solutions in the
-      orthodontic sphere and other relevant industries. This involved brainstorming, market research, and
-      competitive benchmarking.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/benchmarking.png" alt="Competitive benchmarking of orthodontic and telehealth apps" width={2600} height={1192} />
-    <ul class="circle-list">
-      <li><strong class="lead-in">Direct Competitors:</strong> I observed that orthodontic practices worldwide have begun integrating virtual monitoring tools. While some opt for straightforward progress tracking through shared photos, others have implemented specialized software designed to chronologically map dental transformations.</li>
-      <li><strong class="lead-in">Indirect Competitors:</strong> With telehealth emerging as a robust trend, platforms such as Teladoc and Doctor On Demand have ushered in a new era of virtual medical consultations. I gleaned invaluable insights by delving into their user interface designs, onboarding procedures, and connectivity solutions. Moreover, messengers appeared to be the most relevant competitors considering treatment procedures in small or private clinics.</li>
-      <li><strong class="lead-in">Non-healthcare Sectors:</strong> Venturing beyond healthcare, I analyzed how entities in unrelated sectors managed regular check-ins and client consultations. Fitness applications like MyFitnessPal and 7 Minute Workout, emphasizing progress visualization, reminders, and expert connections, provided a blueprint adaptable to the orthodontic context.</li>
-    </ul>
-
-    <div style={`height: var(--space-block)`} />
-
-    <p>
-      After assimilating these insights, I identified gaps and areas of potential enhancement in the existing
-      solutions. It became evident that a consolidated platform, imbibing the best of observed features and
-      customizing them to cater to orthodontic patients, would be the optimal way forward.
-    </p>
-  </ContentBlock>
-
-  <ContentBlock title="Ideation">
-    <p>
-      With the research insights in hand, I facilitated brainstorming sessions with our product design and
-      customer service teams. These sessions were pivotal in generating creative ideas on how technology can
-      resolve the specific issues our patients face.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/ideation.png" alt="Brainstorming outcomes from the ideation sessions" width={1600} height={1160} />
-    <p>From the brainstorming outcomes, I synthesized the ideas into coherent potential solutions. Each solution targeted a particular issue:</p>
-    <ul class="circle-list">
-      <li><strong class="lead-in">A Remote Consultation System:</strong> To address the need for frequent physical visits, I proposed a remote consultation system. This system would use video calls and messaging to allow for real-time interactions between patients and orthodontists, thereby reducing the need for in-clinic appointments.</li>
-      <li><strong class="lead-in">Digital Treatment Monitoring Tools:</strong> Recognizing the desire of patients to track their progress, I recommended the development of digital tools within our app. These tools would enable patients to monitor their treatment milestones through visual representations and notifications, empowering them with immediate insights into their progress.</li>
-      <li><strong class="lead-in">Direct Communication Channel:</strong> To eliminate communication barriers, I suggested implementing a direct communication channel within the app. This would facilitate immediate and clear communication between patients and their care teams, streamlining the information flow and ensuring that queries and concerns are swiftly addressed.</li>
-      <li><strong class="lead-in">Appointment System Overhaul:</strong> Lastly, the feedback pointed towards the need for a more user-friendly appointment system. I put forward the idea of revamping our existing system to include an intuitive, easy-to-navigate interface that would allow for seamless appointment scheduling and management.</li>
-    </ul>
-  </ContentBlock>
-
-  <ContentBlock title="User testing">
-    <p>
-      During the development of the first version of the mobile application, I spearheaded a comprehensive user
-      testing process that played a pivotal role in shaping our final product. This iterative approach involved
-      releasing a series of prototypes, each designed to test specific aspects of the user experience.
-    </p>
+    <p>This is the appointment in question — a clinician, a scanner, and a chair, repeating every fortnight for the length of the treatment:</p>
     <ContentMedia
-      kind="video"
-      controls
-      webm={false}
-      poster={false}
-      src="/casestudy/impress-app/usertesting"
-      alt="A user testing session for the Impress app prototype"
-      width={1280}
-      height={1022}
+      src="/casestudy/impress-app/patient.jpeg"
+      alt="A gowned clinician using an intraoral scanner on a patient seated in a clinic chair"
+      width={2000}
+      height={1333}
     />
+    <div style={`height: var(--space-block-lg)`} />
+    <p>Consultation, plan, manufacturing and fitting happen once; the check-up in the middle repeats for the length of the treatment:</p>
+    <a href="/casestudy/impress-app/journey01.png" aria-label="Open the full-size treatment lifecycle diagram">
+      <ContentMedia
+        src="/casestudy/impress-app/journey01.png"
+        alt="Six-stage diagram: consultation, custom plan, manufacturing, onboarding, check-ups, duration"
+        width={2600}
+        height={1608}
+      />
+          <span class="media-note">Open full size</span>
+    </a>
     <p>
-      Our diverse participant pool, comprising existing Impress patients across various demographics, provided
-      invaluable feedback. From the initial prototype, we learned the importance of intuitive navigation, leading
-      to a more streamlined user interface in subsequent iterations. The second round of testing highlighted a
-      desire for more personalized progress tracking, prompting us to enhance the app's visualization tools. We
-      also encountered valuable suggestions regarding the appointment scheduling feature, emphasizing the need for
-      greater flexibility and ease of use. Through this iterative testing, we not only fine-tuned functionalities
-      but also deepened our understanding of user expectations and pain points. These learnings were instrumental
-      in refining the app into a user-centric platform that truly resonates with our patients' needs, ultimately
-      enhancing the overall treatment experience with the application.
+      I wrote a structured interview script and the call centre ran it live with existing
+      patients, on the phone, in Spanish. Five things came back consistently: the fortnightly
+      check-ups disrupted people's schedules, waiting rooms ate time even with an appointment,
+      patients wanted to watch their own progress, they were unsure when they were allowed to
+      switch aligners, and booking was harder than it needed to be.
     </p>
+    <p>Mapping the treatment stage by stage is what turned those complaints into a shape — pain at every step from the first visit to the final fitting, with the recurring clinic visit running through all of it:</p>
+    <a href="/casestudy/impress-app/journey02.png" aria-label="Open the full-size journey map">
+      <ContentMedia
+        src="/casestudy/impress-app/journey02.png"
+        alt="Journey map with patient quotes and pain points across every stage of treatment"
+        width={2880}
+        height={1188}
+      />
+          <span class="media-note">Open full size</span>
+    </a>
   </ContentBlock>
 
-  <ContentBlock title="Solution">
+  <ContentBlock title="The photograph was the design problem, not the app">
     <p>
-      To address the challenges discerned during the research phase, I proposed the development of an innovative
-      mobile application, proving the model on the existing and potential customers and justifying the economic
-      value. This platform served as the crux for patient and orthodontic team interactions and was infused with
-      features to streamline and amplify the user experience.
+      The obvious move was to let patients photograph their own teeth and have a clinician review
+      the images remotely. The orthodontists' objection was not about tooling. Their licence rests
+      on what they can assess, and as one of them put it, roughly: I can't sign off on what I can't
+      examine.
     </p>
-
-    <div style={`height: var(--space-block-lg)`} />
-
-    <Eyebrow as="h3">Kit delivery</Eyebrow>
     <p>
-      The transition from the initial offline clinic experience to our online platform is a crucial juncture where
-      the patient's journey takes a leap toward digital engagement. My strategy here was to design an informative
-      and reassuring kit delivery process that begins with educating the patient about the manufacturing stage. A
-      series of personalized emails and app notifications provide real-time updates on the production of their
-      custom aligners, building anticipation and trust in the product's quality.
+      <strong class="lead-in">Rejected: keeping every check-up in the clinic.</strong> It was
+      safe, and it was what the clinics already did — but it meant the service could only grow by
+      adding chairs, and patients kept paying in half-days off work.
     </p>
+    <p>
+      That made the photograph the real problem. A clinically usable photo needs specific angles,
+      a cheek retractor held in place, and enough light — taken by an untrained person, in a
+      bathroom, on a phone. A picture that misses those is worthless to the clinician reviewing
+      it, however good the software around it is. So the app's actual job was teaching capture.
+    </p>
+    <p>The capture flow guides each shot the clinician needs, then plays it back against the last one:</p>
     <ContentMedia
-      kind="video"
-      controls
-      webm={false}
-      poster={false}
-      src="/casestudy/impress-app/sol01"
-      alt="Kit delivery tracking flow"
-      width={1280}
-      height={684}
+      src="/casestudy/impress-app/sol04.png"
+      alt="Retractor-guided photo capture screens beside a before-and-after comparison view"
+      width={2320}
+      height={1240}
     />
-    <p>
-      Upon dispatch, patients receive a detailed timeline, including tracking information for their kit delivery.
-      This communication is critical as it prepares them for the start of their treatment, ensuring they're ready
-      to begin as soon as their kit arrives. The delivery is not just a parcel but a pivotal touchpoint that marks
-      the commitment to their new smile journey.
-    </p>
-
-    <div style={`height: var(--space-block-lg)`} />
-
-    <Eyebrow as="h3">Onboarding</Eyebrow>
-    <p>
-      The onboarding phase is designed to be an immersive and educational experience. When patients receive their
-      treatment kit, they find a well-organized package along with an intuitive mobile app to guide them through
-      the initial setup. The app includes a series of interactive tutorials that visually and verbally guide
-      patients on how to use their aligners correctly. This process is vital to ensure patient confidence and
-      proper use of the aligners from day one.
-    </p>
+    <p>I modelled the kit in 3D so the tutorials could show each step from the angle a patient actually sees:</p>
     <ContentMedia
       kind="video"
       controls
       webm={false}
       poster={false}
       src="/casestudy/impress-app/sol02"
-      alt="Interactive onboarding tutorial for new aligners"
+      alt="Onboarding tutorial animating how to fit and change an aligner"
       width={1280}
       height={684}
     />
+  </ContentBlock>
+
+  <ContentBlock title="A clinician approves every step">
     <p>
-      To augment this experience, I built 3D models of the treatment kit and incorporated a series of made-in-house
-      short looped videos that show patients detailed instructions reflecting each step needed. The onboarding is
-      not just instructional but also aims to empower patients with the knowledge and tools they need to take
-      control of their treatment.
+      With photos arriving reliably, a cheaper design came within reach: let the app judge the
+      images and tell patients when to advance. It would have been faster for the patient and
+      cheaper for the company, and it is what a pure software product would have done.
     </p>
-
-    <div style={`height: var(--space-block-lg)`} />
-
-    <Eyebrow as="h3">Treatment and communication</Eyebrow>
     <p>
-      For the ongoing treatment process, the mobile application is central to maintaining treatment efficacy and
-      patient engagement. A critical feature is the wear-time tracking suggestion, which gently nudges patients to
-      maintain the recommended 22 hours of aligner use per day. The app includes a timer and a daily log where
-      patients can track their wear time, receive reminders, and celebrate milestones to stay motivated.
+      <strong class="lead-in">Rejected: letting the app advance patients on its own.</strong> A
+      wrong call about tooth movement is a clinical harm, not a poor experience, and nobody on the
+      clinical side would carry that.
+    </p>
+    <p>
+      So every transition waits on a clinician. The patient uploads, the orthodontist reviews, and
+      only then does the next aligner become available. Patient photographs are health data —
+      special-category data under GDPR Article 9 — which set the terms for moving them from a phone
+      to a clinician's screen.
+    </p>
+    <p>
+      The other half of the loop was evidence. Aligners only work if they are worn around 22 hours
+      a day, the standard clinical protocol, so the app logs wear time and reminds patients —
+      giving the reviewing clinician something firmer than recollection to go on.
+    </p>
+    <p>
+      Two rounds of testing with existing patients shaped it, and the second is where the request
+      for personal progress tracking came from. The daily log is what answered it — it turns "have
+      you worn them?" into something a clinician can see:
     </p>
     <ContentMedia
       kind="video"
@@ -253,69 +166,28 @@ import Eyebrow from '../../components/Eyebrow.astro';
       webm={false}
       poster={false}
       src="/casestudy/impress-app/sol03"
-      alt="Wear-time tracking and daily log"
+      alt="Daily wear-time log with a timer and reminders to keep aligners in"
       width={1280}
       height={684}
     />
-    <p>
-      Progress tracking is facilitated through a feature where patients capture and upload photos of their teeth
-      after completing each step of their treatment. These images are sent to their orthodontist through a
-      HIPAA-compliant platform within the app, enabling the doctor to review and approve the transition to the
-      next aligner set remotely, minimizing clinic visits.
-    </p>
-    <p>
-      Additionally, a built-in messenger function allows real-time communication with the patient care team. This
-      ensures that any concerns or questions can be addressed promptly, providing a continuous support system. It
-      also offers the flexibility for the care team to check in with patients, ensuring they feel guided and cared
-      for throughout their treatment journey.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/sol04.png" alt="In-app messenger with the patient care team" width={2320} height={1240} />
-    <p>
-      By enhancing each of these phases with thoughtful, user-centric features, I aimed to ensure a smooth,
-      informed, and engaging treatment process for Smile2Impress patients, leading to a higher level of
-      satisfaction and better treatment outcomes.
-    </p>
   </ContentBlock>
 
-  <ContentBlock title="Conclusion">
+  <ContentBlock title="Outcome">
     <p>
-      The journey from concept to execution was rapid yet remarkably efficient, with the first version of the app
-      being developed and deployed within a mere three months, followed by bi-weekly updates to ensure continuous
-      improvement and responsiveness to user feedback.
+      <strong class="lead-in">Shipped in three months, then every fortnight:</strong> a large share
+      of patients were on it within months, and most were using it within six. Taking those
+      appointments out of the clinics produced net savings in the low hundreds of thousands of
+      euros a year once development costs were counted, and the app was well rated on both stores.
+      In July 2022 Impress raised a{' '}
+      <a href="https://techcrunch.com/2022/07/11/barcelonas-impress-heads-towards-a-125m-series-b-round-in-its-bid-to-digitize-orthodontics">$125 million Series B</a>{' '}
+      — company context rather than the app's doing. Figures from Impress's internal reporting are
+      given directionally here.
     </p>
     <p>
-      The adoption rate of the application by new customers was impressively swift, capturing 50% of the clientele
-      within 3-4 months of launch, and achieving full adoption in 6 months. This seamless transition is indicative
-      of the application's intuitive design and the immediate value it provided to the customers.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/results01.png" alt="Adoption results after launch" width={3752} height={2500} />
-    <p>
-      From a cost perspective, the application proved to be a financially astute investment. The savings generated
-      in the early phase, amounting to 200,000 euros, factoring in the development costs, underscore the
-      application's role in streamlining operations and reducing overheads. This efficiency gain not only
-      optimised the company's resource allocation but also demonstrated the potential for scalable, tech-driven
-      solutions in orthodontic care.
-    </p>
-    <p>
-      The application's performance on AppStore and Google Play with ratings hovering around 4.7 is a clear
-      indicator of user satisfaction and the product's high quality. These ratings, coupled with user reviews,
-      serve as a beacon for potential customers, instilling trust and reinforcing the brand's reputation for
-      excellence.
-    </p>
-    <ContentMedia src="/casestudy/impress-app/results02.png" alt="App Store and Google Play ratings" width={2880} height={1720} />
-    <p>
-      Moreover, the financial markets took note of the company's innovative strides, as evidenced by the
-      impressive $125 million raised in the Series B funding round. Such a significant infusion of capital further
-      validated the business model and the strategic direction of Smile 2 Impress. Being spotlighted on
-      TechCrunch as one of the fastest-growing companies in the EU further amplified the company's market presence
-      and signaled its competitive edge in the health tech arena.
-    </p>
-    <p>
-      In conclusion, the deployment of the Smile2Impress application catalysed a transformative shift within the
-      organisation, not only in terms of operational efficiency and customer satisfaction but also in establishing
-      the company as a frontrunner in the intersection of healthcare and technology. It underlines a narrative of
-      growth and innovation, positioning Smile2Impress as a beacon of digital advancement in the orthodontic
-      sector.
+      <strong class="lead-in">What it cost:</strong> the patients who most needed a chair. The workflow was built around the common
+      case, and treatments that genuinely needed hands-on assessment were served worse by a
+      process designed for a photograph. Catching those cases early, instead of waiting for a
+      clinician to spot them at review, is where I would start if I picked this up again.
     </p>
   </ContentBlock>
 </CaseStudyLayout>

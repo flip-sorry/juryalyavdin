@@ -4,8 +4,8 @@
  * facts. Standard tier. Research credited to the client (tender package) —
  * never first-person. Tender outcome closes the page; no procurement framing
  * up top.
- * Persona portraits (manager/worker/delivery.png) and flow.png orphaned —
- * files stay in public/ per the URL contract.
+ * Persona portraits (manager/worker/delivery.png) stay orphaned — stock
+ * photography, no evidentiary job; files remain in public/ per the URL contract.
  * `worker.mp4` is a portrait clip (478x956); constrained via the same
  * page-local max-width wrapper as before.
  */
@@ -39,17 +39,21 @@ import ContentMedia from '../../components/ContentMedia.astro';
       them to the shops that sell them. I designed the tool meant to run that flow — warehouse
       manager, warehouse worker, delivery manager, one system. I was the solo designer on the bid;
       the commercial side was handled by others, and every flow and screen here is mine. The brief
-      covered the existing process end to end, from manufacturing to retail.
+      covered the existing process end to end, from manufacturing to retail.{' '}
       <strong class="lead-in">The result:</strong> the proposal won PepsiCo's tender. It was never
       built — and the design decisions are the part worth reading.
     </p>
+    <p>Manufacturing, distribution and retail were in scope; everything either side of them was somebody else's problem:</p>
+    <div class="flow-media">
+      <ContentMedia src="/casestudy/pepsi/flow.png" alt="Supply-chain stages with manufacturing, distribution and retail picked out from the rest" width={1520} height={848} />
+    </div>
   </ContentBlock>
 
   <ContentBlock title="Problem">
     <p>
       The tender package came with PepsiCo's own research: interviews the company had already run
       with its warehouse and delivery staff. I worked from those findings rather than from
-      interviews of my own — and they were blunt.
+      interviews of my own — and they were blunt.{' '}
       <strong class="lead-in">The floor ran on paper:</strong> whatever the existing software said,
       the operation followed printed lists and whiteboards. Any new tool had to beat paper, not the
       old system.
@@ -78,7 +82,7 @@ import ContentMedia from '../../components/ContentMedia.astro';
       real.
     </p>
     <p>
-      The structural call followed: one app that switches what it shows by who signs in.
+      The structural call followed: one app that switches what it shows by who signs in.{' '}
       <strong class="lead-in">What lost:</strong> purpose-built apps per role — the plausible
       default, and the expensive one. Each handoff between separate tools becomes a seam where
       orders stall, and the people sharing one physical flow end up with three systems to learn and
@@ -157,11 +161,15 @@ import ContentMedia from '../../components/ContentMedia.astro';
     max-width: 280px;
   }
 
-  /* scenario.png is an ~87%-transparent dark-UI export: near-white lane labels
-     over nothing. A stable dark plate (gray-900 is a primitive, never
-     theme-switched) renders the diagram as designed on BOTH themes. Full fix
-     is an owner re-export with AA label contrast. */
-  .scenario-media :global(.content-media) {
+  /* Both diagrams are dark-UI exports on transparent backgrounds: their ink was
+     drawn against the dark canvas, so on the latte theme scenario.png's lane
+     labels and flow.png's stage labels drop to 1.5-2.5:1 and effectively
+     disappear. A stable dark plate (gray-900 is a primitive, never
+     theme-switched) renders both as designed on BOTH themes — seamless on dark,
+     a declared dark card on latte. Full fix is an owner re-export with AA
+     label contrast. */
+  .scenario-media :global(.content-media),
+  .flow-media :global(.content-media) {
     background-color: var(--color-gray-900);
   }
 </style>

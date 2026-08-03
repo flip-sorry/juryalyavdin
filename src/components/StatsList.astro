@@ -34,15 +34,16 @@ const { items } = Astro.props;
     grid-auto-rows: minmax(0, auto);
   }
 
+  /* Deliberate deviation from the source (style/casestudy.css:184-193), 2026-08:
+     the source put each cell in `flex; space-between` here, which sizes every
+     row independently — values shared no left edge (measured 135px apart) and
+     long label/value pairs double-wrapped into a ragged 2×2 tangle. Keeping the
+     stacked label-above-value relationship the wider layouts use makes the
+     numbers scannable on a phone, which is the whole point of a stat block. */
   @media (max-width: 380px) {
     .details-grid-two {
       grid-template-columns: 1fr;
-      grid-gap: 0;
-    }
-
-    .grid-two-cell {
-      display: flex;
-      justify-content: space-between;
+      grid-gap: var(--space-3);
     }
   }
 </style>

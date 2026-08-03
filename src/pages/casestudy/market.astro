@@ -1,35 +1,45 @@
 ---
 /**
- * Port of casestudy/market.html. Typo fix per the plan: "Bridging the
- * online-offline divider" -> "...divide" (wrong word, not the CSS class).
- * Also fixes "Huavei" -> "Huawei" in the details grid — not in the plan's
- * named list, but the same class of proper-noun spelling error as the
- * named fixes, so corrected on the same rationale; flagged in the report.
+ * Rewrite of casestudy/market.html (2026-08) from owner-supplied project
+ * facts. Standard tier. Publication rule: product metrics exact (ratings,
+ * 3x target / 10x result, 40% new-user growth); business and org figures
+ * directional (revenue "fell sharply", team "grew from three into a
+ * department", branch "grew several-fold").
  *
- * `.details-grid-two` tables under Problem/Goal -> StatsList. Two content-
- * text sections ("...flow" / "...research") under one source `.content-
- * title` combine into one ContentBlock (see pepsi.astro for why: a literal
- * second `.content-text` sibling would grid-wrap under column 1, not stack
- * under column 2 — a 2-column grid can't hold 3 auto-flowed children as the
- * source intended).
+ * [NEEDS INTAKE: June 2019 v6.0 — inherited breakage or our own launch?
+ * see intake §6 research block] The Problem section below is written
+ * strictly from the owner's own answers (web mirror -> cross-platform ->
+ * maintenance ceased -> revenue fell sharply). A dated, independently
+ * measured third-party account of the June 2019 v6.0 rewrite and its
+ * review-bombing exists and would let this section cite an external source
+ * instead of recollection alone — but only once the owner confirms whether
+ * that event was the state the team inherited or the team's own relaunch
+ * landing badly. Do not add the citation before that answer.
  *
- * `.solution-image` / `.solution-image-grid` are per the plan's explicit
- * call-out: single-use, so they stay as scoped styles here rather than
- * becoming a shared component. They sit between the Solution and Results
- * content-blocks in source, not nested inside either.
+ * MK-15: the unsourceable "80% still buy offline" is replaced by the cited
+ * external figure (online commerce ~4-6% of Russian retail, 2018-2019).
+ * `market-graph.jpg` is therefore ORPHANED — it bakes "80%" into the image
+ * pixels, which would contradict the prose and is unciteable besides.
+ * Also orphaned: journey.png, persona.png, jtbd.png (methodology diagrams),
+ * market-stories/final/02.png, old-logo.jpg. All stay in public/ per the
+ * URL contract.
+ *
+ * The page-local `.solution-image` / `.solution-image-grid` raw-<img> idiom
+ * is dropped in favour of ContentMedia throughout, matching the four
+ * already-shipped rewrites (ContentMedia carries the theme-aware hairline,
+ * aspect-ratio box and lazy loading; the raw imgs carried none of it).
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
 import ContentMedia from '../../components/ContentMedia.astro';
 import StatsList from '../../components/StatsList.astro';
-import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
   title="Yandex.Market — mobile app case study · Jury Alyavdin"
-  description="Refining the Yandex.Market mobile app to find product-market fit, blending offline and online shopping with AI-powered image recognition."
+  description="Yandex.Market had stopped funding its mobile app. The relaunch bet on shoppers who weren't online at all: daily active users grew tenfold against a 3× target."
   path="/casestudy/market.html"
-  h1="Refining mobile application for optimal product-market fit"
+  h1="Finding product-market fit for an app the company had written off"
   avatarImage="/casestudy/market/market-logo.jpg"
   orbitTop="Yandex.Market"
   orbitBottom="E-commerce"
@@ -43,211 +53,174 @@ import Eyebrow from '../../components/Eyebrow.astro';
 >
   <ContentBlock title="Overview">
     <p>
-      Yandex.Market stands as a pivotal product within the diverse Yandex services ecosystem. It is a vibrant
-      marketplace where sellers showcase their offerings, and potential buyers quickly discover products that
-      cater to their needs. Each month, an impressive base of over 17 million users flocks to Yandex.Market,
-      leveraging its platform to compare and narrow down its product choices.
+      Yandex.Market is a price-comparison marketplace — people go there to weigh models, prices and
+      sellers before they buy. Yandex reported over 17 million people using it every month. The
+      mobile app was another matter: by 2019 the company had stopped maintaining it. We pitched a
+      way back and won a small team of three — a product manager, an analyst and me as the only
+      designer. I owned all product design through the relaunch.{' '}
+      <strong class="lead-in">The result:</strong> daily active users grew tenfold against a 3×
+      target, and new-user growth rose 40% after the relaunch.
     </p>
-    <p>
-      The platform offers its users comprehensive product descriptions and opportunities to juxtapose models based
-      on price, features, and more. A versatile filtering system aids users in refining their searches, while the
-      invaluable recommendations from fellow users provide insights from real-world experiences.
-    </p>
+    <StatsList
+      items={[
+        { label: 'Daily active users', value: '3× target, 10× achieved' },
+        { label: 'New users after relaunch', value: '+40%' },
+      ]}
+    />
   </ContentBlock>
 
   <ContentBlock title="Problem">
     <p>
-      Yandex.Market's prior mobile application was essentially a mirrored version of its web counterpart. In an
-      effort to streamline operations and reduce developmental costs, the decision was made to transition to a
-      cross-platform solution.
+      The app had been built as a mirror of the website: a thin native shell wrapped around a
+      webview. It was chosen to cut development cost and keep mobile in step with web releases,
+      and on those terms it worked. As a product it did not.
     </p>
-    <ContentMedia src="/casestudy/market/market-webview.png" alt="The prior webview-based mobile application" width={2280} height={1152} />
+    <p>The architecture is the whole problem in one diagram — a search bar, a tab bar, and a web page in between:</p>
+    <ContentMedia
+      src="/casestudy/market/market-webview.png"
+      alt="Diagram of the old app: thin native search and tab bars wrapped around a webview panel"
+      width={2280}
+      height={1152}
+    />
     <p>
-      Although economically efficient, this approach presupposed the app content would be updated in tandem with
-      the web version. However, the anticipated cost-efficiency brought an unintended consequence: a noticeable
-      drop in the application's interaction speed. This downturn, in turn, led to significant user attrition,
-      impacting revenue progressively each month. Ultimately, it led to a complete cessation of the mobile
-      project's maintenance.
+      Interaction speed suffered, people left, and revenue fell sharply month after month until
+      maintenance stopped altogether. Both stores told the same story: ratings had sunk to 2.4 and
+      2.7. That was what we inherited — a product the company had already written off, sitting on a
+      technical foundation none of us had the resources to replace.
     </p>
-    <StatsList
-      items={[
-        { label: 'Revenue', value: 'Dropped 2 times' },
-        { label: 'Google Play & App Store', value: 'Dropped to 2.4 / 2.7' },
-      ]}
+  </ContentBlock>
+
+  <ContentBlock title="Offline shoppers were already comparison-shopping — by walking">
+    <p>
+      Yandex runs an in-house research lab, and I used it to work out who was actually on the
+      service. One segment that mattered was mothers replacing worn-out household items, buying
+      in the same categories over and over.
+    </p>
+    <p>The research placed the product precisely: not the moment someone decides to buy, but the stretch in the middle where they compare, choose, and pick a shop:</p>
+    <div class="dark-plate">
+      <ContentMedia
+        src="/casestudy/market/journey.png"
+        alt="Purchase funnel with search, category, item choice and store choice highlighted"
+        width={1768}
+        height={1254}
+      />
+    </div>
+    <p>
+      The audience I wanted, though, was not on the service at all. Online commerce was still a
+      sliver of Russian retail — independent estimates put it between 4 and 6% of everything sold,
+      with PwC's figure at roughly 4% for 2018. Nearly all shopping still happened in physical
+      shops. So I went to a shopping mall and interviewed people there: not our users, the people
+      we had never reached.
+    </p>
+    <p>
+      What they were doing was our product's job, performed by hand. They walked from shop to shop
+      with a model in mind, checking prices and specifications against whatever they had seen two
+      shops ago. They were comparison shopping already — on foot, from memory.{' '}
+      <strong class="lead-in">What lost — chasing the shoppers already online:</strong> the obvious
+      move, and the crowded one. It would have left the people doing this work on foot exactly where
+      they were: walking between shops, comparing from memory, with no reason to open our app.
+    </p>
+    <p>The comparison they were making on foot, as a single screen — models, offer counts and starting prices side by side:</p>
+    <ContentMedia
+      src="/casestudy/market/market-01.png"
+      alt="Phone screen comparing two smartphones with offer counts and starting prices"
+      width={1728}
+      height={1260}
     />
   </ContentBlock>
 
-  <ContentBlock title="Goal">
+  <ContentBlock title="A photo did the work the search box could not">
     <p>
-      In light of these challenges, an experimental team was formed, comprising myself as the product designer, an
-      analyst, and a product manager. Our mandate was to identify a compelling product-market fit for the mobile
-      application, providing justifiable grounds to rejuvenate the entire mobile service. Despite our earnest
-      endeavors, the self-imposed technical constraints became our Achilles' heel. Signs increasingly pointed to
-      an essential shift in our app development direction, including a foundational change to the technical heart
-      of the platform. However, the necessary resources for such a transformative move eluded our product team.
+      The mall interviews kept snagging on the same thing. People knew exactly what they wanted and
+      could not type it. One shopper put it roughly this way: I know what I want, I just don't know
+      what it's called. A search box is no use to someone holding a worn-out object whose model name
+      they never learned.
     </p>
-    <StatsList
-      items={[
-        { label: 'App Store & Google Play', value: '>4' },
-        { label: 'DAU', value: '3x' },
-      ]}
+    <p>
+      So I put a camera where the search box had been — photograph the thing itself, or its price
+      tag, or its barcode, and let the app do the naming.{' '}
+      <strong class="lead-in">What lost — better search and a richer catalogue:</strong> the safe
+      spend. It would have sharpened a tool that had already failed these shoppers, and it would do
+      nothing for a person who cannot name what they are holding.
+    </p>
+    <p>The capture screen offers the three things worth pointing a camera at in a shop — a barcode, the object itself, or the price label:</p>
+    <ContentMedia
+      src="/casestudy/market/market-02.png"
+      alt="Camera screen with a mode selector reading barcode, object and price label"
+      width={1728}
+      height={1260}
     />
-  </ContentBlock>
-
-  <ContentBlock title="Process">
-    <Eyebrow as="h3">Understanding the User Journey</Eyebrow>
+    <div style={`height: var(--space-block-lg)`} />
+    <p>Point it at a product and the app returns the category it recognized, with offers ready to compare:</p>
+    <ContentMedia
+      src="/casestudy/market/market-solution.png"
+      alt="Camera capture screen beside the resulting category listing with prices and offers"
+      width={1482}
+      height={1326}
+    />
     <p>
-      Our pursuit is to refine the Yandex.Market mobile application commenced by dissecting the primary customer
-      journey. At the heart of our product, the journey usually sprouts from an initial intent. For instance, when
-      a potential user is scouting for new headphones, their journey typically initiates with internet searches
-      for viable options. At this juncture, our service begins its interaction, assisting and guiding the user
-      right up to the point of purchase.
+      The limitation was inside the bet from the start. Image recognition in 2019 could tell a
+      laptop from a kettle, but not which laptop — and replacement buying is precisely the case that
+      turns on the variant, the model, the size. So the design handed off deliberately: recognize
+      the category, then put the comparison right there and let the person finish the identification
+      themselves.
     </p>
-    <ContentMedia src="/casestudy/market/journey.png" alt="The primary customer journey" width={1768} height={1254} />
-
-    <div style={`height: var(--space-section)`} />
-
-    <Eyebrow as="h3">Crafting personas through insights</Eyebrow>
-    <p>Fortuitously, Yandex boasts a dedicated in-house research laboratory.</p>
-    <p>
-      With its aid, I delved deep into understanding our primary target audience by scrutinizing their activities
-      and behavior. From this rich data pool, I sculpted distinct personas. Most notably, our dominant user group
-      consisted of mothers who primarily shopped to replace worn-out items and had a pronounced inclination
-      towards goods of regular consumption.
-    </p>
-    <ContentMedia src="/casestudy/market/persona.png" alt="User personas derived from Yandex research" width={2480} height={1368} />
-
-    <div style={`height: var(--space-section)`} />
-
-    <Eyebrow as="h3">Defining the 'Jobs To Be Done' (JTBD)</Eyebrow>
-    <p>
-      Having established our personas, the next pivotal step was understanding their motivations, challenges, and
-      desired outcomes. I orchestrated interviews with representatives from each persona segment, distilling
-      insights and framing the primary 'jobs to be done' pertinent to our mobile application.
-    </p>
-    <ContentMedia src="/casestudy/market/jtbd.png" alt="Jobs to be done framework for the mobile application" width={2000} height={976} />
-
-    <div style={`height: var(--space-section)`} />
-
-    <Eyebrow as="h3">User research: unearthing opportunities</Eyebrow>
-    <p>
-      Diving further into qualitative research unveiled an expansive market segment untouched by our digital
-      services. It was a revelation that 80% of Russian consumers still favored offline shopping, gravitating
-      towards local malls and shops in their vicinity over waiting for home-delivered parcels. This presented us
-      with a compelling challenge: How do we transition this offline audience to our mobile app?
-    </p>
-    <ContentMedia src="/casestudy/market/market-graph.jpg" alt="Graph of offline vs. online shopping preference" width={2280} height={1800} />
-    <p>
-      With this challenge at hand, I embarked on a field research mission, heading to a nearby mall to interact
-      with these traditional shoppers. So the primary objective was to decode their shopping behaviors and
-      validate my hypotheses based on the previously established 'jobs to be done'.
-    </p>
+    <p>In the shipped app the camera sits in the search bar rather than behind a menu — the bet went to the primary entry point:</p>
+    <ContentMedia
+      src="/casestudy/market/market-main.png"
+      alt="Shipped dark-theme app: home feed with a camera button in the search bar, and results"
+      width={1728}
+      height={1260}
+    />
+    <div style={`height: var(--space-block-lg)`} />
+    <p>And in the shops themselves, the behaviour the bet was built for — a phone pointed at the thing on the shelf, which comes back as a card with a price:</p>
     <ContentMedia
       kind="video"
       controls
       webm={false}
-      poster={false}
       src="/casestudy/market/market-custdev"
-      alt="Field research interviewing offline shoppers at a mall"
+      alt="Mall footage, then a split screen of shoppers aiming phone cameras at products in stores"
       width={1280}
       height={720}
     />
   </ContentBlock>
 
-  <ContentBlock title="Solution">
-    <Eyebrow as="h3">Deciphering the offline shopper's mindset</Eyebrow>
+  <ContentBlock title="Outcome">
     <p>
-      A pivotal insight emerged after rigorous research and first-hand interactions with traditional shoppers. A
-      significant portion of this audience was engrossed in a tedious task: hopping from one offline store to
-      another, comparing prices and characteristics of similar, if not identical, products. This behavior
-      presented a unique opportunity.
+      <strong class="lead-in">Target versus result:</strong> we set out to triple daily active
+      users. They grew tenfold. New-user growth rose 40% after the relaunch, and store ratings
+      recovered from 2.4 and 2.7 to 4.7.
     </p>
-    <ContentMedia src="/casestudy/market/market-solution.png" alt="Solution concept for bridging offline and online shopping" width={1482} height={1326} />
-    <Eyebrow as="h3">Bridging the online-offline divide</Eyebrow>
+    <StatsList
+      items={[
+        { label: 'Store ratings', value: '2.4 and 2.7 → 4.7' },
+        { label: 'Daily active users', value: 'Tenfold, against a 3× target' },
+      ]}
+    />
     <p>
-      Harnessing the power of AI and image recognition, we evolved the Yandex.Market mobile applications to
-      simplify this process for our users. The revamped application empowered customers to simply snap photos of
-      products in brick-and-mortar stores. Within moments, they could contrast their chosen products with others,
-      ensuring they bagged the best deal from a nearby mall or online.
+      Nothing clever moved the ratings: a genuinely better product replaced a broken one and the
+      reviews followed. The mandate changed with it. Mobile went from a project the company had
+      stopped funding to the center of its e-commerce strategy, the team grew from three of us into
+      a department, and the branch's revenue grew several-fold as it became the nucleus of the whole
+      e-commerce unit.
     </p>
     <p>
-      This innovative feature seamlessly blurred the boundaries between traditional and digital shopping
-      experiences. It offered users the tactile and immediate satisfaction of in-person shopping, complemented by
-      the convenience and extensive choice of online browsing. As a result, customers could kickstart their
-      shopping journey in a physical store and effortlessly continue it from the comfort of their homes.
-    </p>
-  </ContentBlock>
-
-  <div style={`height: var(--space-block-lg)`} />
-
-  <div class="solution-image-grid">
-    <img src="/casestudy/market/market-stories.png" alt="Market app stories feature" width={1728} height={1260} />
-    <img src="/casestudy/market/market-main.png" alt="Market app main screen" width={1728} height={1260} />
-  </div>
-  <div class="solution-image">
-    <img src="/casestudy/market/market-final.jpg" alt="Final Market app screens" width={3480} height={1800} />
-  </div>
-  <div class="solution-image-grid">
-    <img src="/casestudy/market/market-01.png" alt="Market app screen detail 1" width={1728} height={1260} />
-    <img src="/casestudy/market/market-02.png" alt="Market app screen detail 2" width={1728} height={1260} />
-  </div>
-
-  <ContentBlock title="Results">
-    <Eyebrow as="h3">Explosive user growth</Eyebrow>
-    <p>
-      We didn't just witness a spike in new user registrations; the daily active users skyrocketed, increasing
-      tenfold! This surge wasn't merely a transient spike but a testament to our app's enhanced user experience
-      and value proposition.
-    </p>
-    <Eyebrow as="h3">Team expansion</Eyebrow>
-    <p>
-      As a direct consequence of our burgeoning success, our team grew exponentially. From a modest group, we
-      swelled to an impressive roster of 40 dedicated members in just 18 months. This growth was not just in
-      numbers but also in the depth of expertise and specialization we could now tap into.
-    </p>
-    <Eyebrow as="h3">Historic milestone</Eyebrow>
-    <p>
-      This phase of the app's evolution wasn't just another update — it was arguably the most pivotal chapter in
-      its history. The overwhelming success realigned the company's priorities, catapulting the mobile app's
-      development branch to the forefront of our strategic focus.
-    </p>
-    <Eyebrow as="h3">Ratings skyrocket</Eyebrow>
-    <p>
-      Reflecting our users' renewed trust and satisfaction, our app's ratings underwent a dramatic transformation.
-      From a modest 2.8, we climbed the ladder of acclaim to achieve a stellar rating of 4.7 across major app
-      stores. This wasn't just a number, but a testament to our commitment to excellence and user-centricity.
+      <strong class="lead-in">The trade-off:</strong> the signature bet worked well for some
+      categories and poorly for others. Photograph the right kind of object and the app was faster
+      than any search; photograph the wrong one and it returned a category and little else, leaving
+      that person back at the search box they could not use in the first place.
     </p>
   </ContentBlock>
 </CaseStudyLayout>
 
 <style>
-  .solution-image {
-    margin: 0 auto;
-    max-width: var(--container-max);
-    position: relative;
-    top: 4px;
-  }
-
-  .solution-image-grid {
-    margin: 0 auto;
-    max-width: var(--container-max);
-    border-radius: var(--radius-sm);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: var(--space-2);
-    grid-auto-rows: minmax(0, auto);
-  }
-
-  .solution-image img,
-  .solution-image-grid img {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  @media (max-width: 380px) {
-    .solution-image-grid {
-      grid-gap: var(--space-1);
-    }
+  /* journey.png is a dark-UI export on a transparent background: its ink was
+     drawn against the dark canvas, so on latte the bracket labels fall to
+     1.51:1 and the stage labels to 2.48:1 — the funnel's first and last stages
+     disappear. A stable dark plate (gray-900 is a primitive, never
+     theme-switched) renders it as designed on BOTH themes, matching the idiom
+     pepsi already uses. Full fix is a light-variant re-export. */
+  .dark-plate :global(.content-media) {
+    background-color: var(--color-gray-900);
   }
 </style>
