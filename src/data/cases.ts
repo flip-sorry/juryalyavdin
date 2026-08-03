@@ -18,7 +18,7 @@ export const cases: CaseCardData[] = [
   { title: 'Shares', tagline: 'Enhancing Shares app engagement', image: '/images/cases/snake.png', href: '/casestudy/snake.html' },
   { title: 'Yandex.Market', tagline: 'Refining mobile application', image: '/images/cases/marketapp.png', href: '/casestudy/market.html' },
   { title: 'Avito', tagline: 'Job search designed around first-time applicants', image: '/images/cases/aviapp.png', href: '/casestudy/avito.html' },
-  { title: 'PepsiCo', tagline: 'Supply chain management service', image: '/images/cases/pepsi.png', href: '/casestudy/pepsi.html' },
+  { title: 'PepsiCo', tagline: 'One app for three supply-chain roles', image: '/images/cases/pepsi.png', href: '/casestudy/pepsi.html' },
   { title: 'Trew', tagline: 'Customer management service for coaches', image: '/images/cases/trew.png', href: '/sorry.html', locked: true },
   { title: 'TXPlanner', tagline: 'Teeth alignment design tool', image: '/images/cases/txplanner.png', href: '/sorry.html', locked: true },
   { title: 'Yandex.Market', tagline: 'A virtual assistant for e-commerce', image: '/images/cases/alice.png', href: '/sorry.html', locked: true },

@@ -1,38 +1,24 @@
 ---
 /**
- * Port of casestudy/pepsi.html. Two source bugs the plan calls out are moot
- * here rather than fixed in place: the stray `<<script` and the duplicate
- * `</section>` were HTML-parser artifacts of literal markup — this page is
- * authored as valid JSX from scratch, and BaseLayout now owns the one
- * shared reveal script, so there's no per-page script tag or malformed
- * closing tag to carry over.
- *
- * Process combines the source's two sibling `.content-text` sections
- * ("Supply chain management flow" + "Customer research") into one
- * ContentBlock: as two literal siblings under one `.content-title` they'd
- * grid-wrap under column 1 instead of stacking in column 2 (only a 2-column
- * grid), which is a source authoring bug, not intended layout.
- *
- * The three ~120px persona photos (manager/worker/delivery.png) have no
- * source CSS class at all — plain unstyled `<img>`, ported as-is.
- * `worker.mp4` is a portrait clip (478x956); source constrained it to
- * `width="280px "` (the plan's named bug) instead of the other two GIFs'
- * 100%, so it isn't overwhelmingly tall — ported via a local max-width
- * wrapper (single-use, scoped here, same precedent as market.astro's
- * `.solution-image-grid`) instead of stretching it full-width like
- * `ContentMedia` normally would.
+ * Rewrite of casestudy/pepsi.html (2026-08) from owner-supplied project
+ * facts. Standard tier. Research credited to the client (tender package) —
+ * never first-person. Tender outcome closes the page; no procurement framing
+ * up top.
+ * Persona portraits (manager/worker/delivery.png) and flow.png orphaned —
+ * files stay in public/ per the URL contract.
+ * `worker.mp4` is a portrait clip (478x956); constrained via the same
+ * page-local max-width wrapper as before.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
 import ContentMedia from '../../components/ContentMedia.astro';
-import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="PepsiCo — supply chain case study · Jury Alyavdin"
-  description="Designing a responsive supply-chain platform that helps PepsiCo warehouse and delivery teams collect, transport, and deliver goods more efficiently."
+  title="PepsiCo — supply chain app case study · Jury Alyavdin"
+  description="One role-switching app for the people who move PepsiCo's goods from rack to shelf — the design that won the tender, though it was never built."
   path="/casestudy/pepsi.html"
-  h1="Supply chain management service"
+  h1="Designing one app for the three roles that move PepsiCo's goods"
   avatarImage="/casestudy/pepsi/pepsi-logo.png"
   orbitTop="PepsiCo"
   orbitBottom="SaaS • Food company"
@@ -40,6 +26,7 @@ import Eyebrow from '../../components/Eyebrow.astro';
   orbitBottomOffset="60%"
   glow="#e80828"
   heroImage="/casestudy/pepsi/hero.png"
+  heroPosition="left center"
   details={[
     { label: 'Platform', value: 'Web' },
     { label: 'Role', value: 'Product Designer' },
@@ -48,96 +35,117 @@ import Eyebrow from '../../components/Eyebrow.astro';
 >
   <ContentBlock title="Overview">
     <p>
-      PepsiCo, Inc. is a portion of American multinational food, snack, and beverage corporation headquartered in
-      Harrison, New York, in Purchase hamlet. PepsiCo products are enjoyed by consumers more than one billion times
-      a day in more than 200 countries and territories worldwide. PepsiCo generated $79 billion in net revenue in
-      2021. It oversees the manufacturing, distribution, and marketing of its products.
-    </p>
-    <p>
-      This company exemplifies a perfect demand-driven supply chain strategy appropriate for the current market.
-      The market where this firm operates is highly competitive. Supply chain management is handling the entire
-      production flow of a good or service — starting from the raw components to delivering the final product to
-      the consumer.
+      PepsiCo runs its own supply chain: the same company makes the goods, stores them, and trucks
+      them to the shops that sell them. I designed the tool meant to run that flow — warehouse
+      manager, warehouse worker, delivery manager, one system. I was the solo designer on the bid;
+      the commercial side was handled by others, and every flow and screen here is mine. The brief
+      covered the existing process end to end, from manufacturing to retail.
+      <strong class="lead-in">The result:</strong> the proposal won PepsiCo's tender. It was never
+      built — and the design decisions are the part worth reading.
     </p>
   </ContentBlock>
 
-  <ContentBlock title="Goal">
+  <ContentBlock title="Problem">
     <p>
-      PepsiCo recently got budget approval to work on a solution that helps supply chain teams to easily collect,
-      transport and deliver finished goods from its distribution centres to end customer facilities — small shops,
-      supermarkets, restaurants, etc.
+      The tender package came with PepsiCo's own research: interviews the company had already run
+      with its warehouse and delivery staff. I worked from those findings rather than from
+      interviews of my own — and they were blunt.
+      <strong class="lead-in">The floor ran on paper:</strong> whatever the existing software said,
+      the operation followed printed lists and whiteboards. Any new tool had to beat paper, not the
+      old system.
     </p>
     <p>
-      The project's main goal was to design a concept of a responsive product that minimizes costs by optimizing
-      the production circle and helps employees achieve their goals during the supply chain management process.
+      <strong class="lead-in">Dead zones:</strong> the building added a constraint of its own —
+      inside the warehouse, connectivity drops between racks, and a tool that assumes a signal will
+      stop working exactly where the work happens.
     </p>
+    <p>
+      One order passed through five pairs of hands on its way to a shelf; three of them — warehouse
+      manager, warehouse worker, delivery manager — were the ones the tool had to serve. The
+      client's flow map traces the full chain:
+    </p>
+    <div class="scenario-media">
+      <ContentMedia src="/casestudy/pepsi/scenario.png" alt="Swimlane diagram tracing one order across five supply-chain roles, from warehouse to retail" width={2320} height={1306} />
+    </div>
   </ContentBlock>
 
-  <ContentBlock title="Process">
-    <Eyebrow as="h3">Supply chain management flow</Eyebrow>
+  <ContentBlock title="One app, switched by role — not a suite of separate tools">
     <p>
-      Supply chain management represents an effort by suppliers to develop and implement supply chains that are as
-      efficient and economical as possible. Supply chains cover everything from production to product development
-      to the information systems needed to direct these undertakings.
+      An order here is a relay: the warehouse manager assembles it, the worker collects it, the
+      delivery manager moves it. My first version started where B2B tools usually start — with the
+      manager's dashboard. I reversed course once it was clear the floor worker's flow was the
+      actual product: if collecting items isn't fast and sure, nothing the dashboards show is
+      real.
     </p>
-    <ContentMedia src="/casestudy/pepsi/flow.png" alt="Supply chain management flow diagram" width={1520} height={848} />
-
-    <div style={`height: var(--space-section)`} />
-
-    <Eyebrow as="h3">Customer research</Eyebrow>
     <p>
-      My focus of this project was to cover the already existing process, starting from manufacturing to retail.
-      It meant that I had to consider the whole worker flow from the moment they received information about the
-      items to ship to the end of the delivery process. And for investigating the process I conducted a several
-      interviews with warehouse employees and people related to the delivery process.
+      The structural call followed: one app that switches what it shows by who signs in.
+      <strong class="lead-in">What lost:</strong> purpose-built apps per role — the plausible
+      default, and the expensive one. Each handoff between separate tools becomes a seam where
+      orders stall, and the people sharing one physical flow end up with three systems to learn and
+      keep in sync. Inside the shared app, how much each role sees of the others was a decision of
+      its own: the delivery manager got a live status view of every order in motion — enough
+      oversight to react without reaching into the floor's work.
     </p>
-    <ContentMedia src="/casestudy/pepsi/scenario.png" alt="Customer research scenarios across the delivery process" width={2320} height={1306} />
-  </ContentBlock>
-
-  <ContentBlock title="Solution">
-    <img src="/casestudy/pepsi/manager.png" alt="Warehouse manager persona" width={120} height={120} />
-    <Eyebrow as="h3">Warehouse manager</Eyebrow>
-    <ul class="circle-list">
-      <li>As a warehouse manager, when I get a new request from a client, I want to easily organize products that need to be shipped, so I can process more orders and receive a bonus.</li>
-      <li>As a warehouse manager, when I need to pass the work for the collection stage, I want to plan the distribution and delivery of the finished goods, so the warehouse worker will not come back to me with questions and waste my time.</li>
-    </ul>
+    <p>
+      The manager's board survived from that first dashboard-centric draft — now as one face of the
+      shared app rather than its center.
+    </p>
     <ContentMedia
       kind="video"
       src="/casestudy/pepsi/manager"
-      alt="Warehouse manager organizing and dispatching orders"
+      alt="Kanban-style order board grouping requests, picking, shipment, and delivery stages"
       width={960}
       height={720}
     />
+  </ContentBlock>
 
-    <div style={`height: var(--space-section)`} />
-
-    <img src="/casestudy/pepsi/worker.png" alt="Warehouse worker persona" width={120} height={120} />
-    <Eyebrow as="h3">Warehouse worker</Eyebrow>
-    <ul class="circle-list">
-      <li>As a warehouse worker, when I get information about items to collect, I want to also get information about the location of each item in the warehouse, so don't waste my time and reduce the chance to take the wrong box.</li>
-    </ul>
+  <ContentBlock title="Offline-first, because the racks kill the signal">
+    <p>
+      The dead zones between racks weren't an edge case to patch later; they were the normal
+      condition of the building. So the worker's flow is offline-first: the job downloads before
+      the walk starts, every pick is confirmed locally, and the app reconciles once the signal
+      returns. <strong class="lead-in">What lost:</strong> assumed connectivity — the cheaper
+      build, and the one the building had already disqualified. A tool that fails between racks
+      sends people straight back to printed lists.
+    </p>
+    <p>
+      Scanning became the spine of floor work — point at the code, confirm, move on. Browsing and
+      tapping through lists lost: it reads fine in a meeting room and falls apart when your hands
+      are full.
+    </p>
+    <p>
+      The worker's screen reduces the whole job to two actions — collect and confirm — designed to
+      stay usable where coverage drops:
+    </p>
     <div class="worker-media">
       <ContentMedia
         kind="video"
         src="/casestudy/pepsi/worker"
-        alt="Warehouse worker locating items via the mobile app"
+        alt="Phone screen listing items to collect, with product codes and confirmation ticks"
         width={479}
         height={957}
       />
     </div>
+  </ContentBlock>
 
-    <div style={`height: var(--space-section)`} />
-
-    <img src="/casestudy/pepsi/delivery.png" alt="Delivery manager persona" width={120} height={120} />
-    <Eyebrow as="h3">Delivery manager</Eyebrow>
-    <ul class="circle-list">
-      <li>As a Delivery Manager, when I am managing the shipping of the order, I want to get live information on the status of orders & keep track of the products that are "on the move", so I can react immediately if something is not going according to the plan.</li>
-      <li>Monitor the delivery process and get notified of any unpredicted event like challenging weather conditions, traffic jams, car accidents, etc.</li>
-    </ul>
+  <ContentBlock title="Outcome">
+    <p>
+      <strong class="lead-in">Won, never built:</strong> PepsiCo selected this proposal in the
+      tender; implementation never followed — designed, chosen, not shipped.
+    </p>
+    <p>
+      The design cost something, too. The delivery manager's clarity was paid for by the warehouse
+      worker: live oversight needs live data, and that meant extra confirmations and data entry for
+      the person on the floor — the one with the least time to give it.
+    </p>
+    <p>
+      It is the same board the manager sees, opened into a different panel — the visibility the
+      floor paid for:
+    </p>
     <ContentMedia
       kind="video"
       src="/casestudy/pepsi/delivery"
-      alt="Delivery manager tracking shipments in real time"
+      alt="Live delivery view with truck loads, a route map, and per-order status"
       width={800}
       height={599}
     />
@@ -147,5 +155,13 @@ import Eyebrow from '../../components/Eyebrow.astro';
 <style>
   .worker-media {
     max-width: 280px;
+  }
+
+  /* scenario.png is an ~87%-transparent dark-UI export: near-white lane labels
+     over nothing. A stable dark plate (gray-900 is a primitive, never
+     theme-switched) renders the diagram as designed on BOTH themes. Full fix
+     is an owner re-export with AA label contrast. */
+  .scenario-media :global(.content-media) {
+    background-color: var(--color-gray-900);
   }
 </style>
