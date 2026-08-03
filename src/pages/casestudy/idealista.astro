@@ -1,20 +1,19 @@
 ---
 /**
- * Port of casestudy/idealista.html. Inline colored spans -> `<strong
- * class="lead-in">`. Sub-headings -> `<Eyebrow as="h3">`. Mid-content
- * spacers -> token-driven spacer divs.
+ * Rewrite 2026-08 from owner-supplied project facts. Self-directed status
+ * stated up front; research language matched to reality; two claim-titled
+ * decision blocks; honest spec-project outcome. Media reduced 7 → 5.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
 import ContentMedia from '../../components/ContentMedia.astro';
-import Eyebrow from '../../components/Eyebrow.astro';
 ---
 
 <CaseStudyLayout
-  title="Idealista — brand meets UX case study · Jury Alyavdin"
-  description="Redesigning Idealista's web interface to match southern Europe's leading real-estate brand and streamline first-time and returning user journeys."
+  title="Idealista — self-directed redesign case study · Jury Alyavdin"
+  description="A self-directed Idealista redesign that expresses the brand through structure, not photography — the portfolio piece that started hiring conversations."
   path="/casestudy/idealista.html"
-  h1="Idealista 2.0: where brand meets user experience"
+  h1="Making Idealista feel like its brand without slowing the search"
   avatarImage="/casestudy/idealista/logo.jpg"
   orbitTop="Idealista"
   orbitBottom="Real Estate Marketplace"
@@ -30,95 +29,102 @@ import Eyebrow from '../../components/Eyebrow.astro';
 >
   <ContentBlock title="Overview">
     <p>
-      Idealista is the leading real estate marketplace in southern Europe. It currently ranks number one in all
-      three countries in Spain, Italy, and Portugal. It is the marketplace used by over 50,000 real estate
-      agencies, with over 3 million property listings.
+      Nobody at Idealista asked for this redesign. I made it in 2023 as a self-directed project
+      during a job search: the
+      research, the information architecture, and the UI are all my own work. The brief I set
+      myself was narrow: make the interface feel like the Idealista brand without making the
+      property search any slower. The concept never shipped and was never going to. But it did
+      what I built it for — it started hiring conversations.
     </p>
-    <ContentMedia src="/casestudy/idealista/current.webp" alt="The current Idealista website" width={2880} height={1400} />
   </ContentBlock>
 
   <ContentBlock title="Problem">
     <p>
-      When I first encountered the Idealista website, stark contrasts immediately caught my attention. While
-      Idealista stands as a distinguished brand in the real estate space with a defined character, its online
-      interface seemed somewhat distant from that brand ethos. The challenge? To bridge this gap and craft an
-      interface that truly resonated with what Idealista represented. Additionally, there were usability concerns
-      – the main page wasn't intuitively guiding users based on their familiarity with the platform, and the
-      property detail page was fraught with redundant information blocks.
+      The brand had more character than the product let on. Idealista's identity is distinctive —
+      the pixel wordmark, the lime green — but the 2023 interface read as generic listings
+      machinery. The homepage was a search box over a stock photo. It greeted a first-time
+      visitor and a daily searcher with the same screen.
     </p>
+    <p>
+      The trap is the obvious fix. A brand-led visual refresh is what a distinctive brand
+      invites, and it taxes exactly what a search tool must protect: speed. Expressing the brand
+      and keeping the search fast pull in opposite directions, and reconciling them is the whole
+      project.
+    </p>
+    <p>The live site at the time made the case on its own — the brand reduced to a colored bar and a stock hero:</p>
+    <ContentMedia src="/casestudy/idealista/current.webp" alt="Idealista's live 2023 homepage: a lime bar and a plain search box over a stock photo" width={2880} height={1400} />
   </ContentBlock>
 
-  <ContentBlock title="Process">
-    <Eyebrow as="h3">User research and benchmarking</Eyebrow>
+  <ContentBlock title="A flat search is a race, so the map beat a longer list">
     <p>
-      Before diving headfirst into redesigning, I embarked on a journey of understanding the user. Through the
-      research, I clearly distinguished between two primary user groups: the seasoned Idealista visitors and the
-      newcomers. This distinction was pivotal in my redesign approach. Furthermore, I looked at market leaders and
-      emerging platforms in the real estate space, and Airbnb stood out with its seamless combination of map and
-      list views. This seemed like an intuitive solution for users wanting more context in their property search.
+      I kept the research honest and small: four to six people I knew who were mid-search, plus
+      property viewings I attended in person alongside agents. Informal by design — enough
+      contact with the real thing to be corrected by it.
     </p>
-
-    <div style={`height: var(--space-block)`} />
-
-    <p>Here's how the journey unfolded:</p>
-    <ul class="circle-list">
-      <li><strong class="lead-in">Interviews & Surveys:</strong> I began by reaching out to both frequent and first-time users of Idealista, aiming to get insights into their pain points, needs, and expectations from the platform. Questions revolved around their primary objectives when visiting the site, the challenges they faced, and features they wished were present.</li>
-      <li><strong class="lead-in">Observational studies:</strong> Observing users in their natural environment as they navigated through the site provided invaluable insights. This helped in understanding both user groups' intuitive patterns and where they were met with friction or confusion.</li>
-      <li><strong class="lead-in">Competitive analysis:</strong> Benchmarking against other leading real estate platforms, not just in terms of design but also functionality, provided a broader perspective. This highlighted areas where Idealista could potentially lead or improve upon.</li>
-    </ul>
-
-    <div style={`height: var(--space-block-lg)`} />
-
-    <Eyebrow as="h3">First-time users journey</Eyebrow>
-    <ContentMedia src="/casestudy/idealista/first-time.png" alt="First-time user journey on Idealista" width={2600} height={1416} />
-    <Eyebrow as="h3">Returning users journey</Eyebrow>
-    <ContentMedia src="/casestudy/idealista/returning-users.png" alt="Returning user journey on Idealista" width={2600} height={1480} />
+    <p>
+      It corrected me fast. One searcher put it roughly this way: if you don't call within the
+      hour, the flat is gone. At one viewing, the agent walked a whole group of candidates
+      through the flat at once, and decisions had to happen on the spot — there was no taking it
+      home to compare. And in Spain the listed price is only the opening number: agency fees and
+      deposits sit behind it, so comparing listings line by line misleads as much as it informs.
+    </p>
+    <p>
+      A search that works like that needs orientation more than volume. The results page fuses a
+      permanent map with a compact listing column — the pairing Airbnb had already proven — so
+      every result stays anchored to its place in the city. The alternative I rejected was the
+      classic full-width list. It fits more flats per screen, but each one shows a price you
+      can't fully trust in a location you can't see.
+    </p>
+    <p>In the concept, the map never leaves the screen and prices sit where the flats actually are:</p>
+    <ContentMedia src="/casestudy/idealista/search-experience.png" alt="Search concept pairing a compact listing column with a permanent map and price pins" width={2880} height={1800} />
   </ContentBlock>
 
-  <ContentBlock title="Solution">
-    <Eyebrow as="h3">Bridging the brand-interface gap</Eyebrow>
+  <ContentBlock title="Density expressed the brand better than photography">
     <p>
-      The new interface is a harmonious blend of Idealista's robust tech character and its stature as a solid real
-      estate marketplace. It's a visual delight and a reflection of the brand's promise.
+      My first pass went the other way. I built out deep filtering — more controls, more
+      precision — then dropped most of it once I realized people don't compose careful queries.
+      They scan and react. The interface had to reward scanning: one row per flat, calm columns,
+      the deciding facts where the eye lands first.
     </p>
-    <ContentMedia src="/casestudy/idealista/brand-interface.png" alt="The redesigned Idealista interface" width={2880} height={1936} />
+    <p>
+      That call settled the brand question too. Photography is the default way to express a
+      brand this visual, and photo-led cards cost exactly what the race can't spare — listings
+      per glance. So the brand is expressed through structure instead: Idealista's lime and its
+      blocky monospace type, set in dense, quiet layouts. I kept the product's identity and
+      restructured the path through it; a full visual overhaul would have read as a new skin on
+      the same confusion. Contact actions got the same restraint: they sit on the listing, where
+      deciding happens, and stay out of the way while people browse.
+    </p>
+    <p>The property page moves what a decision needs — price, specs, floor plan, location — into the first screen:</p>
+    <ContentMedia src="/casestudy/idealista/property-details.png" alt="Property page concept with price, key specs, floor plan, and mini-map in one view" width={2880} height={1800} />
 
     <div style={`height: var(--space-block-lg)`} />
 
-    <Eyebrow as="h3">Personalized user journeys</Eyebrow>
-    <p>
-      The main webpage unfolds like a welcoming guide for first-time visitors, showcasing the unique benefits of
-      using Idealista with handpicked property examples. In contrast, seasoned users are greeted with their main
-      activities, making their journey on the site feel personalized and efficient.
-    </p>
-    <ContentMedia src="/casestudy/idealista/personalised-journeys.png" alt="Personalized journeys for first-time and returning users" width={2920} height={1892} />
+    <p>The brand does the work a hero photograph usually does:</p>
+    <ContentMedia src="/casestudy/idealista/brand-interface.png" alt="Homepage concept: lime brand block, pixel wordmark, photo mosaic, search field up front" width={2880} height={1936} />
 
     <div style={`height: var(--space-block-lg)`} />
 
-    <Eyebrow as="h3">Unified search experience</Eyebrow>
     <p>
-      The fusion of map and list views is inspired by Airbnb's approach. This combination simplifies the user's
-      interface, providing a richer context during the property search.
+      The homepage also stops treating everyone the same. A first visit gets an explainer of
+      what Idealista is; a returning searcher gets saved searches and fresh picks first.
     </p>
-    <ContentMedia src="/casestudy/idealista/search-experience.png" alt="Unified map and list search experience" width={2880} height={1800} />
-
-    <div style={`height: var(--space-block-lg)`} />
-
-    <Eyebrow as="h3">Streamlined property details</Eyebrow>
-    <p>
-      The revamped property detail page is a testament to the power of clarity. Users can now perform a swift yet
-      comprehensive property analysis by placing priority elements such as photos, price, concise information,
-      apartment plan, and location at the forefront. Gone are the days of wading through repetitive blocks of
-      information.
-    </p>
-    <ContentMedia src="/casestudy/idealista/property-details.png" alt="Streamlined property detail page" width={2880} height={1800} />
+    <p>Both variants exist in the concept — one introduces the service, one resumes the search:</p>
+    <ContentMedia src="/casestudy/idealista/personalised-journeys.png" alt="Two homepage variants side by side, a first-time explainer and a returning user's dashboard" width={2920} height={1892} />
   </ContentBlock>
 
-  <ContentBlock title="Conclusion">
+  <ContentBlock title="Never shipped, still did its job">
     <p>
-      With these changes, I aimed to redefine the Idealista user experience — ensuring that every interaction
-      reflects the brand's ethos and an effortless journey for the user. It's not just about redesigning; it's
-      about reimagining how users connect with Idealista.
+      Framed honestly: this is a self-directed concept. Nobody commissioned it and it never
+      shipped. What it proves is the argument itself — a brand can be expressed in structure,
+      color, and type without taxing a search that behaves like a race. As a portfolio piece it
+      did its job and started the hiring conversations it was built for.
+    </p>
+    <p>
+      The trade-off I would name first: the permanent map costs listing density. Every screen
+      shows fewer results than a classic list would, and the squeeze is worst on small phones —
+      which is where most searching happens. If I came back to this, that tension is where I
+      would start.
     </p>
   </ContentBlock>
 </CaseStudyLayout>

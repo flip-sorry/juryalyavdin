@@ -14,7 +14,7 @@ export interface CaseCardData {
  */
 export const cases: CaseCardData[] = [
   { title: 'Impress', tagline: 'Streamline teeth alignment process', image: '/images/cases/impress.png', href: '/casestudy/impress-app.html' },
-  { title: 'Idealista', tagline: 'Where brand meets user experience', image: '/images/cases/idealista.png', href: '/casestudy/idealista.html' },
+  { title: 'Idealista', tagline: 'Brand expression without slowing the search', image: '/images/cases/idealista.png', href: '/casestudy/idealista.html' },
   { title: 'Shares', tagline: 'Enhancing Shares app engagement', image: '/images/cases/snake.png', href: '/casestudy/snake.html' },
   { title: 'Yandex.Market', tagline: 'Refining mobile application', image: '/images/cases/marketapp.png', href: '/casestudy/market.html' },
   { title: 'Avito', tagline: 'Job search designed around first-time applicants', image: '/images/cases/aviapp.png', href: '/casestudy/avito.html' },
