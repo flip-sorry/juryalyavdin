@@ -30,7 +30,7 @@ export const cases: CaseCardData[] = [
     href: 'https://apps.apple.com/ru/app/liv-happiness-companion/id1485409805?l=en',
     external: true,
   },
-  { title: 'Yandex.Run', tagline: 'Music that fits with the pace of the runner', image: '/images/cases/run.png', href: '/casestudy/run.html' },
+  { title: 'Yandex.Run', tagline: 'Music that follows the runner, not a preset playlist', image: '/images/cases/run.png', href: '/casestudy/run.html' },
   { title: 'Like VR', tagline: 'Development of virtual and augmented reality', image: '/images/cases/likevr.png', href: '/sorry.html', locked: true },
   { title: 'Rambler', tagline: 'Redesign of Rambler news main page', image: '/images/cases/rmblr.png', href: '/sorry.html', locked: true },
   { title: 'Mail.ru', tagline: 'Redesign the dashboard of the Cloud', image: '/images/cases/mail.png', href: '/sorry.html', locked: true },
