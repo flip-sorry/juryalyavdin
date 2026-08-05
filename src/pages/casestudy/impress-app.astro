@@ -1,27 +1,56 @@
 ---
 /**
- * Rewrite 2026-08 from owner-supplied project facts. Standard tier: the
- * previous page ran ~2,030 words and 14 media, and the >50% cut to ~850
- * words and 5 media is explicitly approved.
+ * Reframe 2026-08-04. The 2026-08 standard-tier rewrite was factually clean
+ * but framed this as feature work on an existing app. It was 0->1: there was
+ * no Impress patient app, the owner proposed it and argued its economics.
+ * Owner-approved this pass: FLAGSHIP tier (superseding the 2026-08-03
+ * standard approval), Role prop "Founding Product Designer -> Design Lead",
+ * and the new claims recorded in intake sheet section 7 (2026-08-04
+ * addendum) — origin, v1 scope, both rejected alternatives, and the
+ * design-function influence artifact.
  *
- * Internal figures are published directionally (adoption, savings, per-visit
- * cost, store ratings) per the owner's publication rule; the Series B is the
- * one exact public figure and carries its source link.
+ * Internal figures stay directional (adoption, savings, per-visit cost,
+ * store ratings) per the owner's publication rule; the Series B is the one
+ * exact public figure and carries its source link.
  *
- * The 4 source videos are the "native clip" pattern — pre-existing .mp4 with
- * no .webm/poster sibling — so they pass `controls webm={false}
- * poster={false}` (see ContentMedia's doc comment).
+ * ASSETS, verified by opening the files this pass:
+ * - `ideation.png` is NOT brainstorm output (its old alt was wrong) — it is a
+ *   team selfie, seven identifiable masked faces and a name badge. Never put
+ *   it on this page. It stays in public/ unreferenced by owner decision
+ *   (IM-39, 2026-08-04, made in full knowledge of what it shows) — do not
+ *   "fix" that in a later pass without asking again.
+ * - `sol01.mp4` re-encoded in place: the back-office patient record showed a
+ *   name, `@smile2impress.com` address and Spanish mobile. That panel is now
+ *   blurred; the filename is unchanged so the fix reaches the live URL.
+ * - `usertesting.mp4` DELETED from public/ (owner-approved) — deliberate
+ *   one-off exception to the stable-URL rule; nothing linked to it. Its blob
+ *   was also purged from git history by a one-time force-push (IM-38), the
+ *   single approved exception to the repo's no-force-push rule; pre-purge
+ *   bundle at ~/Archives/juryalyavdin-pre-history-purge-2026-08.bundle.
+ * - `sol02` alt corrected: it is the kit onboarding ("what's inside", the
+ *   retractor), not an aligner fit-and-change animation.
+ * - Still orphaned by substance: `results01.png` (bakes in the generalized
+ *   figures), `results02.png` (screenshot of someone else's article),
+ *   `customer.png`, `first-time.png` (misfiled Idealista asset).
+ *
+ * GA4: section titles changed and the page went from 5 blocks to 6 on
+ * 2026-08-04, so `section_id` values are new from that date and
+ * `section_index` shifts after Problem. Schema unchanged.
+ *
+ * The 3 videos are the "native clip" pattern — .mp4 with no .webm/poster
+ * sibling — so they pass `controls webm={false} poster={false}`.
  */
 import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 import ContentBlock from '../../components/ContentBlock.astro';
 import ContentMedia from '../../components/ContentMedia.astro';
+import StatsList from '../../components/StatsList.astro';
 ---
 
 <CaseStudyLayout
-  title="Impress App — remote aligner monitoring case study · Jury Alyavdin"
-  description="The Impress app moved the fortnightly aligner check-up out of the clinic and onto the patient's phone — shipped in three months, with a clinician approving every step."
+  title="Impress App — first patient app case study · Jury Alyavdin"
+  description="Impress had clinics, aligners and no app. I proposed and designed its first patient app: the monitoring loop shipped in three months and took the fortnightly check-up out of the clinic."
   path="/casestudy/impress-app.html"
-  h1="Moving the fortnightly check-up from the clinic chair to a phone camera"
+  h1="Designing Impress's first patient app around a photo a clinician could sign off"
   avatarImage="/casestudy/impress-app/logo.png"
   orbitTop="Impress"
   orbitBottom="Orthodontic service"
@@ -30,33 +59,53 @@ import ContentMedia from '../../components/ContentMedia.astro';
   heroFit="contain"
   details={[
     { label: 'Platform', value: 'iOS, Android' },
-    { label: 'Role', value: 'Design Lead, 3D modeler' },
+    { label: 'Role', value: 'Founding Product Designer → Design Lead' },
     { label: 'Date', value: '2021–2023' },
   ]}
 >
   <ContentBlock title="Overview">
     <p>
       Impress runs its own chain of orthodontic clinics across Europe, straightening teeth with
-      clear aligners instead of braces — more than 50,000 patients as of 2023. I was Design Lead
-      on its patient app from 2021 to 2023, and the app did one main thing: it took the
-      fortnightly check-up out of the clinic and put it on the patient's phone. The first version
-      shipped in three months and is still live, largely as designed.
+      clear aligners instead of braces — more than 50,000 patients as of 2023. Everything happened
+      in a chair, including a check-up every fortnight for the length of the treatment. There was
+      no patient app. I proposed one, argued its economics, and designed it: I was the company's
+      first product designer and the only one on the project at the start; the call centre ran the
+      interviews, the orthodontists held the veto over anything clinical.{' '}
+      <strong class="lead-in">The result:</strong> the first version shipped in three months, took
+      the fortnightly check-up out of the clinic, and is still live largely as designed.
     </p>
-    <p>
-      I wrote the research script, designed the app, built the 3D models behind its instructional
-      tutorials, and settled the clinical rules with the orthodontists who sign off on every case.
-    </p>
+    <StatsList
+      items={[
+        { label: 'Origin', value: 'Proposed, not assigned' },
+        { label: 'First version', value: 'Shipped in three months' },
+        { label: 'Then', value: 'A release every fortnight' },
+        { label: 'Adoption', value: 'Most patients within six months' },
+      ]}
+    />
+    <div style={`height: var(--space-block)`} />
+    <p>Impress is a physical service before it is a digital one — its own clinics, its own chairs. That is why an app was a business case to argue rather than a feature to request:</p>
+    <ContentMedia
+      src="/casestudy/impress-app/impress-clinic.jpeg"
+      alt="Curved plywood partitions inside an Impress clinic, a treatment chair visible through an open door"
+      width={1400}
+      height={800}
+    />
   </ContentBlock>
 
   <ContentBlock title="Problem">
     <p>
-      Treatment runs in fortnightly steps — Impress said results could show in as little as six
-      months — and each step needs a professional to confirm the teeth have actually moved before
-      the patient switches to the next aligner. In practice that confirmation meant a clinic
-      visit. Once acquisition and clinic overheads were counted, those appointments carried real
-      cost for the company, and clinic capacity was being spent on visits that lasted minutes.
-      Patients paid in time: one described it, roughly, as taking a day off work for five minutes
-      in a chair.
+      Treatment runs in fortnightly steps — Impress said patients could typically see results in as
+      little as six months — and each step needs a professional to confirm the teeth have actually
+      moved before the patient switches to the next aligner. In practice that confirmation meant a
+      clinic visit. Once acquisition and clinic overheads were counted, a single appointment cost
+      the company tens to hundreds of euros, and clinic capacity was being spent on visits that
+      lasted minutes. Patients paid in time. As one put it, roughly: I can't take a
+      day off for five minutes in a chair.
+    </p>
+    <p>
+      Nobody asked me to fix this. I put the case together myself — what the recurring visit cost,
+      what removing it would be worth, and what would have to be true for a clinician to accept it
+      — and proposed an app before there was one to design.
     </p>
     <p>This is the appointment in question — a clinician, a scanner, and a chair, repeating every fortnight for the length of the treatment:</p>
     <ContentMedia
@@ -74,16 +123,19 @@ import ContentMedia from '../../components/ContentMedia.astro';
         width={2600}
         height={1608}
       />
-          <span class="media-note">Open full size</span>
+      <span class="media-note">Open full size</span>
     </a>
+  </ContentBlock>
+
+  <ContentBlock title="The first release had to remove the visit, or it removed nothing">
     <p>
-      I wrote a structured interview script and the call centre ran it live with existing
-      patients, on the phone, in Spanish. Five things came back consistently: the fortnightly
-      check-ups disrupted people's schedules, waiting rooms ate time even with an appointment,
-      patients wanted to watch their own progress, they were unsure when they were allowed to
-      switch aligners, and booking was harder than it needed to be.
+      I wrote a structured interview script and the call centre ran it live with existing patients,
+      on the phone, in Spanish. Five things came back consistently: the fortnightly check-ups
+      disrupted people's schedules, waiting rooms ate time even with an appointment, patients wanted
+      to watch their own progress, they were unsure when they were allowed to switch aligners, and
+      booking was harder than it needed to be.
     </p>
-    <p>Mapping the treatment stage by stage is what turned those complaints into a shape — pain at every step from the first visit to the final fitting, with the recurring clinic visit running through all of it:</p>
+    <p>Mapping the treatment stage by stage gave those complaints a shape — pain at every step from the first visit to the final fitting, with the recurring clinic visit running through all of it:</p>
     <a href="/casestudy/impress-app/journey02.png" aria-label="Open the full-size journey map">
       <ContentMedia
         src="/casestudy/impress-app/journey02.png"
@@ -91,43 +143,83 @@ import ContentMedia from '../../components/ContentMedia.astro';
         width={2880}
         height={1188}
       />
-          <span class="media-note">Open full size</span>
+      <span class="media-note">Open full size</span>
     </a>
+    <p>
+      Four of those five described friction around the visit; only one was the visit. Booking,
+      waiting rooms, messaging and progress anxiety would each have made the same treatment easier
+      to sit through, and none of them would have removed a single appointment. I had three months,
+      and I had argued the case on what that appointment cost — so the first release shipped one
+      loop and nothing else: capture a photo good enough for a clinician to judge, get it reviewed,
+      and log the wear time that made the judgement safe.
+    </p>
+    <p>
+      <strong class="lead-in">What lost: shipping the whole patient journey at once.</strong> Kit
+      tracking, onboarding, a messenger and a new booking flow, all in one release — the
+      complete-product launch, and the plausible call, because most of that list came from a
+      patient. It would have put months between the argument I had made and the first appointment it
+      removed, and it would have spent them without knowing whether a clinician would accept a
+      photograph at all.
+    </p>
+    <p>The deferred half shipped later, driven from the console the clinicians worked in: the treatment plan is authored there — how many steps, how many days each, which ones still need an in-clinic procedure — and the patient's app follows it.</p>
+    <ContentMedia
+      kind="video"
+      controls
+      webm={false}
+      poster={false}
+      src="/casestudy/impress-app/sol01"
+      alt="Clinician console authoring a treatment plan beside the patient app showing kit delivery and booking"
+      width={1280}
+      height={684}
+    />
   </ContentBlock>
 
   <ContentBlock title="The photograph was the design problem, not the app">
     <p>
-      The obvious move was to let patients photograph their own teeth and have a clinician review
-      the images remotely. The orthodontists' objection was not about tooling. Their licence rests
-      on what they can assess, and as one of them put it, roughly: I can't sign off on what I can't
-      examine.
+      Letting patients photograph their own teeth for a clinician to review remotely was the obvious
+      shape. The orthodontists' objection was not about tooling. Their licence rests on what they can
+      assess, and as one of them put it, roughly: I can't sign off on what I can't examine.
     </p>
     <p>
-      <strong class="lead-in">Rejected: keeping every check-up in the clinic.</strong> It was
-      safe, and it was what the clinics already did — but it meant the service could only grow by
-      adding chairs, and patients kept paying in half-days off work.
+      <strong class="lead-in">What lost: live video consultations.</strong> A scheduled call with
+      the orthodontist was the other credible remote model, and the one telehealth had already
+      proven elsewhere — but it puts the appointment back into both calendars, it scales exactly as
+      badly as a chair does, and a video stream does not give a clinician the thing they compare: a
+      still, at a fixed angle, with the cheeks held back, set against the same shot from a fortnight
+      ago.
     </p>
+    <p>Benchmarking the field showed how hard that shot is — the established remote-monitoring products ship a moulded plastic retractor whose only job is holding it steady:</p>
+    <a href="/casestudy/impress-app/benchmarking.png" aria-label="Open the full-size competitor benchmark">
+      <ContentMedia
+        src="/casestudy/impress-app/benchmarking.png"
+        alt="Competitor remote-monitoring products: a scanning device with a moulded retractor, a patient app and a clinician dashboard"
+        width={2600}
+        height={1192}
+      />
+      <span class="media-note">Open full size</span>
+    </a>
     <p>
-      That made the photograph the real problem. A clinically usable photo needs specific angles,
+      That made the photograph the design problem. A clinically usable photo needs specific angles,
       a cheek retractor held in place, and enough light — taken by an untrained person, in a
-      bathroom, on a phone. A picture that misses those is worthless to the clinician reviewing
-      it, however good the software around it is. So the app's actual job was teaching capture.
+      bathroom, on a phone. A picture that misses those is worthless to the clinician reviewing it,
+      however good the software around it is. So the app's real job was teaching capture: a guided
+      sequence, one shot at a time, that a patient could get right on their own, first time.
     </p>
-    <p>The capture flow guides each shot the clinician needs, then plays it back against the last one:</p>
+    <p>The capture flow walks through each shot the clinician needs, then plays it back against the last one:</p>
     <ContentMedia
       src="/casestudy/impress-app/sol04.png"
       alt="Retractor-guided photo capture screens beside a before-and-after comparison view"
       width={2320}
       height={1240}
     />
-    <p>I modelled the kit in 3D so the tutorials could show each step from the angle a patient actually sees:</p>
+    <p>Onboarding had to teach the retractor before it could teach the photo — so when it arrived in a later release it led with the kit, modelled in 3D and animated from the angle a patient actually sees:</p>
     <ContentMedia
       kind="video"
       controls
       webm={false}
       poster={false}
       src="/casestudy/impress-app/sol02"
-      alt="Onboarding tutorial animating how to fit and change an aligner"
+      alt="Kit onboarding: 3D-rendered box opening, with a contents list naming aligner packs and the cheek retractor"
       width={1280}
       height={684}
     />
@@ -140,9 +232,9 @@ import ContentMedia from '../../components/ContentMedia.astro';
       cheaper for the company, and it is what a pure software product would have done.
     </p>
     <p>
-      <strong class="lead-in">Rejected: letting the app advance patients on its own.</strong> A
+      <strong class="lead-in">What lost: letting the app advance patients on its own.</strong> A
       wrong call about tooth movement is a clinical harm, not a poor experience, and nobody on the
-      clinical side would carry that.
+      clinical side was going to take that on.
     </p>
     <p>
       So every transition waits on a clinician. The patient uploads, the orthodontist reviews, and
@@ -157,8 +249,9 @@ import ContentMedia from '../../components/ContentMedia.astro';
     </p>
     <p>
       Two rounds of testing with existing patients shaped it, and the second is where the request
-      for personal progress tracking came from. The daily log is what answered it — it turns "have
-      you worn them?" into something a clinician can see:
+      for personal progress tracking came from. The daily log is what answered it, and it does
+      double duty — the patient watches their own streak, the clinician gets a wear record instead
+      of a recollection. Shown here as the app stood in 2023, many releases on:
     </p>
     <ContentMedia
       kind="video"
@@ -166,7 +259,7 @@ import ContentMedia from '../../components/ContentMedia.astro';
       webm={false}
       poster={false}
       src="/casestudy/impress-app/sol03"
-      alt="Daily wear-time log with a timer and reminders to keep aligners in"
+      alt="Daily wear-time log with a timer, step counter and reminders to keep aligners in"
       width={1280}
       height={684}
     />
@@ -176,18 +269,33 @@ import ContentMedia from '../../components/ContentMedia.astro';
     <p>
       <strong class="lead-in">Shipped in three months, then every fortnight:</strong> a large share
       of patients were on it within months, and most were using it within six. Taking those
-      appointments out of the clinics produced net savings in the low hundreds of thousands of
-      euros a year once development costs were counted, and the app was well rated on both stores.
-      In July 2022 Impress raised a{' '}
+      appointments out of the clinics produced net savings in the low hundreds of thousands of euros
+      a year once development costs were counted, and the app was well rated on both stores.
+    </p>
+    <StatsList
+      items={[
+        { label: 'The check-up', value: 'Clinic chair → phone camera' },
+        { label: 'Clinic capacity', value: 'Spent on treatment, not confirmations' },
+        { label: 'Cost per visit removed', value: 'Tens to hundreds of euros' },
+        { label: 'Operating cost', value: 'Net savings, low hundreds of thousands of euros a year' },
+      ]}
+    />
+    <div style={`height: var(--space-block)`} />
+    <p>
+      That result paid for everything I did afterwards. An app that removed a recurring cost made
+      the argument for design as a function rather than a service: the back-office suite the clinics
+      ran on followed from it, and so did the design team I built and led. In July 2022 Impress
+      raised a{' '}
       <a href="https://techcrunch.com/2022/07/11/barcelonas-impress-heads-towards-a-125m-series-b-round-in-its-bid-to-digitize-orthodontics">$125 million Series B</a>{' '}
       — company context rather than the app's doing. Figures from Impress's internal reporting are
       given directionally here.
     </p>
     <p>
-      <strong class="lead-in">What it cost:</strong> the patients who most needed a chair. The workflow was built around the common
-      case, and treatments that genuinely needed hands-on assessment were served worse by a
-      process designed for a photograph. Catching those cases early, instead of waiting for a
-      clinician to spot them at review, is where I would start if I picked this up again.
+      <strong class="lead-in">What it cost:</strong> the patients who most needed a chair. The
+      workflow was built around the common case, and treatments that genuinely needed hands-on
+      assessment were served worse by a process designed for a photograph. Catching those cases
+      early, instead of waiting for a clinician to spot them at review, is where I would start if I
+      picked this up again.
     </p>
   </ContentBlock>
 </CaseStudyLayout>

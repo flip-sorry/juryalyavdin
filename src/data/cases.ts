@@ -13,7 +13,7 @@ export interface CaseCardData {
  * hosted outside this site (rel/target handled by CaseCard).
  */
 export const cases: CaseCardData[] = [
-  { title: 'Impress', tagline: 'Aligner check-ups moved from clinic to phone', image: '/images/cases/impress.png', href: '/casestudy/impress-app.html' },
+  { title: 'Impress', tagline: 'First patient app, shipped in three months', image: '/images/cases/impress.png', href: '/casestudy/impress-app.html' },
   { title: 'Idealista', tagline: 'Brand expression without slowing the search', image: '/images/cases/idealista.png', href: '/casestudy/idealista.html' },
   { title: 'Shares', tagline: 'Enhancing Shares app engagement', image: '/images/cases/snake.png', href: '/casestudy/snake.html' },
   { title: 'Yandex.Market', tagline: 'Product-market fit for an app written off', image: '/images/cases/marketapp.png', href: '/casestudy/market.html' },
