@@ -36,6 +36,9 @@
  * GA4: section titles changed and the page went from 5 blocks to 6 on
  * 2026-08-04, so `section_id` values are new from that date and
  * `section_index` shifts after Problem. Schema unchanged.
+ * 2026-08-05: middle section titles reverted to generic stage headers
+ * (Research / Explorations / Solution) by owner decision; those `section_id`
+ * values mint anew again from this date.
  *
  * The 3 videos are the "native clip" pattern — .mp4 with no .webm/poster
  * sibling — so they pass `controls webm={false} poster={false}`.
@@ -127,7 +130,7 @@ import StatsList from '../../components/StatsList.astro';
     </a>
   </ContentBlock>
 
-  <ContentBlock title="The first release had to remove the visit, or it removed nothing">
+  <ContentBlock title="Research">
     <p>
       I wrote a structured interview script and the call centre ran it live with existing patients,
       on the phone, in Spanish. Five things came back consistently: the fortnightly check-ups
@@ -174,7 +177,7 @@ import StatsList from '../../components/StatsList.astro';
     />
   </ContentBlock>
 
-  <ContentBlock title="The photograph was the design problem, not the app">
+  <ContentBlock title="Explorations">
     <p>
       Letting patients photograph their own teeth for a clinician to review remotely was the obvious
       shape. The orthodontists' objection was not about tooling. Their licence rests on what they can
@@ -225,7 +228,7 @@ import StatsList from '../../components/StatsList.astro';
     />
   </ContentBlock>
 
-  <ContentBlock title="A clinician approves every step">
+  <ContentBlock title="Solution">
     <p>
       With photos arriving reliably, a cheaper design came within reach: let the app judge the
       images and tell patients when to advance. It would have been faster for the patient and
