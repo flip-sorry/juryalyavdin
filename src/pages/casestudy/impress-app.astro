@@ -22,11 +22,15 @@
  * - `sol01.mp4` re-encoded in place: the back-office patient record showed a
  *   name, `@smile2impress.com` address and Spanish mobile. That panel is now
  *   blurred; the filename is unchanged so the fix reaches the live URL.
- * - `usertesting.mp4` DELETED from public/ (owner-approved) — deliberate
- *   one-off exception to the stable-URL rule; nothing linked to it. Its blob
- *   was also purged from git history by a one-time force-push (IM-38), the
- *   single approved exception to the repo's no-force-push rule; pre-purge
- *   bundle at ~/Archives/juryalyavdin-pre-history-purge-2026-08.bundle.
+ * - `usertesting.mp4` was deleted and purged from git history on 2026-08-04
+ *   (IM-38, the single approved force-push), then RESTORED unchanged on
+ *   2026-08-05: the owner confirmed the participants consented to public use
+ *   (IM-40). It is byte-identical to the original and now sits in
+ *   Explorations. It shows a Zoom call with named participants and faces,
+ *   the owner's former personal address, and a patient mid-procedure — all
+ *   published on the owner's consent assertion, which is the record. Do not
+ *   remove it on privacy grounds without asking him; do not re-purge history.
+ *   Pre-purge bundle: ~/Archives/juryalyavdin-pre-history-purge-2026-08.bundle.
  * - `sol02` alt corrected: it is the kit onboarding ("what's inside", the
  *   retractor), not an aligner fit-and-change animation.
  * - Still orphaned by substance: `results01.png` (bakes in the generalized
@@ -214,6 +218,17 @@ import StatsList from '../../components/StatsList.astro';
       alt="Retractor-guided photo capture screens beside a before-and-after comparison view"
       width={2320}
       height={1240}
+    />
+    <p>Watching patients test the prototype is what settled the guidance: a retractor in one hand and a phone in the other leaves nobody free to read instructions, so every prompt had to survive being glanced at:</p>
+    <ContentMedia
+      kind="video"
+      controls
+      webm={false}
+      poster={false}
+      src="/casestudy/impress-app/usertesting"
+      alt="Remote testing session: a patient holds a cheek retractor and phone while the prototype guides each shot"
+      width={1280}
+      height={1022}
     />
     <p>Onboarding had to teach the retractor before it could teach the photo — so when it arrived in a later release it led with the kit, modelled in 3D and animated from the angle a patient actually sees:</p>
     <ContentMedia
